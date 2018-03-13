@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ImgCapitolio from '../images/capitolio.png';
 import SigninForm from './SigninForm.js';
+import Searchbar from './Searchbar.js';
 import './HomeBanner.css';
 
 var bannerStyle = {
@@ -13,7 +14,10 @@ export default class HomeBanner extends Component {
             <div style={ bannerStyle } class="home banner">
                 <div className="ui grid">
                     <div className="eight wide column">
-                        <h1>Ágora</h1>
+                        <div className="ui container">
+                            <h1>Á g o r a</h1>
+                            <Searchbar />
+                        </div>
                     </div>
                     <div className="eight wide column">
                         <SigninForm />
