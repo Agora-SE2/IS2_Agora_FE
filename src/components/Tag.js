@@ -4,7 +4,7 @@ import ImgCapitolio from '../images/capitolio.png';
 export default class Tag extends Component {
     render() {
         return (
-            <div className="ui category card">
+            <div className="ui category link raised card">
                 <div className="image">
                     <img src={ ImgCapitolio } />
                 </div>
