@@ -4,10 +4,11 @@ import './SigninForm.css';
 export default class SigninForm extends Component {
     render() {
         return (
-            <div class="ui signin segment">
+            <div class="ui signin padded segment">
                 <h3 className="ui centered header">
                     Inicia sesión en Ágora
                 </h3>
+                <div className="ui divider"></div>
                 <form class="ui form">
                     <div class="field">
                         <input name="email" placeholder="Correo electrónico" type="text" />

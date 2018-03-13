@@ -7,8 +7,7 @@ export default class HomePage extends Component {
         return (
             <div id="home">
                 <HomeBanner />
-                <div className="ui divider"></div>
-                <div className="ui grid">
+                <div className="ui container grid">
                     <div className="eight wide column">
                         <NewsMosaic title="Lo más debatido" />
                     </div>
