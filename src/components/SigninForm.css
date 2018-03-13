@@ -1,6 +1,16 @@
-.ui.signin.segment {
+.ui.signin.container {
     width: 400px;
-    margin-top: 100px !important;
+    margin-top: 200px !important;
     margin-left: auto;
     margin-right: auto;
+
+    color: white !important;
+}
+
+.ui.signin.container h3 {
+    color: white;
+}
+
+.ui.signin.form h4 {
+    color: white;
 }
