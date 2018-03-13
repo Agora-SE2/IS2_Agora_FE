@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import ImgCapitolio from '../images/capitolio.png';
+import ImgBatallaBoyaca from '../images/batalla-puente-boyaca.jpg';
 import SigninForm from './SigninForm.js';
 import Searchbar from './Searchbar.js';
 import './HomeBanner.css';
 
 var bannerStyle = {
-    backgroundImage: "url(" + ImgCapitolio  + ")"
+    backgroundImage: "url(" + ImgBatallaBoyaca  + ")"
 }
 
 export default class HomeBanner extends Component {
