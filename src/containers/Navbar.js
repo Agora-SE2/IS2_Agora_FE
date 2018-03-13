@@ -1,0 +1,30 @@
+import React, { Component } from 'react';
+
+export default class Navbar extends Component {
+    render() {
+        return (
+            <div id="navbar">
+                <div class="ui secondary pointing menu">
+                    <a class="active item">
+                        Ágora
+                    </a>
+                    <a class="item">
+                        Proyectos de ley
+                    </a>
+                    <a class="item">
+                        Nosotros
+                    </a>
+                    <div class="right menu">
+                    <div class="ui category search item">
+                        <div class="ui icon input">
+                            <input class="prompt" placeholder="Busca proyectos de ley..." type="text"/>
+                            <i class="search link icon"></i>
+                        </div>
+                        <div class="results"></div>
+                    </div>
+                    </div>
+                </div>
+            </div>
+        );
+    }
+}
