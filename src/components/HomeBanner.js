@@ -12,7 +12,7 @@ var bannerStyle = {
 export default class HomeBanner extends Component {
     render() {
         return (
-            <div style={ bannerStyle } class="home banner">
+            <div style={ bannerStyle } className="home banner">
                 <div className="ui grid">
                     <div className="eleven wide column">
                         <div className="ui container">
