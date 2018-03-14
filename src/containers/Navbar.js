@@ -5,13 +5,13 @@ export default class Navbar extends Component {
         return (
             <div id="navbar" class="ui top fixed big menu">
                 <div className="ui container">
-                    <a class="active item">
+                    <a href="/" class="active item">
                         Ágora
                     </a>
-                    <a class="item">
+                    <a href="/search" class="item">
                         Proyectos de ley
                     </a>
-                    <a class="item">
+                    <a href="/about" class="item">
                         Nosotros
                     </a>
                     <div class="right menu">
