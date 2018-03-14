@@ -2,6 +2,7 @@
 @banner-height: 75vh;*/
 
 .home.banner {
+    margin-top: 0em;
     background-size: cover;
     /* height: @banner-height; */
     height: 75vh;
