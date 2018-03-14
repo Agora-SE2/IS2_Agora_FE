@@ -11,7 +11,6 @@ export default class NewsMosaic extends Component {
                     <NewsCard title="Proyecto de ley #1" description="Descripción"/>
                     <div className="ui three column grid">
                         <div className="column">
-
                             <NewsCard title="Proyecto de ley #1" description="Descripción"/>
                         </div>
                         <div className="column">
