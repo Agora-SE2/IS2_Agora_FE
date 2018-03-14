@@ -7,6 +7,7 @@ import CategoryPage from './CategoryPage.js';
 import ProfilePage from './ProfilePage.js';
 import SearchPage from './SearchPage.js';
 import ProyectoLeyPage from './ProyectoLeyPage.js';
+import RegisterPage from './RegisterPage.js';
 
 import './Page.css';
 
@@ -21,6 +22,7 @@ export default class Page extends Component {
                     <Route path='/categoria' component={CategoryPage}/>
                     <Route path='/search' component={SearchPage}/>
                     <Route path='/profile' component={ProfilePage}/>
+                    <Route path='/register' component={RegisterPage}/>
                 </Switch>
             </main>
         );
