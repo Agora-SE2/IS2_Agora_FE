@@ -21,3 +21,12 @@ por Los Investigados
 - Habilitar el inicio de sesión
 - Página de perfil de usuario
 - CRUD sobre proyectos de ley
+
+![alt text](https://github.com/Agora-SE2/IS_Agora_FE/blob/Sprint-Revision-1/src/images/%C3%81gora%20FE%20-%20About.png)
+![alt text](https://github.com/Agora-SE2/IS_Agora_FE/blob/Sprint-Revision-1/src/images/Ágora%20FE%20-%20Argumentos.png)
+![alt text](https://github.com/Agora-SE2/IS_Agora_FE/blob/Sprint-Revision-1/src/images/Ágora%20FE%20-%20Categoría.png)
+![alt text](https://github.com/Agora-SE2/IS_Agora_FE/blob/Sprint-Revision-1/src/images/Ágora%20FE%20-%20Home.png)
+![alt text](https://github.com/Agora-SE2/IS_Agora_FE/blob/Sprint-Revision-1/src/images/Ágora%20FE%20-%20Profile.png)
+![alt text](https://github.com/Agora-SE2/IS_Agora_FE/blob/Sprint-Revision-1/src/images/Ágora%20FE%20-%20ProyectoLey.png)
+![alt text](https://github.com/Agora-SE2/IS_Agora_FE/blob/Sprint-Revision-1/src/images/Ágora%20FE%20-%20Register.png)
+![alt text](https://github.com/Agora-SE2/IS_Agora_FE/blob/Sprint-Revision-1/src/images/Ágora%20FE%20-%20Search.png)
