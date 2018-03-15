@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import logo from '../images/logo.svg'; 
 
 export default class Navbar extends Component {
     render() {
@@ -6,7 +7,7 @@ export default class Navbar extends Component {
             <div id="navbar" className="ui top fixed big menu">
                 <div className="ui container">
                     <a href="/" className="active item">
-                        Ágora
+                        <img src={logo} alt="Logo" />
                     </a>
                     <a href="/search" className="item">
                         Proyectos de ley
