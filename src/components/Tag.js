@@ -33,7 +33,7 @@ export default class Tag extends Component {
         return (
             <div className="ui category link raised card">
                 <div className="image">
-                    <img src={ this.chooseImg() } height="100px"/>
+                    <img src={ this.chooseImg() } />
                 </div>
                 <div className="content">
                     <a href="#" className="header">{this.props.title}</a>
