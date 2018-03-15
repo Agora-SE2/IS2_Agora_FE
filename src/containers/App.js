@@ -11,7 +11,6 @@ class App extends Component {
       <div className="App">
         <Navbar />
         <PageRoute />
-        <div className="ui divider"></div>
         <Footer />
       </div>
     );
