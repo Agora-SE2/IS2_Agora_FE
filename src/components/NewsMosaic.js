@@ -8,15 +8,15 @@ export default class NewsMosaic extends Component {
                 <h1>{this.props.title}</h1>
                 <div className="ui divider"></div>
                 <div className="ui container">
-                    <NewsCard title="Proyecto de ley #1" description="Descripción"/>
+                    <NewsCard newsId="4" title="Proyecto de ley #1" description="Descripción"/>
                     <div className="ui three column grid">
                         <div className="column">
-                            <NewsCard title="Proyecto de ley #1" description="Descripción"/>
+                            <NewsCard newsId="1" title="Proyecto de ley #1" description="Descripción"/>
                         </div>
                         <div className="column">
-                            <NewsCard title="Proyecto de ley #1" description="Descripción"/></div>
+                            <NewsCard newsId="2" title="Proyecto de ley #1" description="Descripción"/></div>
                         <div className="column">
-                            <NewsCard title="Proyecto de ley #1" description="Descripción"/></div>
+                            <NewsCard newsId="3" title="Proyecto de ley #1" description="Descripción"/></div>
                     </div>
                 </div>
             </div>

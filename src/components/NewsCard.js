@@ -4,13 +4,14 @@ import './NewsCard.css';
 
 export default class NewsCard extends Component {
     render() {
+        console.log(this.props.newsId);
         return (
             <div className="ui news fluid card">
-                <a className="image" href="/proyectoley">
+                <a className="image" href={"/proyectoley/" + this.props.newsId}>
                     <img src={ ImgCapitolio } alt="Descripción estándar de la imagen" />
                 </a>
                 <div className="content">
-                    <a className="header" href="/proyectoley">{ this.props.title }</a>
+                    <a className="header" href={"/proyectoley/" + this.props.newsId}>{ this.props.title }</a>
                     <div className="meta">
                     <a>{ this.props.description }</a>
                     </div>

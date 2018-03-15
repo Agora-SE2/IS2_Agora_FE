@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 // import logo from '../images/logo.svg';
 import './App.css';
-import Page from './Page.js';
+import PageRoute from './PageRoute.js';
 import Navbar from './Navbar.js';
 import Footer from '../components/Footer.js';
 
@@ -10,7 +10,7 @@ class App extends Component {
     return (
       <div className="App">
         <Navbar />
-        <Page />
+        <PageRoute />
         <div className="ui divider"></div>
         <Footer />
       </div>
