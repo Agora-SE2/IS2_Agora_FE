@@ -14,7 +14,7 @@ por Los Investigados
 5. Selección de categorías y vista del carrusel de categorías (por Rubén Buelvas Villa)
 6. Diseño del banner de la página (por José Nieto y Rubén Buelvas)
 
-## Posibles features para el próximo string
+## Posibles features para el próximo sprint
 - Página de proyecto de ley
 - Poblar los componentes de NewsMosaic y TagCarousel dinámicamente
 - Rediseñar vista de componentes como NewsMosaic, TagCarousel y NewsCard
