@@ -6,19 +6,23 @@ import AboutPage from './AboutPage.js';
 import CategoryPage from './CategoryPage.js';
 import ProfilePage from './ProfilePage.js';
 import SearchPage from './SearchPage.js';
-import ProyectoLeyPage from './ProyectoLeyPage.js';
+import ProyectoLeyPageRoute from './ProyectoLeyPage.js';
 import RegisterPage from './RegisterPage.js';
 
 import './Page.css';
 
-export default class Page extends Component {
+/**
+ * TODO: switch to Links instead of anchor elements
+ */
+
+export default class PageRoute extends Component {
     render() {
         return (
             <main>
                 <Switch>
                     <Route exact path='/' component={HomePage}/>
                     <Route exact path='/about' component={AboutPage}/>
-                    <Route path='/proyectoley' component={ProyectoLeyPage}/>
+                    <Route path='/proyectoley/:id' component={ProyectoLeyPageRoute}/>
                     <Route path='/categoria' component={CategoryPage}/>
                     <Route path='/search' component={SearchPage}/>
                     <Route path='/profile' component={ProfilePage}/>
