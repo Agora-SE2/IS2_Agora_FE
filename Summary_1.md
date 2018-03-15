@@ -17,5 +17,7 @@ por Los Investigados
 ## Posibles features para el próximo string
 - Página de proyecto de ley
 - Poblar los componentes de NewsMosaic y TagCarousel dinámicamente
-- Inicio de sesión
+- Rediseñar vista de componentes como NewsMosaic, TagCarousel y NewsCard
+- Habilitar el inicio de sesión
 - Página de perfil de usuario
+- CRUD sobre proyectos de ley
