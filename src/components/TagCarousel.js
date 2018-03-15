@@ -16,6 +16,10 @@ export default class TagCarousel extends Component {
                 <div className="ui cards">
                     <Tag title="Corrupción"/>
                     <Tag title="Elecciones"/>
+                    <Tag title="Economía"/>
+                    <Tag title="Educación"/>
+                    <Tag title="Fuerza pública"/>
+                    <Tag title="JEP"/>
                 </div>
             </div>
         );
