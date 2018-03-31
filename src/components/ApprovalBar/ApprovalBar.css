@@ -1,0 +1,13 @@
+.bar{
+    height: 50px;
+}
+
+#positive{
+    background-color: green;
+    height: 100%;
+}
+
+#negative{
+    background-color: red;
+    height: 100%;
+}
