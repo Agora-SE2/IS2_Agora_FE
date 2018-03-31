@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import './App.css';
 import PageRoute from './PageRoute.js';
 import Navbar from './Navbar.js';
-import Footer from '../components/Footer.js';
+import Footer from '../components/Footer/Footer.js';
 
 class App extends Component {
   render() {

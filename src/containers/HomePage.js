@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import HomeBanner from '../components/HomeBanner.js';
-import NewsMosaic from '../components/NewsMosaic.js';
-import TagCarousel from '../components/TagCarousel.js'; 
+import HomeBanner from '../components/HomeBanner/HomeBanner.js';
+import NewsMosaic from '../components/NewsMosaic/NewsMosaic.js';
+import TagCarousel from '../components/TagCarousel/TagCarousel.js'; 
 
 export default class HomePage extends Component {
     render() {
