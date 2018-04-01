@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import ApprovalBar from '../components/ApprovalBar/ApprovalBar.js';
 import ImgProyectoLey from 'images/economia.jpeg'
+import CommentarySegment from '../components/CommentarySegment/CommentarySegment.js';
 
 export default class ProyectoLeyPage extends Component {
     render() {
@@ -17,14 +18,26 @@ export default class ProyectoLeyPage extends Component {
                         </div>
                     </div>
                     <div className="eight wide column">
-                        <img src={ ImgProyectoLey } alt="Descripción estándar de la imagen" />                
+                        <img src={ ImgProyectoLey } alt="Descripción estándar de la imagen" width="100%"/>                
                     </div>
                 </div>
                 <div className="ui container">
                     <ApprovalBar />    
+                    
+                </div>
+                <div className="ui container grid" id="commentary-grid">
+                    <div className="eight wide column">
+                        <CommentarySegment title="Argumentos a favor"/>
+                    </div>
+                    <div className="eight wide column">
+                        <CommentarySegment title="Argumentos en contra"/>
+                    </div>
+                </div>
+                <div className="ui container">
                 </div>
                     
                 <p></p>
+                
             </div>
             
         );

@@ -13,3 +13,7 @@ main {
 .blankSpace{
   height: 50px;
 }
+
+#commentary-grid{
+  margin-top: 50px; 
+}

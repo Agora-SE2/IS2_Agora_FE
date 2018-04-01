@@ -10,7 +10,6 @@ export default class ApprovalBar extends Component {
             <div id="approval-bar">
                 <div class="bar">
                     <div id="positive" width='20px'></div>
-                    <div id="negative" width='100%'></div>
                 </div>
             </div>
         );        

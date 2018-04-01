@@ -5,9 +5,16 @@
 #positive{
     background-color: green;
     height: 100%;
+    width: 20%;
 }
 
 #negative{
     background-color: red;
     height: 100%;
+}
+
+#approval-bar{
+    margin-top: 50px;
+    background-color: red;
+    width: 100%;
 }
