@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 
-export default class SearchPage extends Component {
+export default class Category extends Component {
     render() {
         return (
-            <h1>SearchPage</h1>
+            <h1>CategoryPage</h1>
         );
     }
 }

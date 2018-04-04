@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import Tag from '../Tag/Tag.js'
+
+import Tag from '../Tag/index.js'
 
 export default class TagCarousel extends Component {
     componentWillMount() {
