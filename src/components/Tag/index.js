@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+
 import ImgEconomia from 'images/economia.jpeg';
 import ImgCorrupcion from 'images/corrupcion.png';
 import ImgEducacion from 'images/educacion.jpg';
@@ -7,7 +8,6 @@ import ImgFuerzaPublica from 'images/fuerza-publica.jpg';
 import ImgJEP from 'images/jep.jpg';
 
 var img;
-
 
 export default class Tag extends Component {
 
@@ -36,7 +36,7 @@ export default class Tag extends Component {
                     <img src={ this.chooseImg() } />
                 </div>
                 <div className="content">
-                    <a href="#" className="header">{this.props.title}</a>
+                    <a href={"/categoria/" + this.props.title} className="header">{this.props.title}</a>
                 </div>
             </div>
         );

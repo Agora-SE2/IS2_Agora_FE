@@ -21,7 +21,7 @@ import './index.css';
 
 ReactDOM.render((
     <BrowserRouter>
-      <div>
+      <div id="app">
         <Navbar />
         <main>
           <Switch>
@@ -29,7 +29,7 @@ ReactDOM.render((
             <Route exact path='/about' component={About}/>
             <Route exact path='/proyectoley:id/args' component={Arguments} />
             <Route path='/proyectoley/:id' component={LawProject} />
-            <Route path='/categoria' component={Category}/>
+            <Route path='/categoria/:name' component={Category}/>
             <Route path='/search' component={Search}/>
             <Route path='/profile' component={Profile}/>
             <Route path='/register' component={Register}/>

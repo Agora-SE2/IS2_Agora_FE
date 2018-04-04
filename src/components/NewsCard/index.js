@@ -6,7 +6,6 @@ import './styles.css';
 
 export default class NewsCard extends Component {
     render() {
-        console.log(this.props.newsId);
         return (
             <div className="ui news fluid card">
                 <a className="image" href={"/proyectoley/" + this.props.newsId}>
