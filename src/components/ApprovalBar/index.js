@@ -2,9 +2,6 @@ import React, { Component } from 'react';
 
 import './styles.css';
 
-var positiveSize = 70;
-var negativeSize = 30;
-
 export default class ApprovalBar extends Component {
     render() {
         return (

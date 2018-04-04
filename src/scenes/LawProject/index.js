@@ -15,8 +15,8 @@ export default class LawProject extends Component {
                         <h1 id="title" >Proyecto #{this.props.match.params.id}</h1>
                         <p>Donec velit arcu, convallis sit amet orci sed, facilisis commodo massa. Pellentesque eget tempus massa, et gravida ex. Quisque vitae placerat odio. Nullam aliquet tincidunt orci. Proin eu metus et dui venenatis tristique ac et leo. Aenean facilisis pretium orci, sed ornare mi pretium quis. Sed egestas sit amet arcu vitae blandit. </p>                    
                         <div class="tags">
-                            <a href="#">#Economía </a>
-                            <a href="#">#JEP </a>
+                            <a href="/categoria/economia">#Economía </a>
+                            <a href="/categoria/jep">#JEP </a>
                         </div>
                     </div>
                     <div className="eight wide column">

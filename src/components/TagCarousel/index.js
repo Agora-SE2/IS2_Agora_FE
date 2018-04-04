@@ -33,7 +33,7 @@ export default class TagCarousel extends Component {
         var tags = this.state.tags;
 
         for(var i=0; i<tags.length; i++) {
-            tagCards.push(<Tag key={i} title={tags[i].name} />)
+            tagCards.push(<Tag key={i} name={tags[i].name} />)
         }
         
         return (

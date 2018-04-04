@@ -13,7 +13,7 @@ export default class CommentarySegment extends Component {
                 <Commentary />
                 <Commentary />
                 <Commentary />
-                <a href="#">Ver más</a>
+                <a href="#continue">Ver más</a>
             </div>
         );
     }
