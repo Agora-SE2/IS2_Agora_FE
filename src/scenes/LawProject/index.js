@@ -51,7 +51,7 @@ export default class LawProject extends Component {
         }
         
         return (
-            <div className="ui page container" id="proyectoley"> 
+            <div className="ui page container"> 
                 <div className="blankSpace"></div>
                 <div className="ui grid">
                     <div className="eight wide column">
@@ -71,7 +71,7 @@ export default class LawProject extends Component {
 
                 <Divider />
 
-                <ApprovalBar yes={400} no={200}/>
+                <ApprovalBar yes={yes} no={no}/>
 
                 <div className="approval stat">
                     <Statistic.Group>
@@ -88,10 +88,16 @@ export default class LawProject extends Component {
 
                 <div className="ui grid" id="commentary-grid">
                     <div className="eight wide column">
-                        <Comments title="Argumentos a favor"/>
+                        <div className="ui segment">
+                            <h2 className="ui centered header">Argumentos a favor</h2>
+                            <Comments title="Argumentos a favor"/>
+                        </div>                        
                     </div>
                     <div className="eight wide column">
-                        <Comments title="Argumentos en contra"/>
+                        <div className="ui segment">
+                            <h2 className="ui centered header">Argumentos en contra</h2>
+                            <Comments />
+                        </div>                        
                     </div>
                 </div>
             </div>

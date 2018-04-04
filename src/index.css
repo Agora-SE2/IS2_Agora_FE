@@ -6,14 +6,15 @@
 html, body {
   margin: 0;
   padding: 0;
+  height: 100%;
   font-family: sans-serif;
-  height: calc(100vh - 100px);
 }
 
 main {
-  min-height: calc(100vh - 140px);
+  min-height: calc(100vh - 70px);
 }
 
 .page {
-  margin-top: 100px;
+  padding-top: 100px;
+  padding-bottom: 50px;
 }
