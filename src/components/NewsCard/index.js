@@ -6,22 +6,29 @@ import './styles.css';
 
 export default class NewsCard extends Component {
     render() {
-        return (
-            <div className="ui news fluid card">
-                <a className="image" href={"/proyectoley/" + this.props.newsId}>
-                    <img src={ ImgCapitolio } alt="Descripción estándar de la imagen" />
-                </a>
-                <div className="content">
-                    <a className="header" href={"/proyectoley/" + this.props.newsId}>{ this.props.title }</a>
-                    <div className="meta">
-                    <a>{ this.props.description }</a>
+        const {news} = this.props;
+
+        if(news) {
+            return (
+                <div className="ui news fluid card">
+                    <a className="image" href={"/proyectoley/" + news.id}>
+                        <img src={ ImgCapitolio } alt="Descripción estándar de la imagen" />
+                    </a>
+                    <div className="content">
+                        <a className="header" href={"/proyectoley/" + news.id}>{ news.name }</a>
+                        <div className="meta">
+                        <a>{ news.description }</a>
+                        </div>
                     </div>
+                    {/* <div className="ui green bottom attached button">
+                        <i className="add icon"></i>
+                        Votar
+                    </div> */}
                 </div>
-                {/* <div class="ui green bottom attached button">
-                    <i class="add icon"></i>
-                    Votar
-                </div> */}
-            </div>
-        );
+            );
+        } else
+            return (
+                <div>Loading...</div>
+            );
     }
 }

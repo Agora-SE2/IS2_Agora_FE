@@ -7,25 +7,18 @@ export default class TagCarousel extends Component {
         super();
 
         this.state = {
-            tags: [
-                {name: "Corrupción"},
-                {name: "Elecciones"},
-                {name: "Economía"},
-                {name: "Educación"},
-                {name: "Fuerza pública"},
-                {name: "JEP"}
-            ]
+            tags: []
         };
     }
 
-    componentWillMount() {
-        fetch("https://agora-se.herokuapp.com/tags")
+    componentWillMount() {        
+        fetch(process.env.REACT_APP_BACK_URL + "tags.json?page=1")
         .then(response => {
-            var json = response.json();
-            console.log(json);
-            return json
+            return response.json();
         })
-        .then(jsondata => console.log(jsondata));
+        .then(data => this.setState({
+            tags: data.slice(0,8)
+        }));
     }
 
     render() {
@@ -41,7 +34,13 @@ export default class TagCarousel extends Component {
                 <h2>Categorías de proyectos de ley</h2>
                 <div className="ui divider"></div>
                 <div className="ui cards">
-                    {tagCards}
+                    {tagCards.slice(0,2)}
+                </div>
+                <div className="ui cards">
+                    {tagCards.slice(3,5)}
+                </div>
+                <div className="ui cards">
+                    {tagCards.slice(6,8)}
                 </div>
             </div>
         );

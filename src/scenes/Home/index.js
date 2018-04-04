@@ -7,6 +7,11 @@ import TagCarousel from 'components/TagCarousel/index.js';
 import Banner from './components/Banner/index.js';
 
 export default class Home extends Component {
+    componentDidMount() {
+        document.title = `Ágora - La plataforma de participación 
+            política de los colombianos`;
+    }
+
     render() {
         return (
             <div id="home">

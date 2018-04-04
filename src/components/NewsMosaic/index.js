@@ -5,24 +5,64 @@ import NewsCard from '../NewsCard/index.js';
 import './styles.css';
 
 export default class NewsMosaic extends Component {
+    constructor() {
+        super();
+
+        this.state = {
+            projects: []
+        }
+    }
+
+    componentWillMount() {
+        fetch(process.env.REACT_APP_BACK_URL + "featured_projects.json?page=7")
+        .then(response => response.json())
+        .then(featured => {
+            let projects = [];
+
+            for(const [i, f] of featured.slice(0,4).entries()) {
+                fetch(process.env.REACT_APP_BACK_URL + "law_projects/" + f.id + ".json")
+                .then(response => response.json())
+                .then(project => {
+                    projects.push(project);
+                    if(i === 3)
+                        this.setState({
+                            projects: projects
+                        });
+                });
+            }
+        });
+    }
+    
+    
     render() {
-        return (
-            <div style={{ marginTop: 50 + 'px' }} className="ui news mosaic raised segment">
-                <h1>{this.props.title}</h1>
-                <div className="ui divider"></div>
-                <div className="ui container">
-                    <NewsCard newsId="4" title="Proyecto de ley #1" description="Descripción"/>
-                    <div className="ui three column grid">
-                        <div className="column">
-                            <NewsCard newsId="1" title="Proyecto de ley #1" description="Descripción"/>
+        const {projects} = this.state;
+
+        if(!projects)
+            return (
+                <div style={{ marginTop: 50 + 'px' }} className="ui news mosaic raised segment">
+                    <p>Loading...</p>
+                </div>
+            );   // TODO: make Loading component
+        else
+            return (
+                <div style={{ marginTop: 50 + 'px' }} className="ui news mosaic raised segment">
+                    <h1>{this.props.title}</h1>
+                    <div className="ui divider"></div>
+                    <div className="ui container">
+                        <NewsCard news={projects[0]}/>
+                        <div className="ui three column grid">
+                            <div className="column">
+                                <NewsCard news={projects[1]}/>
+                            </div>
+                            <div className="column">
+                                <NewsCard news={projects[2]}/>
+                            </div>
+                            <div className="column">
+                                <NewsCard news={projects[3]}/>
+                            </div>
                         </div>
-                        <div className="column">
-                            <NewsCard newsId="2" title="Proyecto de ley #2" description="Descripción"/></div>
-                        <div className="column">
-                            <NewsCard newsId="3" title="Proyecto de ley #3" description="Descripción"/></div>
                     </div>
                 </div>
-            </div>
-        );
+            );
     }
 }

@@ -9,12 +9,12 @@ export default class LawProject extends Component {
     render() {
         return (
             <div id="proyectoley"> 
-                <div class="blankSpace"></div>
+                <div className="blankSpace"></div>
                 <div className="ui container grid">
                     <div className="eight wide column">
                         <h1 id="title" >Proyecto #{this.props.match.params.id}</h1>
                         <p>Donec velit arcu, convallis sit amet orci sed, facilisis commodo massa. Pellentesque eget tempus massa, et gravida ex. Quisque vitae placerat odio. Nullam aliquet tincidunt orci. Proin eu metus et dui venenatis tristique ac et leo. Aenean facilisis pretium orci, sed ornare mi pretium quis. Sed egestas sit amet arcu vitae blandit. </p>                    
-                        <div class="tags">
+                        <div className="tags">
                             <a href="/categoria/economia">#Economía </a>
                             <a href="/categoria/jep">#JEP </a>
                         </div>
