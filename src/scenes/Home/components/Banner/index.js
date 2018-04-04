@@ -1,12 +1,11 @@
 import React, { Component } from 'react';
 
-import ImgCapitolio from 'images/capitolio.png';
-import ImgBatallaBoyaca from 'images/batalla-puente-boyaca.jpg';
+import ImgBatallaBoyaca from './images/batalla-puente-boyaca.jpg';
 
-import SigninForm from '../SigninForm/SigninForm.js';
-import Searchbar from '../Searchbar/Searchbar.js';
+import SigninForm from 'components/SigninForm/index.js';
+import Searchbar from 'components/Searchbar/index.js';
 
-import './HomeBanner.css';
+import './styles.css';
 
 var bannerStyle = {
     backgroundImage: "url(" + ImgBatallaBoyaca  + ")"

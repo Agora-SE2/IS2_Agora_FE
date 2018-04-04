@@ -1,5 +1,8 @@
 import React, { Component } from 'react';
-import NewsCard from '../NewsCard/NewsCard.js';
+
+import NewsCard from '../NewsCard/index.js';
+
+import './styles.css';
 
 export default class NewsMosaic extends Component {
     render() {

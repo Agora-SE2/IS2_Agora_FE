@@ -3,7 +3,7 @@ import ApprovalBar from '../components/ApprovalBar/ApprovalBar.js';
 import ImgProyectoLey from 'images/economia.jpeg'
 import CommentarySegment from '../components/CommentarySegment/CommentarySegment.js';
 
-export default class ProyectoLeyPage extends Component {
+export default class LawProject extends Component {
     render() {
         return (
             <div id="proyectoley"> 

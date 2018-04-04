@@ -1,13 +1,16 @@
 import React, { Component } from 'react';
-import HomeBanner from '../components/HomeBanner/HomeBanner.js';
-import NewsMosaic from '../components/NewsMosaic/NewsMosaic.js';
-import TagCarousel from '../components/TagCarousel/TagCarousel.js'; 
 
-export default class HomePage extends Component {
+// globally defined components
+import NewsMosaic from 'components/NewsMosaic/index.js';
+import TagCarousel from 'components/TagCarousel/index.js'; 
+
+import Banner from './components/Banner/index.js';
+
+export default class Home extends Component {
     render() {
         return (
             <div id="home">
-                <HomeBanner />
+                <Banner />
                 <div className="ui container grid">
                     <div className="eight wide column">
                         <NewsMosaic title="Lo más debatido" />

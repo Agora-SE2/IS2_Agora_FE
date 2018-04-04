@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
-import ImgCapitolio from 'images/capitolio.png';
-import './NewsCard.css';
+
+import ImgCapitolio from './images/capitolio.png';
+
+import './styles.css';
 
 export default class NewsCard extends Component {
     render() {
