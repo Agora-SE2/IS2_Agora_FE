@@ -1,16 +1,20 @@
-.bar{
+.bar {
     height: 50px;
 }
 
-#positive{
+#positive {
+    border-top-left-radius: 10px;
+    border-bottom-left-radius: 10px;
     background-color: #21ba45;  /* TODO: use global variable */
     height: 100%;
+    margin-left: -2px;
     text-align: right;
     padding-top: 15px;
     padding-right: 20px;
 }
 
-#approval-bar{
+#approval-bar {
+    border-radius: 10px;
     margin-top: 40px;
     margin-bottom: 40px;
     background-color: #db2828;
