@@ -13,8 +13,8 @@ import Category from './scenes/Category/index.js';
 import Home from './scenes/Home/index.js';
 import LawProject from './scenes/LawProject/index.js';
 import Profile from './scenes/Profile/index.js';
-import Register from './scenes/Register/index.js';
 import Search from './scenes/Search/index.js';
+import Signup from './scenes/Signup/index.js';
 
 import 'semantic-ui-css/semantic.min.css';
 import './index.css';
@@ -32,7 +32,7 @@ ReactDOM.render((
             <Route path='/categoria/:name' component={Category}/>
             <Route path='/search' component={Search}/>
             <Route path='/profile/:id' component={Profile}/>
-            <Route path='/register' component={Register}/>
+            <Route path='/signup' component={Signup}/>
           </Switch>
         </main>
         <Footer />

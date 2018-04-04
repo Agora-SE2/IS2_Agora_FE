@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 import ImgBatallaBoyaca from './images/batalla-puente-boyaca.jpg';
 
-import SigninForm from 'components/SigninForm/index.js';
+import LoginForm from 'components/LoginForm/index.js';
 import Searchbar from 'components/Searchbar/index.js';
 
 import './styles.css';
@@ -24,7 +24,7 @@ export default class HomeBanner extends Component {
                         </div>
                     </div>
                     <div id="" className="five wide left column">
-                        <SigninForm />
+                        <LoginForm />
                     </div>
                 </div> 
             </div>
