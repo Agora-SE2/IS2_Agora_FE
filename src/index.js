@@ -31,7 +31,7 @@ ReactDOM.render((
             <Route path='/proyectoley/:id' component={LawProject} />
             <Route path='/categoria/:name' component={Category}/>
             <Route path='/search' component={Search}/>
-            <Route path='/profile' component={Profile}/>
+            <Route path='/profile/:id' component={Profile}/>
             <Route path='/register' component={Register}/>
           </Switch>
         </main>
