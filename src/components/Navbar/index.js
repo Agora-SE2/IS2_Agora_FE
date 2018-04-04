@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import logo from './images/logo.svg'; 
 
+import VisitorOptions from './components/VisitorOptions/index.js';
+
 export default class Navbar extends Component {
     render() {
         return (
@@ -14,21 +16,7 @@ export default class Navbar extends Component {
                 <a href="/about" className="item">
                     Nosotros
                 </a>
-                <div className="right menu">
-                    <div className="ui category search item">
-                        <div className="ui icon input">
-                            <input className="prompt" placeholder="Busca proyectos de ley..." type="text"/>
-                            <i className="search link icon"></i>
-                        </div>
-                        <div className="results"></div>
-                    </div>
-                    <a href="/login" className="item">
-                        Iniciar sesión
-                    </a>
-                    <a href="/signup" className="item">
-                        Registrarse
-                    </a>
-                </div>          
+                <VisitorOptions />
             </div>
         );
     }

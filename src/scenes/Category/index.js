@@ -24,7 +24,7 @@ export default class Category extends Component {
     render() {
         return (
             <div className="ui page container">
-                <h1 className="ui centered header">CATEGORY_NAME
+                <h1 className="ui centered header">{this.state.name ? this.state.name : "Loading..."}
                     <div className="sub header">Categoría</div>
                 </h1>
             </div>

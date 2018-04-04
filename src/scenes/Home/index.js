@@ -6,6 +6,8 @@ import TagCarousel from 'components/TagCarousel/index.js';
 
 import Banner from './components/Banner/index.js';
 
+import './styles.css';
+
 export default class Home extends Component {
     componentDidMount() {
         document.title = `Ágora - La plataforma de participación 
