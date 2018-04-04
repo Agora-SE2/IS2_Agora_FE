@@ -11,3 +11,7 @@ html, body {
 main {
   margin-top: 4.8em;  
 }
+
+.page {
+  margin-top: 100px;
+}
