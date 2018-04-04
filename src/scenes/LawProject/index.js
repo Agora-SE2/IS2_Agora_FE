@@ -5,7 +5,6 @@ import { Divider, Statistic } from 'semantic-ui-react';
 import ImgProyectoLey from 'images/economia.jpeg'
 
 import TagLabel from 'components/TagLabel/index.js';
-
 import ApprovalBar from 'components/ApprovalBar/index.js';
 import Comments from 'components/Comments/index.js';
 
@@ -72,7 +71,7 @@ export default class LawProject extends Component {
 
                 <Divider />
 
-                <ApprovalBar />
+                <ApprovalBar yes={400} no={200}/>
 
                 <div className="approval stat">
                     <Statistic.Group>

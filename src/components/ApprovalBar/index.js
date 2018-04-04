@@ -1,15 +1,26 @@
-import React, { Component } from 'react';
+import React from 'react';
 
 import './styles.css';
 
-export default class ApprovalBar extends Component {
-    render() {
+const ApprovalBar = props => {
+    const {yes, no} = this.props;
+
+    if(yes && no) {
+        let positivePercentage = yes*100/(yes+no);
+        let positiveWidth = positivePercentage.toString() + '%';
+
         return (
             <div id="approval-bar">
                 <div className="bar">
-                    <div id="positive" width='20px'></div>
+                    <div style={{width: positiveWidth}} id="positive">
+                        <h3 className="ui inverted header">
+                            {positivePercentage.toFixed(1) + "%"}
+                        </h3>
+                    </div>
                 </div>
             </div>
-        );        
-    }
+        );
+    } else return <div>Loading...</div> 
 }
+
+export default ApprovalBar;

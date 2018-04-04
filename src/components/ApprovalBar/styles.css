@@ -3,19 +3,16 @@
 }
 
 #positive{
-    background-color: green;
+    background-color: #21ba45;  /* TODO: use global variable */
     height: 100%;
-    width: 20%;
-}
-
-#negative{
-    background-color: red;
-    height: 100%;
+    text-align: right;
+    padding-top: 15px;
+    padding-right: 20px;
 }
 
 #approval-bar{
     margin-top: 40px;
     margin-bottom: 40px;
-    background-color: red;
+    background-color: #db2828;
     width: 100%;
 }
