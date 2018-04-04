@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
-import ApprovalBar from '../components/ApprovalBar/ApprovalBar.js';
+
 import ImgProyectoLey from 'images/economia.jpeg'
-import CommentarySegment from '../components/CommentarySegment/CommentarySegment.js';
+
+import ApprovalBar from 'components/ApprovalBar/index.js';
+import CommentarySegment from 'components/CommentarySegment/index.js';
 
 export default class LawProject extends Component {
     render() {

@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import './ApprovalBar.css';
+
+import './styles.css';
 
 var positiveSize = 70;
 var negativeSize = 30;

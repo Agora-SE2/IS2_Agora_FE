@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
-import './CommentarySegment.css';
-import Commentary from '../Commentary/Commentary.js';
+
+import Commentary from './components/Commentary/index.js';
+import './styles.css';
 
 export default class CommentarySegment extends Component {
     render() {
