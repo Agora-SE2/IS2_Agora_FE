@@ -23,6 +23,10 @@ export default class Register extends Component {
                         <Form.Input label="Correo electrónico" type="email" />
                         <Form.Input label="Contraseña" type="password" />
                         <Form.Input label="Repite tu contraseña" type="password" />
+                        <h4 className="ui centered header">
+                            <div className="sub header">¿Ya estás registrado? <a href="/login">Inicia sesión en </a>.
+                            </div>
+                        </h4>
                         <Form.Button fluid color="green">¡Regístrate!</Form.Button>
                     </Form>
                 </div>

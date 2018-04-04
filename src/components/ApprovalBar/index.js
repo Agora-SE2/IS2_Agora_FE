@@ -1,9 +1,8 @@
 import React from 'react';
-
 import './styles.css';
 
 const ApprovalBar = props => {
-    const {yes, no} = this.props;
+    const {yes, no} = props;
 
     if(yes && no) {
         let positivePercentage = yes*100/(yes+no);
@@ -20,7 +19,8 @@ const ApprovalBar = props => {
                 </div>
             </div>
         );
-    } else return <div>Loading...</div> 
-}
+    } else 
+        return <div>Loading...</div> 
+};
 
 export default ApprovalBar;

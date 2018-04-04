@@ -20,6 +20,7 @@ export default class Category extends Component {
             tag: data
         }));
     }
+    
     render() {
         return (
             <div className="ui page container">

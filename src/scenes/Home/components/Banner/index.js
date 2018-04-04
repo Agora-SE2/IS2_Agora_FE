@@ -17,7 +17,7 @@ export default class HomeBanner extends Component {
             <div style={ bannerStyle } className="home banner">
                 <div className="ui grid">
                     <div className="eleven wide column">
-                        <div className="ui container">
+                        <div className="ui container"> 
                             <h1>Á g o r a</h1>
                             <div className="ui divider"></div>
                             <Searchbar />

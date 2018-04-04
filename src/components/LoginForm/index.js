@@ -18,7 +18,7 @@ export default class SigninForm extends Component {
                         <input name="password" placeholder="Contraseña" type="password" />
                     </div>
                     <h4 className="ui centered header">
-                        Si no tienes una cuenta, <a href="/register">regístrate ahora</a>.
+                        Si no tienes una cuenta, <a href="/signup">regístrate ahora</a>.
                     </h4>
                     <button className="ui green inverted button" type="submit">Iniciar sesión</button>
                 </form>
