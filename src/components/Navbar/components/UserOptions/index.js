@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import Humberto from '../../../../images/humberto.jpg'
-
+import { Dropdown } from 'semantic-ui-react';
 
 export default class UserOptions extends Component {
     render() {
@@ -13,19 +12,16 @@ export default class UserOptions extends Component {
                 </div>
                 <div className="results"></div>
             </div>
-            <div className="item">
-                <div className="ui dropdown">
-                    <img className="ui avatar image" src={Humberto}/>
-                    <span>Humberto de la Calle</span>
-                    <div className="menu">
-                        <div className="item">New</div>
-                        <div className="item">
-                            <span className="description">ctrl + o</span>
-                            Open...
-                        </div>
-                    </div>
-                </div>
-            </div>  
+            <Dropdown item text="Bienvenido, Humberto de la Calle">
+                <Dropdown.Menu>
+                    <Dropdown.Header>
+                        Ágora - Opciones
+                    </Dropdown.Header>
+                    <Dropdown.Item>Mi perfil</Dropdown.Item>
+                    <Dropdown.Item>Configuración</Dropdown.Item>
+                    <Dropdown.Item>Salir</Dropdown.Item>
+                </Dropdown.Menu>
+            </Dropdown>
         </div>
         );
     }

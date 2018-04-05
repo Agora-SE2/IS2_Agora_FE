@@ -8,10 +8,10 @@ export default class Signup extends Component {
         super();
 
         this.state = {
-            name: "",
-            email: "",
-            password: "",
-            passConfirm: "",
+            username: "",
+            useremail: "",
+            userpass: "",
+            userconf: "",
         }
 
         this.handleInputChange = this.handleInputChange.bind(this);
@@ -27,9 +27,23 @@ export default class Signup extends Component {
         });
     }
     
-    handleSubmit(event) {
+    handleSubmit(event, data) {
         event.preventDefault();
-        //fetch(REACT_APP_BACK_URL + "")
+        console.log(this.state);
+        
+        fetch(process.env.REACT_APP_BACK_URL + "users/sign_up", {
+            method: 'POST',
+            headers: { 
+                Accept: 'application/json',
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+                email: this.state.useremail,
+                encrypted_password: this.state.userpass,
+                signin_count: 0
+            })
+        }).then(response => {console.log(response); return response.json()})
+        .then(data => console.log(data));
     }
     
     render() {
@@ -47,10 +61,10 @@ export default class Signup extends Component {
                     <Divider />
 
                     <Form onSubmit={this.handleSubmit}>
-                        <Form.Input name="project-name" label="Nombre" ype="text" onChange={this.handleInputChange} />
-                        <Form.Input name="project-email" label="Correo electrónico" type="email" onChange={this.handleInputChange} />
-                        <Form.Input name="project-pass" label="Contraseña" type="password" onChange={this.handleInputChange} />
-                        <Form.Input name="project-conf" label="Repite tu contraseña" type="password" onChange={this.handleInputChange} />
+                        <Form.Input name="username" label="Nombre" ype="text" onChange={this.handleInputChange} />
+                        <Form.Input name="useremail" label="Correo electrónico" type="email" onChange={this.handleInputChange} />
+                        <Form.Input name="userpass" label="Contraseña" type="password" onChange={this.handleInputChange} />
+                        <Form.Input name="userconf" label="Repite tu contraseña" type="password" onChange={this.handleInputChange} />
                         <h4 className="ui centered header">
                             <div className="sub header">¿Ya estás registrado? <a href="/login">Inicia sesión en Ágora</a>.
                             </div>

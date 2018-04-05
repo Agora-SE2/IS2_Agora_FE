@@ -15,7 +15,8 @@ export default class LawProject extends Component {
         super();
 
         this.state = {
-            project: {}
+            project: {},
+            tags: []
         };
     }
 
@@ -24,31 +25,33 @@ export default class LawProject extends Component {
         
         fetch(process.env.REACT_APP_BACK_URL + "law_projects/" + id + ".json")
         .then(response => response.json())
-        .then(project => this.setState({project:project}));
+        .then(project => {
+            this.setState({project:project});
+            
+            fetch(process.env.REACT_APP_BACK_URL + "project_tags.json")
+            .then(response => response.json())
+            .then(dataTags => this.setState({ tags: dataTags }));
+        });
     }
 
     render() {
-        const {project} = this.state;
+        const {project, tags} = this.state;
+        console.log(tags);
 
-        var title, desc, yes, no;
+        let title = "";
+        let desc = "";
+        let yes = 0
+        let no = 0;
+
         if(project) {
-            console.log(project);
             title = project.name;
             desc = project.description;
             yes = project.yes_votes;
             no = project.not_votes;
-        } else {
-            desc = "";
-            title = "";
-            yes = 0;
-            no = 0;
         }
-
-        const tags = [{id:1, name:"Economía"}, {id:2, name:"JEP"}];
-        let tagViews = [];
-        for(const tag of tags) {
-            tagViews.push(<TagLabel key={tag.id.toString()} id={tag.id} name={tag.name} />);
-        }
+        const tagViews = tags.map(tag => {console.log(tag); return (
+            <TagLabel key={tag.id.toString()} id={tag.id} />
+        )});
         
         return (
             <div className="ui page container"> 
