@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
-import Tag from '../Tag/Tag.js'
+import Tag from '../Tag/Tag.js';
+import './TagCarousel.css';
 
 export default class TagCarousel extends Component {
     componentWillMount() {
@@ -10,10 +11,10 @@ export default class TagCarousel extends Component {
         // obtener de la api
         
         return (
-            <div className="ui tag carousel segment">
+            <div className="ui tag carousel segment" >
                 <h2>Categorías de proyectos de ley</h2>
                 <div className="ui divider"></div>
-                <div className="ui cards">
+                <div className="ui cards" id="content">
                     <Tag title="Corrupción"/>
                     <Tag title="Elecciones"/>
                     <Tag title="Economía"/>
