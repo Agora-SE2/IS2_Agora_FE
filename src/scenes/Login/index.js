@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 import { Form } from 'semantic-ui-react';
 
-import LoginForm from 'components/LoginForm/index.js';
-
 import './styles.css';
 
 export default class Login extends Component {
