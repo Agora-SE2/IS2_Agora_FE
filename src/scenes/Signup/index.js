@@ -3,7 +3,35 @@ import { Divider, Form } from 'semantic-ui-react';
 
 import './styles.css';
 
-export default class Register extends Component {
+export default class Signup extends Component {
+    constructor() {
+        super();
+
+        this.state = {
+            name: "",
+            email: "",
+            password: "",
+            passConfirm: "",
+        }
+
+        this.handleInputChange = this.handleInputChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+    }
+
+    handleInputChange(event) {
+        const value = event.target.value;
+        const name = event.target.name;
+
+        this.setState({
+            [name]: value
+        });
+    }
+    
+    handleSubmit(event) {
+        event.preventDefault();
+        //fetch(REACT_APP_BACK_URL + "")
+    }
+    
     render() {
         return (
             <div className="ui page container">
@@ -18,13 +46,13 @@ export default class Register extends Component {
 
                     <Divider />
 
-                    <Form>
-                        <Form.Input label="Nombre" type="text" />
-                        <Form.Input label="Correo electrónico" type="email" />
-                        <Form.Input label="Contraseña" type="password" />
-                        <Form.Input label="Repite tu contraseña" type="password" />
+                    <Form onSubmit={this.handleSubmit}>
+                        <Form.Input name="project-name" label="Nombre" ype="text" onChange={this.handleInputChange} />
+                        <Form.Input name="project-email" label="Correo electrónico" type="email" onChange={this.handleInputChange} />
+                        <Form.Input name="project-pass" label="Contraseña" type="password" onChange={this.handleInputChange} />
+                        <Form.Input name="project-conf" label="Repite tu contraseña" type="password" onChange={this.handleInputChange} />
                         <h4 className="ui centered header">
-                            <div className="sub header">¿Ya estás registrado? <a href="/login">Inicia sesión en </a>.
+                            <div className="sub header">¿Ya estás registrado? <a href="/login">Inicia sesión en Ágora</a>.
                             </div>
                         </h4>
                         <Form.Button fluid color="green">¡Regístrate!</Form.Button>
