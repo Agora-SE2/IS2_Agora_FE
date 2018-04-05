@@ -1,9 +1,6 @@
 import React, { Component } from 'react';
 import Humberto from '../../../../images/humberto.jpg'
 
-$('.ui.dropdown')
-  .dropdown()
-;
 
 export default class UserOptions extends Component {
     render() {
