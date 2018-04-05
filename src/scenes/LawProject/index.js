@@ -41,12 +41,14 @@ export default class LawProject extends Component {
         const {project, tags} = this.state;
         console.log(tags);
 
+        let id = 0;
         let title = "";
         let desc = "";
         let yes = 0
         let no = 0;
 
         if(project) {
+            id = project.id;
             title = project.name;
             desc = project.description;
             yes = project.yes_votes;
@@ -62,6 +64,7 @@ export default class LawProject extends Component {
                             {title}
                             <div className="sub header">PROYECTO DE LEY</div>
                         </h1>
+                        <ApprovalBar yes={yes} no={no}/>
                         <p>{desc}</p>                    
                         <TagLabelList tags={tags}/>
                     </div>
@@ -77,7 +80,7 @@ export default class LawProject extends Component {
                         ¿Estás a favor o en contra de este proyecto?
                         <div className="sub header">Déjanos aquí tu opinión.</div>
                     </h2>
-                    <CommentTextArea />
+                    <CommentTextArea projectId={id} yes={yes} no={no} />
                 </div>              
 
                 <ApprovalStat yes={yes} no={no}/>
@@ -86,18 +89,17 @@ export default class LawProject extends Component {
                     <div className="eight wide column">
                         <div className="ui segment">
                             <h2 className="ui centered header">Argumentos a favor</h2>
-                            <CommentList />
+                            <CommentList projectId={id}/>
                         </div>                        
                     </div>
                     <div className="eight wide column">
                         <div className="ui segment">
                             <h2 className="ui centered header">Argumentos en contra</h2>
-                            <CommentList />
+                            <CommentList projectId={id} />
                         </div>                        
                     </div>
                 </div>
 
-                <ApprovalBar yes={yes} no={no}/>
             </div>
             
         );

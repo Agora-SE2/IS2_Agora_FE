@@ -3,21 +3,89 @@ import { Button, Form, TextArea } from 'semantic-ui-react';
 
 import './styles.css';
 
+// TODO: yes, no, projectId props are required - use prop-types!
+
 export default class CommentTextArea extends Component {
     constructor() {
         super();
 
         this.state = {
-            comment: ""
+            comment: "",
+            successComment: false,
+            successVote: false,
+            error: false
         }
 
         this.handleClick = this.handleClick.bind(this);
         this.textareaChange = this.textareaChange.bind(this);
     }
 
-    handleClick(event, type) {
+    handleClick(event, positiveComment) {
         const comment = this.state.comment;
-        console.log(comment, type ? "pro" : "con");
+        console.log((new Date()).toISOString().split('T')[0]);
+
+        // update vote amount
+        let updateWrapper = {
+            law_project: {}
+        };
+
+        if(positiveComment) {
+            updateWrapper.law_project = { yes_votes: this.props.yes + 1};
+        } else {
+            updateWrapper.law_project = { not_votes: this.props.no + 1};
+        }
+
+        console.log(JSON.stringify(updateWrapper));
+
+        fetch(process.env.REACT_APP_BACK_URL + "law_projects/" + this.props.projectId + ".json", {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(updateWrapper)
+        })
+        .then(response => {
+            if (response.status === 200) {
+                console.log("successful vote!");
+                
+                this.setState((prevState, props) => ({
+                    successVote: true
+                }));
+            } else {
+                console.error(response.status, "error updating vote count");
+                this.setState((prevState, props) => ({
+                    error: true
+                }));
+            }
+        });
+
+        // post comment to server
+        if(comment.length > 0) {
+            fetch(process.env.REACT_APP_BACK_URL + "opinions", {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    content: comment,
+                    date: (new Date()).toISOString().split('T')[0],  // TODO: UTC problem, do not rely on this!
+                    like: 0,
+                    pro: positiveComment
+                })
+            }).then(response => {
+                console.log(response);
+                if(response.status === 200) {
+                    this.setState(prevState => ({
+                        successComment: true
+                    }));
+                } else {
+                    console.error(response.status, "error commenting");
+                    this.setState((prevState, props) => ({
+                        error: true
+                    }));
+                }
+            });
+        }
     }
 
     textareaChange(event) {
