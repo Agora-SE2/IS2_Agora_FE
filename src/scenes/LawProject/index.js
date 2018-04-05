@@ -6,7 +6,7 @@ import ImgProyectoLey from 'images/economia.jpeg'
 
 import TagLabel from 'components/TagLabel/index.js';
 import ApprovalBar from 'components/ApprovalBar/index.js';
-import Comments from 'components/Comments/index.js';
+import CommentList from 'components/CommentList/index.js';
 
 import './styles.css';
 
@@ -90,13 +90,13 @@ export default class LawProject extends Component {
                     <div className="eight wide column">
                         <div className="ui segment">
                             <h2 className="ui centered header">Argumentos a favor</h2>
-                            <Comments title="Argumentos a favor"/>
+                            <CommentList />
                         </div>                        
                     </div>
                     <div className="eight wide column">
                         <div className="ui segment">
                             <h2 className="ui centered header">Argumentos en contra</h2>
-                            <Comments />
+                            <CommentList />
                         </div>                        
                     </div>
                 </div>
