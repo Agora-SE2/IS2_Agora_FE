@@ -16,12 +16,12 @@ export default class Search extends Component {
                         <div className="four wide column">
                             <div className="ui vertical large menu">
                                 <div className="item">
-                                    <div class="ui transparent icon input">
+                                    <div className="ui transparent icon input">
                                         <input type="text" placeholder="Buscar..."/>
-                                        <i class="search icon"></i>
+                                        <i className="search icon"></i>
                                     </div>
                                 </div>
-                                <a className="item">
+                                <div className="item">
                                     <div className="header">Proyectos de ley</div>
                                     <div className="menu">
                                         <a className="active item">Principales</a>
@@ -30,15 +30,15 @@ export default class Search extends Component {
                                         <a className="item">Peor recibidos</a>
                                         <a className="item">Más debatidos</a>
                                     </div>
-                                </a>
-                                <a className="item">
+                                </div>
+                                <div className="item">
                                     <div className="header">Usuarios</div>
                                     <div className="menu">
                                         <a className="item">I mean</a>
                                         <a className="item">I'll think of something</a>
                                         <a className="item">Eventually</a>
                                     </div>
-                                </a>
+                                </div>
                             </div>
                         </div>
                         <div className="twelve wide column">

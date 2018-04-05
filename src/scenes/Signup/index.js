@@ -32,7 +32,7 @@ export default class Signup extends Component {
         console.log(this.state);
         
         fetch(process.env.REACT_APP_BACK_URL + "users/sign_up", {
-            method: 'POST',
+            method: 'PATCH',
             headers: { 
                 Accept: 'application/json',
                 'Content-Type': 'application/json',

@@ -17,7 +17,7 @@ export default class TagCarousel extends Component {
             return response.json();
         })
         .then(data => this.setState({
-            tags: data.slice(0,8)
+            tags: data.length > 0 ? data.slice(0,8) : []
         }));
     }
 

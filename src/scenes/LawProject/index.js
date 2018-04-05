@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
 
-import { Divider, Statistic } from 'semantic-ui-react';
+import { Button, Divider } from 'semantic-ui-react';
 
 import ImgProyectoLey from 'images/economia.jpeg'
 
-import TagLabel from 'components/TagLabel/index.js';
+import ApprovalStat from './components/ApprovalStat';
+
+import TagLabelList from 'components/TagLabelList/index.js';
 import ApprovalBar from 'components/ApprovalBar/index.js';
 import CommentList from 'components/CommentList/index.js';
 
@@ -27,7 +29,7 @@ export default class LawProject extends Component {
         .then(response => response.json())
         .then(project => {
             this.setState({project:project});
-            
+            console.log(project);
             fetch(process.env.REACT_APP_BACK_URL + "project_tags.json")
             .then(response => response.json())
             .then(dataTags => this.setState({ tags: dataTags }));
@@ -49,9 +51,6 @@ export default class LawProject extends Component {
             yes = project.yes_votes;
             no = project.not_votes;
         }
-        const tagViews = tags.map(tag => {console.log(tag); return (
-            <TagLabel key={tag.id.toString()} id={tag.id} />
-        )});
         
         return (
             <div className="ui page container"> 
@@ -63,9 +62,7 @@ export default class LawProject extends Component {
                             <div className="sub header">PROYECTO DE LEY</div>
                         </h1>
                         <p>{desc}</p>                    
-                        <div className="tags">
-                            {tagViews}
-                        </div>
+                        <TagLabelList tags={tags}/>
                     </div>
                     <div className="eight wide column">
                         <img src={ ImgProyectoLey } alt="Descripción estándar de la imagen" width="100%"/>                
@@ -74,20 +71,15 @@ export default class LawProject extends Component {
 
                 <Divider />
 
-                <ApprovalBar yes={yes} no={no}/>
+                <h3 className="ui centered header">¿Estás a favor o en contra de este proyecto?</h3>
+                
+                <Button.Group fluid>
+                    <Button color="green">A favor</Button>
+                    <Button.Or />
+                    <Button color="red">En contra</Button>
+                </Button.Group>
 
-                <div className="approval stat">
-                    <Statistic.Group>
-                        <Statistic>
-                            <Statistic.Value>{yes}</Statistic.Value>
-                            <Statistic.Label>Votos a favor</Statistic.Label>
-                        </Statistic>
-                        <Statistic>
-                            <Statistic.Value>{no}</Statistic.Value>
-                            <Statistic.Label>Votos en contra</Statistic.Label>
-                        </Statistic>
-                    </Statistic.Group>
-                </div>
+                <ApprovalStat yes={yes} no={no}/>
 
                 <div className="ui grid" id="commentary-grid">
                     <div className="eight wide column">
@@ -103,6 +95,8 @@ export default class LawProject extends Component {
                         </div>                        
                     </div>
                 </div>
+
+                <ApprovalBar yes={yes} no={no}/>
             </div>
             
         );

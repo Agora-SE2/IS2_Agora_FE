@@ -17,6 +17,11 @@ export default class NewsMosaic extends Component {
         fetch(process.env.REACT_APP_BACK_URL + "featured_projects.json?page=7")
         .then(response => response.json())
         .then(featured => {
+            if(featured.length < 1) {
+                console.error("didn't get any featured projects.");
+                return;
+            }
+
             let projects = [];
 
             for(const [i, f] of featured.slice(0,4).entries()) {
