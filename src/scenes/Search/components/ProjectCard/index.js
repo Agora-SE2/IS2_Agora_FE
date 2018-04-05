@@ -15,7 +15,6 @@ export default class ProjectCard extends Component {
                             <a className="header">Proyecto #1</a>
                             <hr/>
                             <div className="description">
-                                <p>Whatever</p>
                             </div>
                             <TagLabelList tags={this.props.tags} />
                         </div>

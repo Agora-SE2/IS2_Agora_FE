@@ -1,14 +1,15 @@
 import React, { Component } from 'react';
 
-import { Button, Divider } from 'semantic-ui-react';
+import { Divider } from 'semantic-ui-react';
 
 import ImgProyectoLey from 'images/economia.jpeg'
 
 import ApprovalStat from './components/ApprovalStat';
+import CommentTextArea from './components/CommentTextArea';
 
-import TagLabelList from 'components/TagLabelList/index.js';
-import ApprovalBar from 'components/ApprovalBar/index.js';
-import CommentList from 'components/CommentList/index.js';
+import TagLabelList from 'components/TagLabelList';
+import ApprovalBar from 'components/ApprovalBar';
+import CommentList from 'components/CommentList';
 
 import './styles.css';
 
@@ -71,17 +72,13 @@ export default class LawProject extends Component {
 
                 <Divider />
 
-                <h1 className="ui centered header">
-                    ¿Estás a favor o en contra de este proyecto?
-                    <div className="sub header">Déjanos aquí tu opinión.</div>
-                </h1>
-                
-                
-                <Button.Group fluid>
-                    <Button color="green">A favor</Button>
-                    <Button.Or />
-                    <Button color="red">En contra</Button>
-                </Button.Group>
+                <div className="ui segment">
+                    <h2 className="ui centered header">
+                        ¿Estás a favor o en contra de este proyecto?
+                        <div className="sub header">Déjanos aquí tu opinión.</div>
+                    </h2>
+                    <CommentTextArea />
+                </div>              
 
                 <ApprovalStat yes={yes} no={no}/>
 
