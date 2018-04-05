@@ -13,40 +13,37 @@ export default class Search extends Component {
                     </div>
                 </div>
                 <div className="ui grid">
-                        <div className="four wide column">
-                            <div className="ui vertical large menu">
-                                <div className="item">
-                                    <div className="ui transparent icon input">
-                                        <input type="text" placeholder="Buscar..."/>
-                                        <i className="search icon"></i>
-                                    </div>
+                    <div className="four wide column">
+                        <div className="ui vertical large menu">
+                            <div className="item">
+                                <div className="ui transparent icon input">
+                                    <input type="text" placeholder="Buscar..."/>
+                                    <i className="search icon"></i>
                                 </div>
-                                <div className="item">
-                                    <div className="header">Proyectos de ley</div>
-                                    <div className="menu">
-                                        <a className="active item">Principales</a>
-                                        <a className="item">Más recientes</a>
-                                        <a className="item">Mejor recibidos</a>
-                                        <a className="item">Peor recibidos</a>
-                                        <a className="item">Más debatidos</a>
-                                    </div>
+                            </div>
+                            <div className="item">
+                                <div className="header">Proyectos de ley</div>
+                                <div className="menu">
+                                    <a className="active item">Principales</a>
+                                    <a className="item">Más recientes</a>
+                                    <a className="item">Mejor recibidos</a>
+                                    <a className="item">Peor recibidos</a>
+                                    <a className="item">Más debatidos</a>
                                 </div>
-                                <div className="item">
-                                    <div className="header">Usuarios</div>
-                                    <div className="menu">
-                                        <a className="item">I mean</a>
-                                        <a className="item">I'll think of something</a>
-                                        <a className="item">Eventually</a>
-                                    </div>
+                            </div>
+                            <div className="item">
+                                <div className="header">Usuarios</div>
+                                <div className="menu">
+                                    <a className="item">I mean</a>
+                                    <a className="item">I'll think of something</a>
+                                    <a className="item">Eventually</a>
                                 </div>
                             </div>
                         </div>
-                        <div className="twelve wide column">
-                            <ProjectCard />
-                            <ProjectCard />
-                            <ProjectCard />
-                        </div>
                     </div>
+                    <div className="twelve wide column">
+                    </div>
+                </div>
             </div>
         );
     }

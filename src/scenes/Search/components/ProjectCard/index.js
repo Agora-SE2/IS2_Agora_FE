@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import ProjectImage from '../../../../images/economia.jpeg';
 import TagLabelList from 'components/TagLabelList/index.js';
 
-const tags = [{id:1, name:"Economía"}, {id:2, name:"JEP"}];
-
 export default class ProjectCard extends Component {
     render() {
         return (
@@ -19,7 +17,7 @@ export default class ProjectCard extends Component {
                             <div className="description">
                                 <p>Whatever</p>
                             </div>
-                            <TagLabelList tags={tags} />
+                            <TagLabelList tags={this.props.tags} />
                         </div>
                     </div>
                 </div>

@@ -8,10 +8,11 @@ export default class Signup extends Component {
         super();
 
         this.state = {
-            username: "",
-            useremail: "",
-            userpass: "",
-            userconf: "",
+            user: {
+                email: "",
+                password: "",
+                password_confirmation: "",
+            }
         }
 
         this.handleInputChange = this.handleInputChange.bind(this);
@@ -22,28 +23,27 @@ export default class Signup extends Component {
         const value = event.target.value;
         const name = event.target.name;
 
-        this.setState({
-            [name]: value
-        });
+        this.setState(prevState => ({
+            user: {
+                ...prevState.user,
+                [name]: value
+            }
+        }));
     }
     
     handleSubmit(event, data) {
         event.preventDefault();
         console.log(this.state);
-        
-        fetch(process.env.REACT_APP_BACK_URL + "users/sign_up", {
-            method: 'PATCH',
-            headers: { 
-                Accept: 'application/json',
-                'Content-Type': 'application/json',
+        console.log(JSON.stringify(this.state));
+
+        fetch(process.env.REACT_APP_BACK_URL + "users", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
             },
-            body: JSON.stringify({
-                email: this.state.useremail,
-                encrypted_password: this.state.userpass,
-                signin_count: 0
-            })
+            body: JSON.stringify(this.state)
         }).then(response => {console.log(response); return response.json()})
-        .then(data => console.log(data));
+        .then(userToken => console.log(userToken));
     }
     
     render() {
@@ -61,10 +61,10 @@ export default class Signup extends Component {
                     <Divider />
 
                     <Form onSubmit={this.handleSubmit}>
-                        <Form.Input name="username" label="Nombre" ype="text" onChange={this.handleInputChange} />
-                        <Form.Input name="useremail" label="Correo electrónico" type="email" onChange={this.handleInputChange} />
-                        <Form.Input name="userpass" label="Contraseña" type="password" onChange={this.handleInputChange} />
-                        <Form.Input name="userconf" label="Repite tu contraseña" type="password" onChange={this.handleInputChange} />
+                        <Form.Input name="username" label="Nombre" type="text" /> 
+                        <Form.Input name="email" label="Correo electrónico" type="email" onChange={this.handleInputChange} />
+                        <Form.Input name="password" label="Contraseña" type="password" onChange={this.handleInputChange} />
+                        <Form.Input name="password_confirmation" label="Repite tu contraseña" type="password" onChange={this.handleInputChange} />
                         <h4 className="ui centered header">
                             <div className="sub header">¿Ya estás registrado? <a href="/login">Inicia sesión en Ágora</a>.
                             </div>

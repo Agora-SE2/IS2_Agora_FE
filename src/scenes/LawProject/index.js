@@ -71,7 +71,11 @@ export default class LawProject extends Component {
 
                 <Divider />
 
-                <h3 className="ui centered header">¿Estás a favor o en contra de este proyecto?</h3>
+                <h1 className="ui centered header">
+                    ¿Estás a favor o en contra de este proyecto?
+                    <div className="sub header">Déjanos aquí tu opinión.</div>
+                </h1>
+                
                 
                 <Button.Group fluid>
                     <Button color="green">A favor</Button>
