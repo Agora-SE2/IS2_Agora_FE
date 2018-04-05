@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import logo from './images/logo.svg'; 
 
 import VisitorOptions from './components/VisitorOptions/index.js';
+import UserOptions from './components/UserOptions/index.js';
 
 export default class Navbar extends Component {
     render() {
@@ -16,7 +17,7 @@ export default class Navbar extends Component {
                 <a href="/about" className="item">
                     Nosotros
                 </a>
-                <VisitorOptions />
+                <UserOptions />
             </div>
         );
     }
