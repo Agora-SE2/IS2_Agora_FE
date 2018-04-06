@@ -12,6 +12,14 @@ import UserOptions from './components/UserOptions/index.js';
 })
 export default class Navbar extends Component {
     render() {
+        const {token} = this.props;
+        let options;
+        if(token > 0) {
+            options = <UserOptions />
+        } else {
+            options = <VisitorOptions />
+        }
+
         return (
             <div id="navbar" className="ui top fixed big menu">
                 <a href="/" className="active item">
@@ -21,9 +29,9 @@ export default class Navbar extends Component {
                     Proyectos de ley
                 </a>
                 <a href="/about" className="item">
-                    Nosotros {this.props.token}
+                    Nosotros
                 </a>
-                <UserOptions />
+                {options}
             </div>
         );
     }

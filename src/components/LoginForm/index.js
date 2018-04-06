@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { login } from 'actions';
 
 import './styles.css';
 
 // TODO: for the love of God, move these methods away from here.
-
+@connect((store) => {
+    return {};
+})
 export default class SigninForm extends Component {
     constructor() {
         super();
@@ -46,7 +50,12 @@ export default class SigninForm extends Component {
         })
         .catch(reason => console.log(reason))
         .then(response => {
-            console.log(response.status);
+            if(response) {
+                console.log(response.status);
+                if(response.status === 200) {
+                    this.props.dispatch(login(1));
+                }
+            }
         })
     }
 

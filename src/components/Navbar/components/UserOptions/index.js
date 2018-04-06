@@ -1,7 +1,23 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Dropdown } from 'semantic-ui-react';
 
+import { logout } from 'actions';
+
+@connect((store) => {
+    return {}
+})
 export default class UserOptions extends Component {
+    constructor() {
+        super();
+
+        this.clickLogout = this.clickLogout.bind(this);
+    }
+
+    clickLogout() {
+        this.props.dispatch(logout());
+    }
+
     render() {
         return (
         <div className="right menu">
@@ -19,7 +35,7 @@ export default class UserOptions extends Component {
                     </Dropdown.Header>
                     <Dropdown.Item>Mi perfil</Dropdown.Item>
                     <Dropdown.Item>Configuración</Dropdown.Item>
-                    <Dropdown.Item>Salir</Dropdown.Item>
+                    <Dropdown.Item onClick={this.clickLogout}>Salir</Dropdown.Item>
                 </Dropdown.Menu>
             </Dropdown>
         </div>

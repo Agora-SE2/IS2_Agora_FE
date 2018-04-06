@@ -3,6 +3,22 @@ import React, { Component } from 'react';
 import ProjectCard from './components/ProjectCard/index.js';
 
 export default class Search extends Component {
+    constructor() {
+        super();
+
+        this.state = {
+            projects: []
+        }
+    }
+
+    componentWillMount() {
+        fetch(process.env.REACT_APP_BACK_URL + "law_projects.json?page=1")
+        .then(response => response.json())
+        .then(projectData => this.setState({
+            projects: projectData
+        }));
+    }
+
     render() {
         return (
             <div className="ui page container">
@@ -34,14 +50,14 @@ export default class Search extends Component {
                             <div className="item">
                                 <div className="header">Usuarios</div>
                                 <div className="menu">
-                                    <a className="item">I mean</a>
-                                    <a className="item">I'll think of something</a>
-                                    <a className="item">Eventually</a>
+                                    <a className="item">Más populares</a>
+                                    <a className="item">Más participativos</a>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div className="twelve wide column">
+                        {this.state.projects.map(project => <ProjectCard project={project}/> )}
                     </div>
                 </div>
             </div>

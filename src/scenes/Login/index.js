@@ -1,9 +1,13 @@
 import React, { Component } from 'react';
 import { Form } from 'semantic-ui-react';
+import { connect } from 'react-redux';
 import { login } from 'actions';
 
 import './styles.css';
 
+@connect((store) => {
+    return {};
+})
 export default class Login extends Component {
     constructor() {
         super();
@@ -46,14 +50,15 @@ export default class Login extends Component {
         })
         .catch(reason => console.log(reason))
         .then(response => {
-            console.log(response.status);
-            if(response.status === 200) {
-                login(1);
+            if(response) {
+                console.log(response.status);
+                if(response.status === 200) {
+                    this.props.dispatch(login(1));
+                }
             }
         })
     }
     
-
     render() {
         return (
             <div className="ui page container">

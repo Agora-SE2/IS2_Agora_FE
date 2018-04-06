@@ -30,7 +30,6 @@ export default class LawProject extends Component {
         .then(response => response.json())
         .then(project => {
             this.setState({project:project});
-            console.log(project);
             fetch(process.env.REACT_APP_BACK_URL + "project_tags.json")
             .then(response => response.json())
             .then(dataTags => this.setState({ tags: dataTags }));
@@ -39,7 +38,6 @@ export default class LawProject extends Component {
 
     render() {
         const {project, tags} = this.state;
-        console.log(tags);
 
         let id = 0;
         let title = "";

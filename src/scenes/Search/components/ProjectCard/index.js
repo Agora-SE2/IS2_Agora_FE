@@ -4,6 +4,8 @@ import TagLabelList from 'components/TagLabelList/index.js';
 
 export default class ProjectCard extends Component {
     render() {
+        const {project} = this.props;
+
         return (
             <div className="ui project segment">
                 <div className="ui items">
@@ -12,11 +14,11 @@ export default class ProjectCard extends Component {
                             <img src={ProjectImage}/>
                         </div>
                         <div className="content">
-                            <a className="header">Proyecto #1</a>
+                            <a href={"/proyectoley/" + project.id}className="header">{project.name}</a>
                             <hr/>
                             <div className="description">
+                                {project.description}
                             </div>
-                            <TagLabelList tags={this.props.tags} />
                         </div>
                     </div>
                 </div>
