@@ -1,9 +1,15 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import logo from './images/logo.svg'; 
 
 import VisitorOptions from './components/VisitorOptions/index.js';
 import UserOptions from './components/UserOptions/index.js';
 
+@connect((store) => {
+    return {
+        token: store.user.token
+    }
+})
 export default class Navbar extends Component {
     render() {
         return (
@@ -15,7 +21,7 @@ export default class Navbar extends Component {
                     Proyectos de ley
                 </a>
                 <a href="/about" className="item">
-                    Nosotros
+                    Nosotros {this.props.token}
                 </a>
                 <UserOptions />
             </div>

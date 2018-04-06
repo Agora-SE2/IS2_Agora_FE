@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Form } from 'semantic-ui-react';
+import { login } from 'actions';
 
 import './styles.css';
 
@@ -46,6 +47,9 @@ export default class Login extends Component {
         .catch(reason => console.log(reason))
         .then(response => {
             console.log(response.status);
+            if(response.status === 200) {
+                login(1);
+            }
         })
     }
     
