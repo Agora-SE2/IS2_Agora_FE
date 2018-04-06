@@ -11,6 +11,7 @@ export default class Login extends Component {
             user: {
                 email: "",
                 password: "",
+                remember_me: "false"
             }
         }
 
@@ -37,13 +38,15 @@ export default class Login extends Component {
 
         fetch(process.env.REACT_APP_BACK_URL + "users/sign_in", {
             method: 'POST',
-            headers: { 
-                Accept: 'application/json',
+            headers: {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(this.state)
-        }).then(response => {console.log(response); return response.json()})
-        .then(userToken => console.log(userToken));
+        })
+        .catch(reason => console.log(reason))
+        .then(response => {
+            console.log(response.status);
+        })
     }
     
 
@@ -54,14 +57,14 @@ export default class Login extends Component {
                     <h2 className="ui centered header">
                         Inicia sesión en Ágora
                     </h2>
-                    <Form>
-                        <Form.Input label="Correo electrónico" type="email" onChange={this.handleInputChange} />
-                        <Form.Input label="Contraseña" type="password" onChange={this.handleInputChange} />
+                    <Form onSubmit={this.handleSubmit}>
+                        <Form.Input name="email" label="Correo electrónico" type="email" onChange={this.handleInputChange} />
+                        <Form.Input name="password" label="Contraseña" type="password" onChange={this.handleInputChange} />
                         <h4 className="ui centered header">
                             <div className="sub header">¿Aún no estás registrado? <a href="/login">Regístrate en Ágora</a>.
                             </div>
                         </h4>
-                        <Form.Button fluid color="green">¡Regístrate!</Form.Button>
+                        <Form.Button fluid color="green">Iniciar sesión</Form.Button>
                     </Form>
                 </div>
             </div>

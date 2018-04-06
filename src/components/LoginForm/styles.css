@@ -14,3 +14,7 @@
 .ui.signin.form h4 {
     color: white;
 }
+
+.ui.inverted.button {
+    margin: auto;
+}
