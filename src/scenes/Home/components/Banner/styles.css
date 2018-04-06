@@ -1,0 +1,21 @@
+/*@left-back-color: rgb(27, 28, 29);
+@banner-height: 75vh;*/
+
+.home.banner {
+    margin-top: 0em;
+    background-size: cover;
+    /* height: @banner-height; */
+    height: 75vh;
+}
+
+.home.banner h1 {
+    margin-top: 200px;
+    font-size: 6em;
+    color: white;
+}
+
+.home.banner .left.column {
+    background-color: rgba(27, 28, 29, 0.93);
+    /* height: @banner-height; */
+    height: 75vh;
+}

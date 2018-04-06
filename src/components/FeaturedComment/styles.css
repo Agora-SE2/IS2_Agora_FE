@@ -1,0 +1,27 @@
+.ui.featured.segment .signature {
+    margin-right: 30px;
+    margin-bottom: 10px;
+    text-align: right;
+}
+
+.ui.featured.segment .signature a {
+    color: white;
+    font-weight: bold;
+}
+
+.ui.featured.segment .signature a:hover {
+    text-decoration: underline;
+}
+
+blockquote.comment.quote {
+    font-style: italic;
+}
+
+blockquote.comment.quote:before {
+    color: #eee;
+    content: open-quote;
+    font-size: 4em;
+    line-height: 0.1em;
+    margin-right: 0.25em;
+    vertical-align: -0.4em;
+}

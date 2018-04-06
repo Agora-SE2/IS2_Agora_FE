@@ -1,0 +1,20 @@
+.ui.signin.container {
+    width: 400px;
+    margin-top: 200px !important;
+    margin-left: auto;
+    margin-right: auto;
+
+    color: white !important;
+}
+
+.ui.signin.container h3 {
+    color: white;
+}
+
+.ui.signin.form h4 {
+    color: white;
+}
+
+.ui.inverted.button {
+    margin: auto;
+}
