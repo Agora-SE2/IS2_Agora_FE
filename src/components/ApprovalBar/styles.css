@@ -4,7 +4,7 @@
 #positive {
   border-top-left-radius: 10px;
   border-bottom-left-radius: 10px;
-  background-color: #7ac74f;
+  background-color: #44AF69;
   /* TODO: use global variable */
   height: 100%;
   margin-left: -2px;
@@ -16,5 +16,5 @@
   border-radius: 10px;
   margin-top: 40px;
   margin-bottom: 40px;
-  background-color: #dc493a;
+  background-color: #d73a31;
   width: 100%; }

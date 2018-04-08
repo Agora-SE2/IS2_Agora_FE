@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Label } from 'semantic-ui-react';
+import './styles.css'
 
 export default class TagLabel extends Component {
     constructor() {
@@ -18,7 +19,7 @@ export default class TagLabel extends Component {
     
     render() {
         return (
-            <Label as="a" href={"/categoria/" + this.props.id} color="red" horizontal>{this.state.name}</Label>            
+            <Label className="myTag" as="a" href={"/categoria/" + this.props.id}  horizontal>{this.state.name}</Label>            
         );
     }
 }

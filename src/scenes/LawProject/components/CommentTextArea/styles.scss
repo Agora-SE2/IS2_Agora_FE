@@ -10,8 +10,16 @@
     color: white;
 }
 
+#aFavor:hover{
+    background-color: $greenHover;
+}
+
 
 #enContra{
     background-color: $red; 
     color: white;
+}
+
+#enContra:hover{
+    background-color: $redHover;
 }
