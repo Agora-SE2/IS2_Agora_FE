@@ -99,9 +99,9 @@ export default class CommentTextArea extends Component {
             <Form className="agora argument">
                 <TextArea placeholder='¿Qué opinas sobre este proyecto de ley?' onChange={this.textareaChange} />
                 <Button.Group fluid>
-                    <Button color="green" onClick={event => this.handleClick(event, true)}>A favor</Button>
+                    <Button id="#dc493a" onClick={event => this.handleClick(event, true)}>A favor</Button>
                     <Button.Or />
-                    <Button color="red" onClick={event => this.handleClick(event, false)}>En contra</Button>
+                    <Button color="dc493a" onClick={event => this.handleClick(event, false)}>En contra</Button>
                 </Button.Group>
             </Form>
         );
