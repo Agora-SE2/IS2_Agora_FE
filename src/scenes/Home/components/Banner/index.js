@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import ImgBatallaBoyaca from './images/batalla-puente-boyaca.jpg';
+import ImgBanner from './images/senate.jpg';
 
 import LoginForm from 'components/LoginForm/index.js';
 import Searchbar from 'components/Searchbar/index.js';
@@ -8,7 +8,7 @@ import Searchbar from 'components/Searchbar/index.js';
 import './styles.css';
 
 var bannerStyle = {
-    backgroundImage: "url(" + ImgBatallaBoyaca  + ")"
+    backgroundImage: "url(" + ImgBanner  + ")"
 }
 
 export default class HomeBanner extends Component {

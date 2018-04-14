@@ -1,20 +1,15 @@
-/* TODO: define global variables, such as:
-  semantic-green: #21ba45
-  semantic-red: ##db2828
-  */
+@import url("https://fonts.googleapis.com/css?family=Titillium+Web");
+html * {
+  font-family: 'Titillium Web', sans-serif !important; }
 
 html, body {
   margin: 0;
   padding: 0;
-  height: 100%;
-  font-family: sans-serif;
-}
+  height: 100%; }
 
 main {
-  min-height: calc(100vh - 70px);
-}
+  min-height: calc(100vh - 70px); }
 
 .page {
   padding-top: 100px;
-  padding-bottom: 50px;
-}
+  padding-bottom: 50px; }
