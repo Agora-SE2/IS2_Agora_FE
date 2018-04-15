@@ -42,8 +42,7 @@ export default class Signup extends Component {
                 'Content-Type': 'application/json'
             },
             body: JSON.stringify(this.state)
-        }).then(response => {console.log(response); return response.json()})
-        .then(userToken => console.log(userToken));
+        }).then(response => {console.log(response)});
     }
     
     render() {
