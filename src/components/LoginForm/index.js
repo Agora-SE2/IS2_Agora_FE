@@ -76,7 +76,7 @@ export default class SigninForm extends Component {
                     <h4 className="ui centered header">
                         Si no tienes una cuenta, <a href="/signup">regístrate ahora</a>.
                     </h4>
-                    <button className="ui green inverted fluid button" type="submit">Iniciar sesión</button>
+                    <button id="loginButton" className="ui fluid button" type="submit">Iniciar sesión</button>
                 </form>
             </div>
         );
