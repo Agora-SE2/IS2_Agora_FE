@@ -7,7 +7,7 @@ export default class Searchbar extends Component {
         return (
             <div className="ui huge search">
                 <div className="ui icon input">
-                    <input className="prompt" type="text" placeholder="Common passwords..." />
+                    <input className="prompt" type="text" placeholder="Proyectos, personas, categorías..." />
                     <i className="search icon"></i>
                 </div>
                 <div className="results"></div>

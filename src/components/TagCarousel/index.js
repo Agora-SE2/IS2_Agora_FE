@@ -29,7 +29,7 @@ export default class TagCarousel extends Component {
         }
         
         return (
-            <div className="ui tag carousel segment">
+            <div className="ui tag carousel raised segment">
                 <h2>Categorías de proyectos de ley</h2>
                 <div className="ui divider"></div>
                 <div className="ui cards">
