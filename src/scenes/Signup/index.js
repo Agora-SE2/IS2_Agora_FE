@@ -48,7 +48,7 @@ export default class Signup extends Component {
     render() {
         return (
             <div className="ui page container">
-                <div className="ui signup centered compact segment">
+                <div className="ui signup centered compact raised segment">
                     <h2 className="ui centered header">
                         Regístrate
                         <div className="sub header">

@@ -1,20 +1,23 @@
 .ui.signin.container {
-    width: 400px;
-    margin-top: 200px !important;
-    margin-left: auto;
-    margin-right: auto;
-
-    color: white !important;
-}
+  width: 400px;
+  margin-top: 20vh !important;
+  padding: 10%;
+  color: white !important; }
 
 .ui.signin.container h3 {
-    color: white;
-}
+  color: white; }
 
 .ui.signin.form h4 {
-    color: white;
-}
+  color: white; }
 
 .ui.inverted.button {
-    margin: auto;
-}
+  margin: auto; }
+
+#loginButton {
+  border: 3px solid #44AF69;
+  background: none;
+  color: #44AF69; }
+
+#loginButton:hover {
+  background-color: #44AF69;
+  color: white; }
