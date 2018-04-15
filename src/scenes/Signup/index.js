@@ -26,6 +26,7 @@ export default class Signup extends Component {
         this.handleConfirmChange = this.handleConfirmChange.bind(this);
         this.handleEmailChange = this.handleEmailChange.bind(this);
         this.handlePasswordChange = this.handlePasswordChange.bind(this);
+        this.handleUsernameChange = this.handleUsernameChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.stateUserChange = this.stateUserChange.bind(this);
     }
@@ -42,7 +43,7 @@ export default class Signup extends Component {
     handleConfirmChange(event) {
         const value = event.target.value;
         const valid = this.state.user.password == this.state.user.password_confirmation;
-        this.setState({validEmail: valid});
+        this.setState({validConfirmPassword: valid});
         this.stateUserChange(value, "password_confirmation");
     }
 
@@ -55,7 +56,7 @@ export default class Signup extends Component {
 
     handlePasswordChange(event) {
         const value = event.target.value;
-        const valid = value.length > 6;
+        const valid = value.length >= 6;
         this.setState({validPasswordLength: valid});
         this.stateUserChange(value, "password");
     }
