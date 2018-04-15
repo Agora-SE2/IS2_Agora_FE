@@ -8,11 +8,7 @@ import Searchbar from 'components/Searchbar/index.js';
 import './styles.css';
 
 var bannerStyle = {
-<<<<<<< HEAD
-    backgroundImage: "url(" + ImgBanner  + ")"
-=======
     backgroundImage: "url(" + ImgBanner + ")"
->>>>>>> dev
 }
 
 export default class HomeBanner extends Component {
