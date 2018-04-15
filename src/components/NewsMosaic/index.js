@@ -9,6 +9,7 @@ export default class NewsMosaic extends Component {
         super();
 
         this.state = {
+            ready: false,
             projects: []
         }
     }
@@ -29,10 +30,12 @@ export default class NewsMosaic extends Component {
                 .then(response => response.json())
                 .then(project => {
                     projects.push(project);
-                    if(i === 3)
+                    if(i === 3) {
                         this.setState({
+                            ready: true,
                             projects: projects
                         });
+                    }
                 });
             }
         });
@@ -42,12 +45,11 @@ export default class NewsMosaic extends Component {
     render() {
         const {projects} = this.state;
 
-        if(!projects)
+        if(!this.state.ready)
             return (
-                <div style={{ marginTop: 50 + 'px' }} className="ui news mosaic raised segment">
-                    <p>Loading...</p>
+                <div style={{ marginTop: 50 + 'px', height: '200px' }} className="ui news mosaic raised loading segment">
                 </div>
-            );   // TODO: make Loading component
+            );
         else
             return (
                 <div style={{ marginTop: 50 + 'px' }} className="ui news mosaic raised segment">
