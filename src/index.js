@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 
 import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/lib/integration/react';
-import { persistor, store } from './store/index.js';
+import { persistor, store } from './store';
 
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 
@@ -12,14 +12,14 @@ import Footer from './components/Footer';
 
 import About from './scenes/About';
 import Arguments from './scenes/Arguments';
-import Category from './scenes/Category/index.js';
-import Home from './scenes/Home/index.js';
-import LawProject from './scenes/LawProject/index.js';
-import Login from './scenes/Login/index.js';
-import Profile from './scenes/Profile/index.js';
-import Search from './scenes/Search/index.js';
-import Signup from './scenes/Signup/index.js';
-
+import Category from './scenes/Category';
+import Home from './scenes/Home';
+import LawProject from './scenes/LawProject';
+import Login from './scenes/Login';
+import Profile from './scenes/Profile';
+import Search from './scenes/Search';
+import Settings from './scenes/Settings';
+import Signup from './scenes/Signup';
 
 import 'semantic-ui-css/semantic.min.css';
 import './index.css';
@@ -40,6 +40,7 @@ ReactDOM.render((
                 <Route path='/login' component={Login}/>
                 <Route path='/search' component={Search}/>
                 <Route path='/profile/:id' component={Profile}/>
+                <Route path='/settings' component={Settings}/>
                 <Route path='/signup' component={Signup}/>
               </Switch>
             </main>
