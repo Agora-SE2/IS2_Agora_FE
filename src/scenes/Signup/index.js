@@ -1,11 +1,16 @@
 import React, { Component } from 'react';
-import { Divider, Form, Label } from 'semantic-ui-react';
+import { connect } from 'react-redux';
+import { Divider, Form } from 'semantic-ui-react';
 import validator from 'validator';
 
-import WarningFormLabel from './components/WarningFormLabel';
+import { login } from 'actions';
+import WarningFormLabel from 'components/WarningFormLabel';
 
 import './styles.css';
 
+@connect((store) => {
+    return {};
+})
 export default class Signup extends Component {
     constructor() {
         super();
@@ -42,7 +47,7 @@ export default class Signup extends Component {
 
     handleConfirmChange(event) {
         const value = event.target.value;
-        const valid = this.state.user.password == this.state.user.password_confirmation;
+        const valid = this.state.user.password === this.state.user.password_confirmation;
         this.setState({validConfirmPassword: valid});
         this.stateUserChange(value, "password_confirmation");
     }
@@ -79,7 +84,14 @@ export default class Signup extends Component {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify(this.state)
-            }).then(response => {console.log(response)});
+            }).then(response => {
+                if(response) {
+                    console.log(response.status);
+                    if(response.status === 200) {
+                        this.props.dispatch(login(1));
+                    }
+                }
+            })
         else {
             this.setState({changed: true});
         }

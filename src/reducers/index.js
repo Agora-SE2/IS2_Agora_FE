@@ -1,16 +1,14 @@
 import { LOGIN, LOGOUT } from '../constants/action-types.js';
 
-const rootReducer = (state = {user: {token: 0}}, action) => {
+const rootReducer = (state = {token: 0}, action) => {
   switch(action.type) {
     case LOGIN:
       console.log("reduce login");
-      state.user.token = action.payload.token;
-      return state;
+      return Object.assign({}, state, { token: action.payload.token });
 
     case LOGOUT:
       console.log("reduce logout");
-      state.user = {}
-      return state;
+      return Object.assign({}, state, { token: 0 });
       
     default:
       console.log("reduce default");

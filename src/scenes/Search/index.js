@@ -57,7 +57,7 @@ export default class Search extends Component {
                         </div>
                     </div>
                     <div className="twelve wide column">
-                        {this.state.projects.map(project => <ProjectCard project={project}/> )}
+                        {this.state.projects.map((project, i) => <ProjectCard key={i} project={project}/> )}
                     </div>
                 </div>
             </div>

@@ -9,7 +9,7 @@ import './styles.css';
 
 @connect((store) => {
     return {
-        token: store.user.token
+        token: store.token
     }
 })
 export default class Navbar extends Component {
