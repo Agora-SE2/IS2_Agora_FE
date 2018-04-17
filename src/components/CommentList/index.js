@@ -1,7 +1,9 @@
 import React, { Component } from 'react';
 import { Comment } from 'semantic-ui-react';
 
-import AgoraComment from './components/Comment/index.js';
+import Loading from '../Loading';
+import AgoraComment from './components/Comment';
+
 import './styles.css';
 
 export default class Comments extends Component {
@@ -9,6 +11,7 @@ export default class Comments extends Component {
         super();
 
         this.state = {
+            ready: false,
             comments: []
         }
     }
@@ -16,15 +19,21 @@ export default class Comments extends Component {
     componentWillMount() {
         fetch(process.env.REACT_APP_BACK_URL + "opinions.json?page=1")
         .then(response => response.json())
-        .then(data => this.setState({comments: data.slice(0,3)}));
+        .then(data => this.setState({ready: true, comments: data.slice(0,3)}));
     }
 
     render() {
-        return (
-            <Comment.Group>
-                {this.state.comments.map(comment => <AgoraComment key={comment.id} comment={comment} />)}
-                <a href="#continue">Ver más</a>
-            </Comment.Group>
-        );
+        const {ready, comments} = this.state;
+
+        if(ready) {
+            return (
+                <Comment.Group>
+                    {comments.map(comment => <AgoraComment key={comment.id} comment={comment} />)}
+                    <a href="#continue">Ver más</a>
+                </Comment.Group>
+            );
+        } else {
+            return <Loading />;
+        }
     }
 }

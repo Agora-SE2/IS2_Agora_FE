@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+import Loading from 'components/Loading';
 import ProjectCard from './components/ProjectCard/index.js';
 
 export default class Search extends Component {
@@ -7,6 +8,7 @@ export default class Search extends Component {
         super();
 
         this.state = {
+            ready: false,
             projects: []
         }
     }
@@ -15,11 +17,21 @@ export default class Search extends Component {
         fetch(process.env.REACT_APP_BACK_URL + "law_projects.json?page=1")
         .then(response => response.json())
         .then(projectData => this.setState({
+            ready: true,
             projects: projectData
         }));
     }
 
     render() {
+        const {ready, projects} = this.state;
+        let projectsView;
+
+        if(!ready) {
+            projectsView = <Loading />
+        } else {
+            projectsView = projects.map((project, i) => <ProjectCard key={i} project={project}/>);
+        }
+
         return (
             <div className="ui page container">
                 <div className="ui grid">
@@ -57,7 +69,7 @@ export default class Search extends Component {
                         </div>
                     </div>
                     <div className="twelve wide column">
-                        {this.state.projects.map((project, i) => <ProjectCard key={i} project={project}/> )}
+                        {projectsView}
                     </div>
                 </div>
             </div>

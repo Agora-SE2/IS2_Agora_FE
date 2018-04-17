@@ -11,6 +11,7 @@ export default class CommentTextArea extends Component {
 
         this.state = {
             comment: "",
+            loading: false,
             successComment: false,
             successVote: false,
             error: false
@@ -37,6 +38,8 @@ export default class CommentTextArea extends Component {
 
         console.log(JSON.stringify(updateWrapper));
 
+        this.setState({loading: true});
+
         fetch(process.env.REACT_APP_BACK_URL + "law_projects/" + this.props.projectId + ".json", {
             method: 'PUT',
             headers: {
@@ -54,6 +57,7 @@ export default class CommentTextArea extends Component {
             } else {
                 console.error(response.status, "error updating vote count");
                 this.setState((prevState, props) => ({
+                    loading: false,
                     error: true
                 }));
             }
@@ -76,11 +80,13 @@ export default class CommentTextArea extends Component {
                 console.log(response);
                 if(response.status === 200) {
                     this.setState(prevState => ({
+                        loading: false,
                         successComment: true
                     }));
                 } else {
                     console.error(response.status, "error commenting");
                     this.setState((prevState, props) => ({
+                        loading: false,
                         error: true
                     }));
                 }
@@ -95,7 +101,16 @@ export default class CommentTextArea extends Component {
     }
 
     render() {
-        return (
+        const {loading} = this.state;
+
+        if(loading) {
+            return (
+            <div className="ui active dimmer">
+                <div class="ui text loader">Loading</div>
+            </div>
+            );
+        }
+        else return (
             <Form className="agora argument">
                 <TextArea placeholder='¿Qué opinas sobre este proyecto de ley?' onChange={this.textareaChange} />
                 <Button.Group fluid>

@@ -73,7 +73,7 @@ export default class LawProject extends Component {
 
                 <Divider />
 
-                <div className="ui segment">
+                <div className="ui agora segment">
                     <h2 className="ui centered header">
                         ¿Estás a favor o en contra de este proyecto?
                         <div className="sub header">Déjanos aquí tu opinión.</div>

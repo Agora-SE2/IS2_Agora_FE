@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 
-// globally defined components
-import NewsMosaic from 'components/NewsMosaic/index.js';
-import TagCarousel from 'components/TagCarousel/index.js'; 
+import NewsMosaic from 'components/NewsMosaic';
+import TagCarousel from 'components/TagCarousel'; 
 
-import Banner from './components/Banner/index.js';
+import Banner from './components/Banner';
 
 import './styles.css';
 
@@ -27,7 +26,7 @@ export default class Home extends Component {
                     </div>
                 </div>
 
-                <div className="ui divider"></div>  
+                <br />
 
                 <div className="ui container">
                     <TagCarousel />    

@@ -1,11 +1,14 @@
 import React, { Component } from 'react';
-import Tag from './components/Tag/index.js'
+
+import Loading from 'components/Loading';
+import Tag from './components/Tag'
 
 export default class TagCarousel extends Component {
     constructor() {
         super();
 
         this.state = {
+            ready: false,
             tags: []
         };
     }
@@ -16,13 +19,22 @@ export default class TagCarousel extends Component {
             return response.json();
         })
         .then(data => this.setState({
+            ready: true,
             tags: data.length > 0 ? data.slice(0,8) : []
         }));
     }
 
     render() {
         var tagCards = [];
-        var tags = this.state.tags;
+        let {ready, tags} = this.state;
+
+        if(!ready) {
+            return (
+                <div style={{ minHeight: '100px' }} className="ui tag carousel raised segment">
+                    <Loading />
+                </div>
+            );
+        }
 
         for(var i=0; i<tags.length; i++) {
             tagCards.push(<Tag key={i} name={tags[i].name} />)

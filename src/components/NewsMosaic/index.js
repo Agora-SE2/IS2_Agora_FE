@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 
+import Loading from '../Loading';
 import NewsCard from '../NewsCard/index.js';
 
 import './styles.css';
@@ -15,7 +16,7 @@ export default class NewsMosaic extends Component {
     }
 
     componentWillMount() {
-        fetch(process.env.REACT_APP_BACK_URL + "featured_projects.json?page=7")
+        fetch(process.env.REACT_APP_BACK_URL + "featured_projects.json")
         .then(response => response.json())
         .then(featured => {
             if(featured.length < 1) {
@@ -43,33 +44,35 @@ export default class NewsMosaic extends Component {
     
     
     render() {
-        const {projects} = this.state;
-
-        if(!this.state.ready)
-            return (
-                <div style={{ marginTop: 50 + 'px', height: '200px' }} className="ui news mosaic raised loading segment">
-                </div>
-            );
-        else
-            return (
-                <div style={{ marginTop: 50 + 'px' }} className="ui news mosaic raised segment">
-                    <h1>{this.props.title}</h1>
-                    <div className="ui divider"></div>
-                    <div className="ui container">
-                        <NewsCard news={projects[0]}/>
-                        <div className="ui three column grid">
-                            <div className="column">
-                                <NewsCard news={projects[1]}/>
+        const {ready, projects} = this.state;
+        
+        return (
+            <div style={{ marginTop: 50 + 'px', minHeight: '150px' }} className="ui news mosaic raised segment">
+                {(() => {
+                    if(ready) {
+                        return (
+                            <div>
+                                <h1>{this.props.title}</h1>
+                                <div className="ui divider"></div>
+                                <div className="ui container">
+                                    <NewsCard news={projects[0]}/>
+                                    <div className="ui three column grid">
+                                        <div className="column">
+                                            <NewsCard news={projects[1]}/>
+                                        </div>
+                                        <div className="column">
+                                            <NewsCard news={projects[2]}/>
+                                        </div>
+                                        <div className="column">
+                                            <NewsCard news={projects[3]}/>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                            <div className="column">
-                                <NewsCard news={projects[2]}/>
-                            </div>
-                            <div className="column">
-                                <NewsCard news={projects[3]}/>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            );
+                        );
+                    } else return <Loading />;
+                })()}                
+            </div>
+        );
     }
 }

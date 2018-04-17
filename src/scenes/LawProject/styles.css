@@ -3,3 +3,7 @@
     width: 25%;
     margin-bottom: 20px;
 }
+
+.ui.agora.segment {
+    min-height: 100px;
+}

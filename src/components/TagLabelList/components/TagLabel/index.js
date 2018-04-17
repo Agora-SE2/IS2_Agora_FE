@@ -18,8 +18,11 @@ export default class TagLabel extends Component {
     }
     
     render() {
+        const {id} = this.props;
+        const {name} = this.state;
+        
         return (
-            <Label className="myTag" as="a" href={"/categoria/" + this.props.id}  horizontal>{this.state.name}</Label>            
+            <Label className="myTag" as="a" href={"/search?tag=" + id}  horizontal>{name}</Label>            
         );
     }
 }
