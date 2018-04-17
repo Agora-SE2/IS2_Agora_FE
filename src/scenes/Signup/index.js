@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Divider, Form } from 'semantic-ui-react';
 import validator from 'validator';
 
 import { login } from 'actions';
+
 import WarningFormLabel from 'components/WarningFormLabel';
 
 import './styles.css';
@@ -25,7 +27,8 @@ export default class Signup extends Component {
             validEmail: false,
             validPasswordLength: false,
             validConfirmPassword: false,
-            validUsername: false
+            validUsername: false,
+            done: false
         }
 
         this.handleConfirmChange = this.handleConfirmChange.bind(this);
@@ -89,6 +92,7 @@ export default class Signup extends Component {
                     console.log(response.status);
                     if(response.status === 200) {
                         this.props.dispatch(login(1));
+                        this.setState({done: true});
                     }
                 }
             })
@@ -98,6 +102,11 @@ export default class Signup extends Component {
     }
 
     render() {
+        const {done} = this.state;
+
+        if(done)
+            return <Redirect to="/" />;
+
         return (
             <div className="ui page container">
                 <div className="ui signup centered compact raised segment">

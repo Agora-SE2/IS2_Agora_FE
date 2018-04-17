@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 import { Form } from 'semantic-ui-react';
 import validator from 'validator';
 
@@ -24,6 +25,7 @@ export default class Login extends Component {
             },
             changed: false,
             validEmail: false,
+            done: false
         }
 
         this.handleEmailChange = this.handleEmailChange.bind(this);
@@ -72,6 +74,7 @@ export default class Login extends Component {
                     console.log(response.status);
                     if(response.status === 200) {
                         this.props.dispatch(login(1));
+                        this.setState({done: true});
                     }
                 }
             });
@@ -81,6 +84,9 @@ export default class Login extends Component {
     }
     
     render() {
+        const {done} = this.state;
+
+        if(!done)
         return (
             <div className="ui page container">
                 <div className="ui login compact raised segment">
@@ -109,5 +115,7 @@ export default class Login extends Component {
                 </div>
             </div>
         );
+        
+        else return <Redirect to="/" />
     }
 }
