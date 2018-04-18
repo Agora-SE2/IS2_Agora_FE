@@ -4,7 +4,7 @@ import { Form } from 'semantic-ui-react';
 import validator from 'validator';
 
 import { connect } from 'react-redux';
-import { login } from 'actions';
+import { login } from 'services/session/actions';
 
 import WarningFormLabel from 'components/WarningFormLabel';
 

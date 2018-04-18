@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Button, Form, TextArea } from 'semantic-ui-react';
 
+import { toAgoraDate } from 'services/api/agora-helpers.js';
+
 import './styles.css';
 
 // TODO: yes, no, projectId props are required - use prop-types!
@@ -72,7 +74,7 @@ export default class CommentTextArea extends Component {
                 },
                 body: JSON.stringify({
                     content: comment,
-                    date: (new Date()).toISOString().split('T')[0],  // TODO: UTC problem, do not rely on this!
+                    date: toAgoraDate(new Date()),
                     like: 0,
                     pro: positiveComment
                 })

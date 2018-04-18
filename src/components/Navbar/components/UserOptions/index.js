@@ -3,7 +3,7 @@ import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Dropdown } from 'semantic-ui-react';
 
-import { logout } from 'actions';
+import { logout } from 'services/session/actions';
 
 @connect((store) => {
     return {}

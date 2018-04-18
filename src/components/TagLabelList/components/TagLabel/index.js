@@ -1,28 +1,15 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Label } from 'semantic-ui-react';
 import './styles.css'
 
-export default class TagLabel extends Component {
-    constructor() {
-        super();
+const TagLabel = props => (
+    <Label className="agora-tag" as="a" href={"/search?tag=" + props.tag.id}  horizontal>{props.tag.name}</Label>
+);
 
-        this.state = {
-            name: ""
-        }
-    }
+export default TagLabel;
 
-    componentWillMount() {
-        fetch(process.env.REACT_APP_BACK_URL + "tags/" + this.props.id + ".json")
-        .then(response => response.json())
-        .then(data => this.setState({ name: data.name }))
-    }
-    
-    render() {
-        const {id} = this.props;
-        const {name} = this.state;
-        
-        return (
-            <Label className="myTag" as="a" href={"/search?tag=" + id}  horizontal>{name}</Label>            
-        );
-    }
-}
+// componentWillMount() {
+//     fetch(process.env.REACT_APP_BACK_URL + "tags/" + this.props.id + ".json")
+//     .then(response => response.json())
+//     .then(data => this.setState({ name: data.name }))
+// }
