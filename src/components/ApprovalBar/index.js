@@ -3,24 +3,27 @@ import './styles.css';
 
 const ApprovalBar = props => {
     const {yes, no} = props;
+    let positivePercentage, positiveWidth;
 
     if(yes && no) {
-        let positivePercentage = yes*100/(yes+no);
-        let positiveWidth = positivePercentage.toString() + '%';
+        positivePercentage = yes*100/(yes+no);
+    } else {
+        positivePercentage = 50;
+    }
 
-        return (
-            <div id="approval-bar">
-                <div className="bar">
-                    <div style={{width: positiveWidth}} id="positive">
-                        <h3 className="ui inverted header">
-                            {positivePercentage.toFixed(1) + "%"}
-                        </h3>
-                    </div>
+    positiveWidth = positivePercentage.toString() + '%';
+
+    return (
+        <div id="approval-bar">
+            <div className="bar">
+                <div style={{width: positiveWidth}} id="positive">
+                    <h3 className="ui inverted header">
+                        {positivePercentage.toFixed(1) + "%"}
+                    </h3>
                 </div>
             </div>
-        );
-    } else 
-        return <div>Loading...</div> 
-};
+        </div>
+    );
+}
 
 export default ApprovalBar;

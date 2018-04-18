@@ -6,7 +6,7 @@ export default class Tag extends Component {
     render() {
         return (
             <Card
-                href={"/categoria/" + this.props.name}
+                href={"/search?tag=" + this.props.name}
                 header={this.props.name}
             /> 
         );

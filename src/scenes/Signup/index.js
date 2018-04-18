@@ -11,7 +11,9 @@ import WarningFormLabel from 'components/WarningFormLabel';
 import './styles.css';
 
 @connect((store) => {
-    return {};
+    return {
+        token: store.token
+    };
 })
 export default class Signup extends Component {
     constructor() {
@@ -104,7 +106,7 @@ export default class Signup extends Component {
     render() {
         const {done} = this.state;
 
-        if(done)
+        if(done || this.props.token !== 0)
             return <Redirect to="/" />;
 
         return (

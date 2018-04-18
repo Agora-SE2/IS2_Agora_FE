@@ -1,7 +1,17 @@
 import React, { Component} from 'react';
+import { Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
 
+@connect((store) => {
+    return {
+        token: store.token
+    };
+})
 export default class Settings extends Component {
     render() {
+        if(this.props.token === 0)
+            return <Redirect to="/" />
+            
         return (
             <div className="ui page container">
                 <div className="ui grid">

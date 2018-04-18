@@ -15,4 +15,5 @@ main {
   padding-bottom: 50px; }
 
 i.icon {
-  font-family: 'Icons' !important; }
+  font-family: 'Icons', 'brand-icons' !important; 
+}

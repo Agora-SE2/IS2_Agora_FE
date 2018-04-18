@@ -13,7 +13,6 @@ export default class UserOptions extends Component {
         super();
         
         this.state = {
-            toHome: false,
             toProfile: false,
             toSettings: false
         }
@@ -33,16 +32,16 @@ export default class UserOptions extends Component {
     }
 
     goToSettings() {
+        console.log("settings");
         this.setState({toSettings: true});
     }
 
     render() {
-        const {toHome, toProfile, toSettings} = this.state;
-
+        const {toProfile, toSettings} = this.state;
+        
         if(toProfile)
             return <Redirect to="/profile/1" />
-        else if(toHome)
-            return <Redirect to="/" />
+
         else if(toSettings)
             return <Redirect to="/settings" />
         else

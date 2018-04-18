@@ -1,37 +1,19 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
-import NewsMosaic from 'components/NewsMosaic';
-import TagCarousel from 'components/TagCarousel'; 
+import HomeUser from './components/HomeUser';
+import HomeVisitor from './components/HomeVisitor';
 
-import Banner from './components/Banner';
-
-import './styles.css';
-
+@connect((store) => {
+    return {
+        token: store.token
+    };
+})
 export default class Home extends Component {
-    componentDidMount() {
-        document.title = `Ágora - La plataforma de participación 
-            política de los colombianos`;
-    }
-
     render() {
-        return (
-            <div id="home">
-                <Banner />
-                <div className="ui container grid">
-                    <div className="eight wide column">
-                        <NewsMosaic title="Lo más debatido" />
-                    </div>
-                    <div className="eight wide column">
-                        <NewsMosaic title="Lo último" />                        
-                    </div>
-                </div>
-
-                <br />
-
-                <div className="ui container">
-                    <TagCarousel />    
-                </div>              
-            </div>
-        )
+        if(this.props.token !== 0)
+            return <HomeUser />;   // TODO: not really
+        else
+            return <HomeVisitor />;
     }
 }

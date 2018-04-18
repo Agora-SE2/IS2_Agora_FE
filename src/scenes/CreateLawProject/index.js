@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import { Form } from 'semantic-ui-react';
+import { Redirect } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import TagLabelList from 'components/TagLabelList';
 import WarningFormLabel from 'components/WarningFormLabel';
@@ -9,6 +11,11 @@ import { postLawProject } from 'services/api/law-project.js';
 
 // TODO: calendario para seleccionar la fecha de publicacion
 
+@connect((store) => {
+    return {
+        token: store.token
+    };
+})
 export default class CreateLawProject extends Component {
     constructor() {
         super();
@@ -88,6 +95,10 @@ export default class CreateLawProject extends Component {
 
     render() {
         const {submit, name, tagList} = this.state;
+        const {token} = this.props;
+
+        if(token === 0)
+            return <Redirect to="/" />
 
         return (
             <div className="ui page container">
@@ -130,7 +141,7 @@ export default class CreateLawProject extends Component {
                         </div>
 
                         <div className="five wide column">
-                            <div className="ui fluid labeled icon red button">
+                            <div style={{marginTop: '30px'}} className="ui fluid labeled icon red button">
                                 <i className="image icon"></i>
                                 Añade una imagen
                             </div>

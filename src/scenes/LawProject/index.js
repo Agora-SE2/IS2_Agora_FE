@@ -62,7 +62,6 @@ export default class LawProject extends Component {
                             {title}
                             <div className="sub header">PROYECTO DE LEY</div>
                         </h1>
-                        <ApprovalBar yes={yes} no={no}/>
                         <p>{desc}</p>                    
                         <TagLabelList tags={tags}/>
                     </div>
@@ -72,6 +71,8 @@ export default class LawProject extends Component {
                 </div>
 
                 <Divider />
+                <ApprovalBar yes={yes} no={no}/>
+                <ApprovalStat yes={yes} no={no}/>
 
                 <div className="ui agora segment">
                     <h2 className="ui centered header">
@@ -81,7 +82,6 @@ export default class LawProject extends Component {
                     <CommentTextArea projectId={id} yes={yes} no={no} />
                 </div>              
 
-                <ApprovalStat yes={yes} no={no}/>
 
                 <div className="ui grid" id="commentary-grid">
                     <div className="eight wide column">

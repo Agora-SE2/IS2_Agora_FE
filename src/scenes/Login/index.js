@@ -11,7 +11,9 @@ import WarningFormLabel from 'components/WarningFormLabel';
 import './styles.css';
 
 @connect((store) => {
-    return {};
+    return {
+        token: store.token
+    };
 })
 export default class Login extends Component {
     constructor() {
@@ -71,7 +73,7 @@ export default class Login extends Component {
             .catch(reason => console.log(reason))
             .then(response => {
                 if(response) {
-                    console.log(response.status);
+                    console.log(response);
                     if(response.status === 200) {
                         this.props.dispatch(login(1));
                         this.setState({done: true});
@@ -86,7 +88,8 @@ export default class Login extends Component {
     render() {
         const {done} = this.state;
 
-        if(!done)
+        if(done || this.props.token !== 0)
+            return <Redirect to="/" />
         return (
             <div className="ui page container">
                 <div className="ui login compact raised segment">
@@ -115,7 +118,5 @@ export default class Login extends Component {
                 </div>
             </div>
         );
-        
-        else return <Redirect to="/" />
     }
 }

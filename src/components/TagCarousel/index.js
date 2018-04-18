@@ -20,7 +20,7 @@ export default class TagCarousel extends Component {
         })
         .then(data => this.setState({
             ready: true,
-            tags: data.length > 0 ? data.slice(0,8) : []
+            tags: data.length > 0 ? data.slice(0,9) : []
         }));
     }
 
@@ -44,14 +44,14 @@ export default class TagCarousel extends Component {
             <div className="ui tag carousel raised segment">
                 <h2>Categorías de proyectos de ley</h2>
                 <div className="ui divider"></div>
-                <div className="ui cards">
-                    {tagCards.slice(0,2)}
+                <div className="ui fluid cards">
+                    {tagCards.slice(0,3)}
                 </div>
-                <div className="ui cards">
-                    {tagCards.slice(3,5)}
+                <div className="ui fluid cards">
+                    {tagCards.slice(3,6)}
                 </div>
-                <div className="ui cards">
-                    {tagCards.slice(6,8)}
+                <div className="ui fluid cards">
+                    {tagCards.slice(6,9)}
                 </div>
             </div>
         );

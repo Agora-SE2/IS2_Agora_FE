@@ -2,29 +2,25 @@ import React, { Component } from 'react';
 
 import ImgBanner from './images/senate.jpg';
 
-import LoginForm from 'components/LoginForm/index.js';
-import Searchbar from 'components/Searchbar/index.js';
+import LoginForm from 'components/LoginForm';
+import Searchbar from 'components/Searchbar';
 
 import './styles.css';
 
-var bannerStyle = {
-    backgroundImage: "url(" + ImgBanner + ")"
-}
-
-export default class HomeBanner extends Component {
+export default class Banner extends Component {
     render() {
         return (
-            <div style={ bannerStyle } className="home banner">
+            <div style={{backgroundImage: "url(" + ImgBanner + ")"}} className="home banner">
                 <div className="ui grid">
                     <div className="eleven wide column">
                         <div className="ui container"> 
                             <h1>Á g o r a</h1>
-                            <div className="ui divider"></div>
+                            <br />
                             <Searchbar />
                         </div>
                     </div>
                     <div id="" className="five wide left column">
-                        <LoginForm />
+                       <LoginForm />
                     </div>
                 </div> 
             </div>
