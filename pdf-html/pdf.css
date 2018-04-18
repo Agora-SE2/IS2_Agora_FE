@@ -34,10 +34,12 @@ body{
 
 #positiveVotes{
   float: right;
+  margin-right: 20px;
 }
 
 #negativeVotes{
   float: left;
+  margin-left: 20px;
 }
 
 #voteDescription{
@@ -46,4 +48,8 @@ body{
 
 #footer{
   text-align: center;
+}
+.column {
+    float: left;
+    width: 50%;
 }
