@@ -21,3 +21,10 @@
 #loginButton:hover {
   background-color: #44AF69;
   color: white; }
+
+button {
+  margin-bottom: 10px !important;
+  width: 48%; }
+
+.ui.google.plus.button {
+  float: right !important; }

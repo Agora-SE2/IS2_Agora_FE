@@ -77,6 +77,14 @@ export default class SigninForm extends Component {
                         Si no tienes una cuenta, <a href="/signup">regístrate ahora</a>.
                     </h4>
                     <button id="loginButton" className="ui fluid button" type="submit">Iniciar sesión</button>
+                    <button className="ui facebook button" id="facebookLogin">
+                        <i className="facebook icon"></i>
+                            Facebook
+                    </button>
+                    <button className="ui google plus button" id="googleLogin">
+                        <i className="google plus icon"></i>
+                            Google Plus
+                    </button>
                 </form>
             </div>
         );
