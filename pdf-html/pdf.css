@@ -1,0 +1,55 @@
+@import url('https://fonts.googleapis.com/css?family=Merriweather');
+
+body{
+  font-family: 'Merriweather', serif;
+  padding: 50px;
+}
+
+#agoraLogo{
+  height: 100px;
+}
+
+#agoraLogoContainer{
+  text-align: center;
+}
+
+#barSection{
+  text-align: center;
+  width: 100%;
+  padding-left: 25%;
+  padding-right: 25%;
+}
+
+#bar{
+  height: 50px;
+  width: 100%;
+  background-color: #cccccc;
+}
+
+#positiveBar{
+  width: 40%;
+  height: inherit;
+  background-color: #aaaaaa;
+}
+
+#positiveVotes{
+  float: right;
+  margin-right: 20px;
+}
+
+#negativeVotes{
+  float: left;
+  margin-left: 20px;
+}
+
+#voteDescription{
+  text-align: center;
+}
+
+#footer{
+  text-align: center;
+}
+.column {
+    float: left;
+    width: 50%;
+}
