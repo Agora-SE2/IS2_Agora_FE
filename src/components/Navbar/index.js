@@ -2,8 +2,9 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import logo from './images/logo.svg'; 
 
-import VisitorOptions from './components/VisitorOptions/index.js';
-import UserOptions from './components/UserOptions/index.js';
+import LeftAdminOptions from './components/LeftAdminOptions';
+import VisitorOptions from './components/VisitorOptions';
+import UserOptions from './components/UserOptions';
 
 import './styles.css';
 
@@ -15,11 +16,13 @@ import './styles.css';
 export default class Navbar extends Component {
     render() {
         const {token} = this.props;
-        let options;
+        let leftOptions, rightView;
+
         if(token > 0) {
-            options = <UserOptions />
+            rightView = <UserOptions />
+            leftOptions = <LeftAdminOptions />
         } else {
-            options = <VisitorOptions />
+            rightView = <VisitorOptions />
         }
 
         return (
@@ -31,7 +34,8 @@ export default class Navbar extends Component {
                     <a href="/search" className="item"> 
                         Proyectos de ley 
                     </a> 
-                    {options} 
+                    {leftOptions}
+                    {rightView} 
                 </div> 
             </div> 
         );

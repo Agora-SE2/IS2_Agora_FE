@@ -59,7 +59,8 @@ export default class Login extends Component {
     
     handleSubmit(event, data) {
         event.preventDefault();
-        console.log(this.state);
+        
+        this.setState({changed: true});
         const {validEmail} = this.state;
 
         if(validEmail) {
@@ -80,8 +81,6 @@ export default class Login extends Component {
                     }
                 }
             });
-        } else {
-            this.setState({changed: true});
         }
     }
     
