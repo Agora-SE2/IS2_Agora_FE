@@ -40,9 +40,10 @@ export default class Search extends Component {
                         <h1 className="ui header">Resultados para: </h1>
                     </div>
                 </div>
+
                 <div className="ui grid">
                     <div className="four wide column">
-                        <div className="ui vertical large menu">
+                        <div className="ui vertical large fluid menu">
                             <div className="item">
                                 <div className="ui transparent icon input">
                                     <input type="text" placeholder="Buscar..."/>

@@ -12,6 +12,7 @@ import Footer from './components/Footer';
 
 import About from './scenes/About';
 import Arguments from './scenes/Arguments';
+import CreateLawProject from './scenes/CreateLawProject';
 import Home from './scenes/Home';
 import LawProject from './scenes/LawProject';
 import Login from './scenes/Login';
@@ -34,6 +35,7 @@ ReactDOM.render((
               <Switch>
                 <Route exact path='/' component={Home}/>
                 <Route exact path='/about' component={About}/>
+                <Route exact path='/proyectoley/crear' component={CreateLawProject} />
                 <Route exact path='/proyectoley/:id/args' component={Arguments} />
                 <Route path='/proyectoley/:id' component={LawProject} />
                 <Route path='/login' component={Login}/>

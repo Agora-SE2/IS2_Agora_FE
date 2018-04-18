@@ -13,3 +13,6 @@ main {
 .page {
   padding-top: 100px;
   padding-bottom: 50px; }
+
+.icon {
+  font-family: 'Icons' !important; }
