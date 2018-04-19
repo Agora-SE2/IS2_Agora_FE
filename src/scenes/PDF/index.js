@@ -13,6 +13,22 @@ export default class PDF extends Component {
       pageNumber: 1,
     }
 
+    prevPage(){
+        var { pageNumber, numPages } = this.state;
+        var s = pageNumber;
+        if(s > 1){
+            this.setState({pageNumber: s-1});
+        }
+    }
+
+    nextPage(){
+        var { pageNumber, numPages } = this.state;
+        var s = pageNumber;
+        if(s < numPages){
+            this.setState({pageNumber: s+1});
+        }
+    }
+    
 
     onDocumentLoad = ({ numPages }) => {
       this.setState({ numPages });
@@ -38,11 +54,10 @@ export default class PDF extends Component {
                         <div className="ui raised section">
                             <h2>PDF de proyecto</h2>
                             <p>Página {pageNumber} de {numPages}</p>
-                            <button  class="ui left attached button" id="prevPageButton">Pág. anterior</button>
-                            <button  class="right attached ui button" id="nextPageButton">Pág. siguiente</button>
-                            <button class="ui inverted green button" id="downloadButton">Descargar</button>
+                            <button onClick={this.prevPage.bind(this)} className="ui left attached button" id="prevPageButton">Pág. anterior</button>
+                            <button onClick={this.nextPage.bind(this)} className="right attached ui button" id="nextPageButton">Pág. siguiente</button>
+                            <button className="ui inverted green button" id="downloadButton">Descargar</button>
                         </div>
-                        
                     </div>
                 </div>
             </div>
