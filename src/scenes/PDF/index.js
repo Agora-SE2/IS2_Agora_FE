@@ -38,7 +38,7 @@ export default class PDF extends Component {
       const { pageNumber, numPages } = this.state;
    
       return (
-        <div>
+        <div id="content">
             <br/><br/><br/><br/><br/><br/>
             <div className="ui container">
                 <div className="ui grid">
