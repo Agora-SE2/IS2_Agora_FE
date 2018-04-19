@@ -7,7 +7,6 @@ import TagLabelList from 'components/TagLabelList';
 import WarningFormLabel from 'components/WarningFormLabel';
 
 import { toAgoraDate } from 'services/api/agora-helpers.js';
-import { postLawProject } from 'services/api/law-project.js';
 
 import './styles.css';
 // TODO: calendario para seleccionar la fecha de publicacion
@@ -50,16 +49,15 @@ export default class CreateLawProject extends Component {
     }
 
     handleImageChange(event) {
-        console.log("image change");
-
         event.preventDefault();
 
         let reader = new FileReader();
         let file = event.target.files[0];
 
-        reader.onloadend = () => {
+        reader.onloadend = params => {
+            console.log(params);
             this.setState({
-                file: file,
+                image: file,
                 imagePreviewUrl: reader.result
             });
         }
@@ -89,30 +87,35 @@ export default class CreateLawProject extends Component {
     handleSubmit(event) {
         event.preventDefault();
 
-        const {name, desc} = this.state;
+        const {name, desc, image} = this.state;
+
         this.setState({
             submit: true
         });
 
-        const lawProject = {
-            law_project: {
-                name: name,
-                description: desc,
-                publication_date: toAgoraDate(new Date()),   // TODO: este valor debe estar tambien en el form
-                yes_votes: 0,
-                not_votes: 0,
-            }
+        const data = {
+            name: name,
+            description: desc,
+            image: document.getElementById('imgInp').files[0],
+            publication_date: toAgoraDate(new Date()),   // TODO: este valor debe estar tambien en el form
+            yes_votes: 0,
+            not_votes: 0,   // TODO: delete yes_Votes and no_votes
         };
 
-        console.log(JSON.stringify(lawProject));
+        var lawProject  = new FormData();
+        for(var key in data) {
+            lawProject.append(key, data[key]);
+        }
 
-        postLawProject(lawProject).then(response => {
+        fetch(process.env.REACT_APP_PDF_URL + "law_projects", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'multipart/form-data',
+            },
+            body: lawProject
+        }).then(response => {
             console.log(response);
-            return response.json()
-        }).then(data => {
-            console.log(data);
         });
-
     }
 
     simulateInputClick() {
@@ -120,8 +123,7 @@ export default class CreateLawProject extends Component {
     }
 
     render() {
-        const {submit, name, tagList} = this.state;
-        let imagePreviewUrl = this.state.imagePreviewUrl;
+        const {imagePreviewUrl, submit, name, tagList} = this.state;
         const {token} = this.props;
 
         let imagePreview;
@@ -138,39 +140,38 @@ export default class CreateLawProject extends Component {
                 <h1 className="ui centered header">Agregar un proyecto de ley</h1>
                 
                 <div className="ui padded segment">
+                    <form ref={el => (this.form = el)} className="ui form">
                     <div className="ui grid">
                         <div className="eleven wide column">
-                            <Form>
-                                <h5 className="ui header">Nombre del proyecto</h5>
-                                <Form.Field>
-                                    <input name="name" placeholder="Nombre del proyecto de ley" type="text" onChange={this.handleInputChange} />
-                                    <WarningFormLabel 
-                                        allowed={submit && name.length === 0} 
-                                        message={"Por favor ingrese un nombre."} />
-                                </Form.Field>
-                                
-                                <h5 className="ui header">Descripción general</h5>
-                                <Form.Field>
-                                    <textarea name="desc" placeholder="Describa en términos generales en qué consiste el proyecto" type="text" onChange={this.handleInputChange} />
+                            <h5 className="ui header">Nombre del proyecto</h5>
+                            <Form.Field>
+                                <input name="name" placeholder="Nombre del proyecto de ley" type="text" onChange={this.handleInputChange} />
+                                <WarningFormLabel 
+                                    allowed={submit && name.length === 0} 
+                                    message={"Por favor ingrese un nombre."} />
+                            </Form.Field>
+                            
+                            <h5 className="ui header">Descripción general</h5>
+                            <Form.Field>
+                                <textarea name="desc" placeholder="Describa en términos generales en qué consiste el proyecto" type="text" onChange={this.handleInputChange} />
+                                <WarningFormLabel 
+                                    allowed={false} 
+                                    message={"Nombre de usuario inválido. Sólo caracteres alfanuméricos (a-z, 0-9)"} />
+                            </Form.Field>
+
+                            <h5 className="ui header">¿A qué categorías pertenece el proyecto?</h5>
+                            <Form.Field>
+                                <div className="ui action input">
+                                    <input name="tag" type="text" placeholder="Categorías (ej. economía, congreso...)" onChange={this.handleTagChange} />
+                                    <div onClick={this.addTag} className="ui red button">Agregar</div>
                                     <WarningFormLabel 
                                         allowed={false} 
                                         message={"Nombre de usuario inválido. Sólo caracteres alfanuméricos (a-z, 0-9)"} />
-                                </Form.Field>
+                                </div>
+                            </Form.Field>
+                            <TagLabelList tags={tagList} />
 
-                                <h5 className="ui header">¿A qué categorías pertenece el proyecto?</h5>
-                                <Form.Field>
-                                    <div className="ui action input">
-                                        <input name="tag" type="text" placeholder="Categorías (ej. economía, congreso...)" onChange={this.handleTagChange} />
-                                        <div onClick={this.addTag} className="ui red button">Agregar</div>
-                                        <WarningFormLabel 
-                                            allowed={false} 
-                                            message={"Nombre de usuario inválido. Sólo caracteres alfanuméricos (a-z, 0-9)"} />
-                                    </div>
-                                </Form.Field>
-                                <TagLabelList tags={tagList} />
-
-                                <Form.Button onClick={this.handleSubmit} fluid color="black">Agregar proyecto</Form.Button>
-                            </Form>
+                            <Form.Button onClick={this.handleSubmit} fluid color="black">Agregar proyecto</Form.Button>
                         </div>
 
                         <div className="five wide column">
@@ -185,6 +186,7 @@ export default class CreateLawProject extends Component {
                             <input ref={(node) => this.inputFile = node}type='file' id="imgInp" onChange={this.handleImageChange}/>
                         </div>
                     </div>
+                    </form>
                 </div>
             </div>
         );

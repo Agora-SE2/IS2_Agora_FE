@@ -7,6 +7,7 @@ import ImgProyectoLey from 'images/economia.jpeg'
 import ApprovalStat from './components/ApprovalStat';
 import CommentTextArea from './components/CommentTextArea';
 
+import Loading from 'components/Loading';
 import TagLabelList from 'components/TagLabelList';
 import ApprovalBar from 'components/ApprovalBar';
 import CommentList from 'components/CommentList';
@@ -19,7 +20,9 @@ export default class LawProject extends Component {
 
         this.state = {
             project: {},
-            tags: []
+            tags: [],
+            yesComments: [],
+            noComments: []
         };
     }
 
@@ -30,14 +33,32 @@ export default class LawProject extends Component {
         .then(response => response.json())
         .then(project => {
             this.setState({project:project});
-            fetch(process.env.REACT_APP_BACK_URL + "project_tags.json")
+            fetch(process.env.REACT_APP_BACK_URL + "project_tags.json?law_project=" + id)
             .then(response => response.json())
             .then(dataTags => this.setState({ tags: dataTags }));
         });
+
+        fetch(process.env.REACT_APP_BACK_URL + "opinions.json?law_project=" + id)
+        .then(response => response.json())
+        .then(comments => {
+            let yes = [];
+            let no = [];
+            for(var i = 0; i < comments.length; i++) {
+                if(comments[i].pro)
+                    yes.push(comments[i])
+                else
+                    no.push(comments[i])
+            }
+
+            this.setState({
+                yesComments: yes,
+                noComments: no
+            })
+        })
     }
 
     render() {
-        const {project, tags} = this.state;
+        const {project, tags, yesComments, noComments} = this.state;
 
         let id = 0;
         let title = "";
@@ -98,13 +119,13 @@ export default class LawProject extends Component {
                     <div className="eight wide column">
                         <div className="ui segment">
                             <h2 className="ui centered header">Argumentos a favor</h2>
-                            <CommentList projectId={id}/>
+                            <CommentList comments={yesComments} />
                         </div>                        
                     </div>
                     <div className="eight wide column">
                         <div className="ui segment">
                             <h2 className="ui centered header">Argumentos en contra</h2>
-                            <CommentList projectId={id} />
+                            <CommentList comments={noComments} />
                         </div>                        
                     </div>
                 </div>
