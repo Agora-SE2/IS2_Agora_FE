@@ -61,7 +61,7 @@ export default class SigninForm extends Component {
 
     render() {
         return (
-            <div className="ui signin container">
+            <div className="ui signin container" id="LoginForm">
                 <h3 className="ui centered header">
                     Inicia sesión en Ágora
                 </h3>
