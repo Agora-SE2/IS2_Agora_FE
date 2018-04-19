@@ -21,7 +21,7 @@ import Profile from './scenes/Profile';
 import Search from './scenes/Search';
 import Settings from './scenes/Settings';
 import Signup from './scenes/Signup';
-import PDF from './scenes/PDF';
+import PDFView from './scenes/PDFView';
 
 import 'semantic-ui-css/semantic.min.css';
 import './index.css';
@@ -38,7 +38,7 @@ ReactDOM.render((
                 <Route exact path='/about' component={About}/>
                 <Route exact path='/proyectoley/crear' component={CreateLawProject} />
                 <Route exact path='/proyectoley/:id/args' component={Arguments} />
-                <Route path='/pdf' component={PDF}/>
+                <Route exact path='/proyectoley/:id/pdf' component={PDFView}/>
                 <Route path='/proyectoley/:id' component={LawProject} />
                 <Route path='/login' component={Login}/>
                 <Route path='/search' component={Search}/>

@@ -51,6 +51,9 @@ export default class LawProject extends Component {
             desc = project.description;
             yes = project.yes_votes;
             no = project.not_votes;
+
+            if(title)
+                document.title = title + " | Ágora";
         }
         
         return (
@@ -64,6 +67,14 @@ export default class LawProject extends Component {
                         </h1>
                         <p>{desc}</p>                    
                         <TagLabelList tags={tags}/>
+
+                        <a href={"/proyectoley/" + id + "/pdf"}>
+                        <button className="ui red basic compact labeled icon button">
+                            <i className="file pdf icon"></i>
+                            Formato PDF
+                        </button>
+                        </a>
+
                     </div>
                     <div className="eight wide column">
                         <img src={ ImgProyectoLey } alt="Descripción estándar de la imagen" width="100%"/>                

@@ -3,18 +3,38 @@ import { Document, Page } from 'react-pdf';
 
 import './styles.css';
 
+export default class PDFView extends Component {
+    constructor() {
+        super();
 
+        this.state = {
+            url: '',
+            name: '',
+            numPages: null,
+            pageNumber: 1,
+          }
+      
+    }
 
-var fileURL = "https://s3.amazonaws.com/scschoolfiles/112/the_perks_of_being_a_wallflower.pdf"; 
+    componentWillMount() {
+        // FIXME: consuming two different backends - data is not coherent!
+        const {id} = this.props.match.params;
+        this.setState({
+            url: process.env.REACT_APP_PDF_URL + "law_projects/" + id + ".pdf"
+        });
 
-export default class PDF extends Component {
-    state = {
-      numPages: null,
-      pageNumber: 1,
+        fetch(process.env.REACT_APP_BACK_URL + "law_projects/" + id + ".json")
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            this.setState({
+                name: data.name
+            })
+        })
     }
 
     prevPage(){
-        var { pageNumber, numPages } = this.state;
+        var { pageNumber } = this.state;
         var s = pageNumber;
         if(s > 1){
             this.setState({pageNumber: s-1});
@@ -28,14 +48,13 @@ export default class PDF extends Component {
             this.setState({pageNumber: s+1});
         }
     }
-    
 
     onDocumentLoad = ({ numPages }) => {
       this.setState({ numPages });
     }
    
     render() {
-      const { pageNumber, numPages } = this.state;
+      const { url, name, pageNumber, numPages } = this.state;
    
       return (
         <div id="content">
@@ -44,7 +63,7 @@ export default class PDF extends Component {
                 <div className="ui grid">
                     <div className="ten wide column">
                         <Document
-                            file={fileURL}
+                            file={url}
                             onLoadSuccess={this.onDocumentLoad}
                         >
                             <Page pageNumber={pageNumber} />
@@ -52,7 +71,7 @@ export default class PDF extends Component {
                     </div>
                     <div className="six wide column" id="controlPanel">
                         <div className="ui raised section">
-                            <h2>PDF de proyecto</h2>
+                            <h2>PDF de {name}</h2>
                             <p>Página {pageNumber} de {numPages}</p>
                             <button onClick={this.prevPage.bind(this)} className="ui left attached button" id="prevPageButton">Pág. anterior</button>
                             <button onClick={this.nextPage.bind(this)} className="right attached ui button" id="nextPageButton">Pág. siguiente</button>
