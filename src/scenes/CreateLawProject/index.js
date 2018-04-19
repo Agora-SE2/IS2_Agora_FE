@@ -9,6 +9,7 @@ import WarningFormLabel from 'components/WarningFormLabel';
 import { toAgoraDate } from 'services/api/agora-helpers.js';
 import { postLawProject } from 'services/api/law-project.js';
 
+import './styles.css';
 // TODO: calendario para seleccionar la fecha de publicacion
 
 @connect((store) => {
@@ -24,6 +25,8 @@ export default class CreateLawProject extends Component {
             name: '',
             validName: false,
             desc: '',
+            image: {},
+            imagePreviewUrl: '',
             tag: {},
             validTagList: false,
             submit: false,
@@ -32,9 +35,11 @@ export default class CreateLawProject extends Component {
         }
 
         this.addTag = this.addTag.bind(this);
+        this.handleImageChange = this.handleImageChange.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleTagChange = this.handleTagChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.simulateInputClick = this.simulateInputClick.bind(this);
     }
 
     addTag() {
@@ -42,6 +47,24 @@ export default class CreateLawProject extends Component {
             tagList: prevState.tagList.concat([prevState.tag])
         }));
         console.log(this.state.tagList);
+    }
+
+    handleImageChange(event) {
+        console.log("image change");
+
+        event.preventDefault();
+
+        let reader = new FileReader();
+        let file = event.target.files[0];
+
+        reader.onloadend = () => {
+            this.setState({
+                file: file,
+                imagePreviewUrl: reader.result
+            });
+        }
+
+        reader.readAsDataURL(file)
     }
 
     handleInputChange(event) {
@@ -92,11 +115,21 @@ export default class CreateLawProject extends Component {
 
     }
 
+    simulateInputClick() {
+        this.inputFile.click();
+    }
 
     render() {
         const {submit, name, tagList} = this.state;
+        let imagePreviewUrl = this.state.imagePreviewUrl;
         const {token} = this.props;
 
+        let imagePreview;
+        if(imagePreviewUrl.length === 0)
+            imagePreview = '';
+        else
+            imagePreview = <img id="imagePreview" src={imagePreviewUrl} alt="upload preview" />;
+        
         if(token === 0)
             return <Redirect to="/" />
 
@@ -141,10 +174,15 @@ export default class CreateLawProject extends Component {
                         </div>
 
                         <div className="five wide column">
-                            <div style={{marginTop: '30px'}} className="ui fluid labeled icon red button">
+                            {imagePreview}
+                            <div 
+                                style={{marginTop: '30px'}} 
+                                className="ui fluid labeled icon red button"
+                                onClick={this.simulateInputClick}>
                                 <i className="image icon"></i>
                                 Añade una imagen
                             </div>
+                            <input ref={(node) => this.inputFile = node}type='file' id="imgInp" onChange={this.handleImageChange}/>
                         </div>
                     </div>
                 </div>
