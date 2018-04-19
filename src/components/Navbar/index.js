@@ -10,15 +10,15 @@ import './styles.css';
 
 @connect((store) => {
     return {
-        token: store.token
+        loggedIn: store.loggedIn
     }
 })
 export default class Navbar extends Component {
     render() {
-        const {token} = this.props;
+        const {loggedIn} = this.props;
         let leftOptions, rightView;
 
-        if(token > 0) {
+        if(loggedIn) {
             rightView = <UserOptions />
             leftOptions = <LeftAdminOptions />
         } else {

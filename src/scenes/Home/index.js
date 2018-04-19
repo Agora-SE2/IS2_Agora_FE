@@ -6,12 +6,12 @@ import HomeVisitor from './components/HomeVisitor';
 
 @connect((store) => {
     return {
-        token: store.token
+        loggedIn: store.loggedIn
     };
 })
 export default class Home extends Component {
     render() {
-        if(this.props.token !== 0)
+        if(this.props.loggedIn)
             return <HomeUser />;   // TODO: not really
         else
             return <HomeVisitor />;

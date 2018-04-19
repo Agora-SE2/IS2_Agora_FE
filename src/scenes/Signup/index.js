@@ -12,7 +12,7 @@ import './styles.css';
 
 @connect((store) => {
     return {
-        token: store.token
+        loggedIn: store.loggedIn
     };
 })
 export default class Signup extends Component {
@@ -24,6 +24,10 @@ export default class Signup extends Component {
                 email: "",
                 password: "",
                 password_confirmation: "",
+                userName: '',
+                isAdmin: 0,
+                birthName: '',
+                description: ''
             },
             changed: false,
             validEmail: false,
@@ -75,13 +79,17 @@ export default class Signup extends Component {
         const value = event.target.value;
         const valid = validator.isAlphanumeric(value);
         this.setState({validUsername: valid});
-        // this.stateUserChange(value, "username");
+        this.stateUserChange(value, "userName");
     }
 
     handleSubmit(event, data) {
         event.preventDefault();
 
-        const {validEmail, validPasswordLength} = this.state;
+        const {user, validEmail, validPasswordLength} = this.state;
+
+        console.log(user);
+        console.log(JSON.stringify(user));
+
         if(validEmail && validPasswordLength)
             fetch(process.env.REACT_APP_BACK_URL + "users", {
                 method: 'POST',
@@ -91,7 +99,7 @@ export default class Signup extends Component {
                 body: JSON.stringify(this.state)
             }).then(response => {
                 if(response) {
-                    console.log(response.status);
+                    console.log(response);
                     if(response.status === 200) {
                         this.props.dispatch(login(1));
                         this.setState({done: true});
@@ -106,7 +114,7 @@ export default class Signup extends Component {
     render() {
         const {done} = this.state;
 
-        if(done || this.props.token !== 0)
+        if(done || this.props.loggedIn)
             return <Redirect to="/" />;
 
         return (
@@ -124,7 +132,7 @@ export default class Signup extends Component {
 
                     <Form onSubmit={this.handleSubmit}>
                         <Form.Field>
-                            <input name="username" placeholder="Nombre de usuario (ej. @miusuario123)" type="text" onChange={this.handleUsernameChange} />
+                            <input name="userName" placeholder="Nombre de usuario (ej. @miusuario123)" type="text" onChange={this.handleUsernameChange} />
                             <WarningFormLabel 
                                 allowed={this.state.changed && !(this.state.validUsername)} 
                                 message={"Nombre de usuario inválido. Sólo caracteres alfanuméricos (a-z, 0-9)"} />

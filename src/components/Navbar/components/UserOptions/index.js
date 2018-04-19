@@ -6,7 +6,9 @@ import { Dropdown } from 'semantic-ui-react';
 import { logout } from 'services/session/actions';
 
 @connect((store) => {
-    return {}
+    return {
+        username: store.currentUser.userName
+    }
 })
 export default class UserOptions extends Component {
     constructor() {
@@ -54,8 +56,8 @@ export default class UserOptions extends Component {
                     </div>
                     <div className="results"></div>
                 </div>
-                <Dropdown item text="Bienvenido, Humberto de la Calle">
-                    <Dropdown.Menu>
+                <Dropdown item text={"Bienvenido, @" + this.props.username}>
+                    <Dropdown.Menu style={{zIndex: 100}}>
                         <Dropdown.Header>
                             Ágora - Opciones
                         </Dropdown.Header>

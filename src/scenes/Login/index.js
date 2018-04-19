@@ -1,18 +1,19 @@
 import React, { Component } from 'react';
 import { Redirect } from 'react-router-dom';
-import { Form } from 'semantic-ui-react';
+import { Form, Message } from 'semantic-ui-react';
 import validator from 'validator';
 
 import { connect } from 'react-redux';
 import { login } from 'services/session/actions';
 
+import Loading from 'components/Loading';
 import WarningFormLabel from 'components/WarningFormLabel';
 
 import './styles.css';
 
 @connect((store) => {
     return {
-        token: store.token
+        loggedIn: store.loggedIn
     };
 })
 export default class Login extends Component {
@@ -20,14 +21,15 @@ export default class Login extends Component {
         super();
 
         this.state = {
+            changed: false,
+            done: false,
+            errorPassword: false,
+            loading: false,
             user: {
                 email: "",
-                password: "",
-                remember_me: "false"
+                password: ""
             },
-            changed: false,
             validEmail: false,
-            done: false
         }
 
         this.handleEmailChange = this.handleEmailChange.bind(this);
@@ -59,36 +61,57 @@ export default class Login extends Component {
     
     handleSubmit(event, data) {
         event.preventDefault();
-        
-        this.setState({changed: true});
+        this.setState({ changed: true, loading: true });
+        console.log(this.state.user);
         const {validEmail} = this.state;
 
         if(validEmail) {
-            fetch(process.env.REACT_APP_BACK_URL + "users/sign_in", {
+            this.setState({ loading: true });
+            
+            fetch(process.env.REACT_APP_BACK_URL + "users/sign_in.json", {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(this.state)
+                body: JSON.stringify(this.state.user)
             })
-            .catch(reason => console.log(reason))
-            .then(response => {
-                if(response) {
-                    console.log(response);
-                    if(response.status === 200) {
-                        this.props.dispatch(login(1));
-                        this.setState({done: true});
-                    }
+            .catch(reason => console.error(reason))
+            .then(response => response.json())
+            .then(data => {
+                if(data.success) {
+                    this.props.dispatch(login(data));
+                    console.log(data);
+                    this.setState({
+                        done: true,
+                        errorPassword: false,
+                        loading: false
+                    })
+                } else {
+                    this.setState({
+                        errorPassword: true,
+                        loading: false
+                    })
                 }
             });
         }
     }
     
     render() {
-        const {done} = this.state;
+        const {done, errorPassword, loading} = this.state;
+        let messageView;
 
-        if(done || this.props.token !== 0)
+        if(done || this.props.loggedIn)
             return <Redirect to="/" />
+
+        if(loading)
+            messageView = <Loading />;
+
+        if(errorPassword)
+            messageView = (<Message negative>
+                <Message.Header>Oops!</Message.Header>
+                <p>No reconocemos estos datos. Intenta de nuevo.</p>
+              </Message>);
+
         return (
             <div className="ui page container">
                 <div className="ui login compact raised segment">
@@ -108,6 +131,7 @@ export default class Login extends Component {
                                 allowed={this.state.changed && !(this.state.validEmail)} 
                                 message={"Correo inválido"} />
                         </Form.Field>
+                        {messageView}
                         <h4 className="ui centered header">
                             <div className="sub header">¿Aún no estás registrado? <a href="/signup">Regístrate en Ágora</a>.
                             </div>
