@@ -23,8 +23,10 @@ export default class Login extends Component {
         this.state = {
             changed: false,
             done: false,
+            emailExists: false,
             errorPassword: false,
             loading: false,
+            passwordExists: false,
             user: {
                 email: "",
                 password: ""
@@ -49,23 +51,28 @@ export default class Login extends Component {
 
     handleEmailChange(event) {
         const value = event.target.value;
-        const valid = validator.isEmail(value);
-        this.setState({validEmail: valid});
+        this.setState({
+            emailExists: value.length !== 0,
+            validEmail: validator.isEmail(value)
+        });
         this.changeUserState(value, "email");
     }
 
     handlePasswordChange(event) {
         const value = event.target.value;
+        this.setState({ passwordExists: value.length !== 0 });
         this.changeUserState(value, "password");
     }    
     
     handleSubmit(event, data) {
         event.preventDefault();
-        this.setState({ changed: true, loading: true });
+        this.setState({ changed: true });
         console.log(this.state.user);
-        const {validEmail} = this.state;
+        const {validEmail, passwordExists} = this.state;
 
-        if(validEmail) {
+        if(validEmail && passwordExists) {
+            console.log(this.state.loading);
+            
             this.setState({ loading: true });
             
             fetch(process.env.REACT_APP_BACK_URL + "users/sign_in.json", {
@@ -92,12 +99,12 @@ export default class Login extends Component {
                         loading: false
                     })
                 }
-            });
+            });            
         }
     }
     
     render() {
-        const {done, errorPassword, loading} = this.state;
+        const {changed, done, emailExists, errorPassword, loading, validEmail} = this.state;
         let messageView;
 
         if(done || this.props.loggedIn)
@@ -105,8 +112,7 @@ export default class Login extends Component {
 
         if(loading)
             messageView = <Loading />;
-
-        if(errorPassword)
+        else if(errorPassword)
             messageView = (<Message negative>
                 <Message.Header>Oops!</Message.Header>
                 <p>No reconocemos estos datos. Intenta de nuevo.</p>
@@ -122,14 +128,17 @@ export default class Login extends Component {
                         <Form.Field>
                             <input name="email" placeholder="Correo electrónico" type="email" onChange={this.handleEmailChange} />
                             <WarningFormLabel 
-                                allowed={this.state.changed && !(this.state.validEmail)} 
+                                allowed={changed && emailExists && !(validEmail)} 
                                 message={"Correo inválido"} />
+                            <WarningFormLabel 
+                                allowed={changed && !(emailExists)} 
+                                message={"Por favor ingrese un correo."} />
                         </Form.Field>
                         <Form.Field>
                             <input name="password" placeholder="Contraseña" type="password" onChange={this.handlePasswordChange} />
                             <WarningFormLabel 
-                                allowed={this.state.changed && !(this.state.validEmail)} 
-                                message={"Correo inválido"} />
+                                allowed={changed && !(this.state.passwordExists)} 
+                                message={"Por favor ingrese una contraseña."} />
                         </Form.Field>
                         {messageView}
                         <h4 className="ui centered header">
