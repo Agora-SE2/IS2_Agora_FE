@@ -1,0 +1,35 @@
+.ui.signin.container {
+  width: 400px;
+  margin-top: 20vh !important;
+  padding: 10%;
+  color: white !important; }
+
+.ui.signin.container h3 {
+  color: white; }
+
+.ui.signin.form h4 {
+  color: white; }
+
+.ui.inverted.button {
+  margin: auto; }
+
+#loginButton {
+  border: 3px solid #44AF69;
+  background: none;
+  color: #44AF69; }
+
+#loginButton:hover {
+  background-color: #44AF69;
+  color: white; }
+
+#LoginForm button {
+  margin-bottom: 10px !important; }
+
+.ui.google.plus.button {
+  float: right !important; }
+
+#facebookLogin {
+  width: 48%; }
+
+#googleLogin {
+  width: 48%; }

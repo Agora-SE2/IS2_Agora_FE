@@ -1,0 +1,32 @@
+@import url('https://fonts.googleapis.com/css?family=Titillium+Web');
+
+$red: #dc493a;
+$blue: #006494;
+$green: #7ac74f;
+$gold: #ed9b40;
+$yellow: #e8c547;
+
+html *
+{
+    font-family: 'Titillium Web', sans-serif !important;
+}
+
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+  }
+  
+  main {
+    min-height: calc(100vh - 70px);
+  }
+  
+  .page {
+    padding-top: 100px;
+    padding-bottom: 50px;
+  }
+
+
+i.icon {
+  font-family: 'Icons', 'brand-icons' !important; 
+}

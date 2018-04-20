@@ -1,0 +1,16 @@
+.agora.argument .ui.buttons {
+  margin-top: 20px; }
+
+#aFavor {
+  background-color: #44AF69;
+  color: white; }
+
+#aFavor:hover {
+  background-color: #3A965A; }
+
+#enContra {
+  background-color: #d73a31;
+  color: white; }
+
+#enContra:hover {
+  background-color: #BC322B; }

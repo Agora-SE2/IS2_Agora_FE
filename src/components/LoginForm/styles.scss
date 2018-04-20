@@ -1,0 +1,50 @@
+@import '../../colors.scss';
+
+
+.ui.signin.container {
+    width: 400px;
+    margin-top: 20vh !important;
+    padding: 10%;
+
+    color: white !important;
+}
+
+.ui.signin.container h3 {
+    color: white;
+}
+
+.ui.signin.form h4 {
+    color: white;
+}
+
+.ui.inverted.button {
+    margin: auto;
+}
+
+#loginButton{
+    border: 3px solid $green;
+    background: none;
+    color: $green;
+}
+
+#loginButton:hover{
+    background-color: $green;
+    color: white;
+}
+
+#LoginForm button{
+    margin-bottom: 10px!important;
+    
+}
+
+.ui.google.plus.button{
+    float: right!important;
+}
+
+#facebookLogin{
+    width: 48%;
+}
+
+#googleLogin{
+    width: 48%;
+}
