@@ -1,8 +1,16 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { login } from 'services/session/actions';
+import { GoogleLogin } from 'react-google-login';
 
 import './styles.css';
+
+var userEmailGoogle;
+
+const responseGoogle = (response) => {
+    console.log(response.profileObj);
+    userEmailGoogle = response.profileObj.email;
+}
 
 // TODO: for the love of God, move these methods away from here.
 @connect((store) => {
@@ -62,6 +70,7 @@ export default class SigninForm extends Component {
     render() {
         return (
             <div className="ui signin container" id="LoginForm">
+                
                 <h3 className="ui centered header">
                     Inicia sesión en Ágora
                 </h3>
@@ -77,14 +86,13 @@ export default class SigninForm extends Component {
                         Si no tienes una cuenta, <a href="/signup">regístrate ahora</a>.
                     </h4>
                     <button id="loginButton" className="ui fluid button" type="submit">Iniciar sesión</button>
-                    <button className="ui facebook button" id="facebookLogin">
-                        <i className="facebook icon"></i>
-                            Facebook
-                    </button>
-                    <button className="ui google plus button" id="googleLogin">
-                        <i className="google plus icon"></i>
-                            Google Plus
-                    </button>
+                    <GoogleLogin
+                        className="ui google plus button" id="googleLogin"
+                        clientId="1089446997214-ujto6kmbbn9j0djpdgre3ua016emu3jr.apps.googleusercontent.com"
+                        buttonText="Google"
+                        onSuccess={responseGoogle}
+                        onFailure={responseGoogle}
+                    />
                 </form>
             </div>
         );
