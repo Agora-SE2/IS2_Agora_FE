@@ -25,11 +25,8 @@
 #LoginForm button {
   margin-bottom: 10px !important; }
 
-.ui.google.plus.button {
-  float: right !important; }
-
 #facebookLogin {
   width: 48%; }
 
 #googleLogin {
-  width: 48%; }
+  width: 100%; }
