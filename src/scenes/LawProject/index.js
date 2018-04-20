@@ -1,19 +1,24 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
-import { Divider } from 'semantic-ui-react';
+import { Divider, Message } from 'semantic-ui-react';
 
 import ImgProyectoLey from 'images/economia.jpeg'
 
 import ApprovalStat from './components/ApprovalStat';
 import CommentTextArea from './components/CommentTextArea';
 
-import Loading from 'components/Loading';
 import TagLabelList from 'components/TagLabelList';
 import ApprovalBar from 'components/ApprovalBar';
 import CommentList from 'components/CommentList';
 
 import './styles.css';
 
+@connect((store) => {
+    return {
+        loggedIn: store.loggedIn
+    };
+})
 export default class LawProject extends Component {
     constructor() {
         super();
@@ -76,6 +81,27 @@ export default class LawProject extends Component {
             if(title)
                 document.title = title + " | Ágora";
         }
+
+        let commentView;
+        if(this.props.loggedIn) {
+            commentView = (
+            <div className="ui agora segment">
+                <h2 className="ui centered header">
+                    ¿Estás a favor o en contra de este proyecto?
+                    <div className="sub header">Déjanos aquí tu opinión.</div>
+                </h2>
+                <CommentTextArea projectId={id} yes={yes} no={no} />
+            </div>);
+        } else {
+            commentView = (
+            
+            <Message>
+                <Message.Header>¿Quieres votar y opinar?</Message.Header>
+                <p>Participa en la comunidad de Ágora <a href="/login">iniciando sesión</a> o, si aún 
+                no tienes una cuenta, <a href="/signup">registrándote</a>.</p>
+            </Message>
+            );
+        }
         
         return (
             <div className="ui page container"> 
@@ -106,14 +132,7 @@ export default class LawProject extends Component {
                 <ApprovalBar yes={yes} no={no}/>
                 <ApprovalStat yes={yes} no={no}/>
 
-                <div className="ui agora segment">
-                    <h2 className="ui centered header">
-                        ¿Estás a favor o en contra de este proyecto?
-                        <div className="sub header">Déjanos aquí tu opinión.</div>
-                    </h2>
-                    <CommentTextArea projectId={id} yes={yes} no={no} />
-                </div>              
-
+                {commentView}
 
                 <div className="ui grid" id="commentary-grid">
                     <div className="eight wide column">

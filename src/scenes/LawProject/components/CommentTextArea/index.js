@@ -108,7 +108,7 @@ export default class CommentTextArea extends Component {
         if(loading) {
             return (
             <div className="ui active dimmer">
-                <div class="ui text loader">Loading</div>
+                <div className="ui text loader">Loading</div>
             </div>
             );
         }

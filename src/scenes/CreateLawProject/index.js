@@ -6,10 +6,7 @@ import { connect } from 'react-redux';
 import TagLabelList from 'components/TagLabelList';
 import WarningFormLabel from 'components/WarningFormLabel';
 
-import { toAgoraDate } from 'services/api/agora-helpers.js';
-
 import './styles.css';
-// TODO: calendario para seleccionar la fecha de publicacion
 
 @connect((store) => {
     return {
@@ -23,7 +20,8 @@ export default class CreateLawProject extends Component {
         this.state = {
             name: '',
             validName: false,
-            desc: '',
+            description: '',
+            publication_date: {},
             image: {},
             imagePreviewUrl: '',
             tag: {},
@@ -87,17 +85,19 @@ export default class CreateLawProject extends Component {
     handleSubmit(event) {
         event.preventDefault();
 
-        const {name, desc, image} = this.state;
+        const {name, desc, publication_date, image} = this.state;
 
         this.setState({
             submit: true
         });
 
+        console.log(publication_date, typeof publication_date)
+
         const data = {
             name: name,
             description: desc,
-            image: document.getElementById('imgInp').files[0],
-            publication_date: toAgoraDate(new Date()),   // TODO: este valor debe estar tambien en el form
+            publication_date: publication_date,   // TODO: este valor debe estar tambien en el form
+            image: image,
             yes_votes: 0,
             not_votes: 0,   // TODO: delete yes_Votes and no_votes
         };
@@ -153,10 +153,18 @@ export default class CreateLawProject extends Component {
                             
                             <h5 className="ui header">Descripción general</h5>
                             <Form.Field>
-                                <textarea name="desc" placeholder="Describa en términos generales en qué consiste el proyecto" type="text" onChange={this.handleInputChange} />
+                                <textarea name="description" placeholder="Describa en términos generales en qué consiste el proyecto" type="text" onChange={this.handleInputChange} />
                                 <WarningFormLabel 
                                     allowed={false} 
                                     message={"Nombre de usuario inválido. Sólo caracteres alfanuméricos (a-z, 0-9)"} />
+                            </Form.Field>
+
+                            <h5 className="ui header">¿En qué fecha se propuso este proyecto de ley en el Congreso?</h5>
+                            <Form.Field>
+                                <input name="publication_date" placeholder="¿Cuándo fue publicado este proyecto de ley?" type="date" onChange={this.handleInputChange} />
+                                <WarningFormLabel 
+                                    allowed={submit && name.length === 0} 
+                                    message={"Por favor ingrese un nombre."} />
                             </Form.Field>
 
                             <h5 className="ui header">¿A qué categorías pertenece el proyecto?</h5>
