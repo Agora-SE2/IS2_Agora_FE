@@ -21,6 +21,7 @@ import Profile from './scenes/Profile';
 import Search from './scenes/Search';
 import Settings from './scenes/Settings';
 import Signup from './scenes/Signup';
+import SignupSetup from './scenes/SignupSetup';
 import PDFView from './scenes/PDFView';
 
 import 'semantic-ui-css/semantic.min.css';
@@ -44,6 +45,7 @@ ReactDOM.render((
                 <Route path='/search' component={Search}/>
                 <Route path='/profile/:id' component={Profile}/>
                 <Route path='/settings' component={Settings}/>
+                <Route path='/setup' component={SignupSetup}/>
                 <Route path='/signup' component={Signup}/>
                 <Route path='/404' component={NotFound} />
                 <Redirect to='/404' />

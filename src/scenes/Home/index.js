@@ -14,7 +14,7 @@ import HomeVisitor from './components/HomeVisitor';
 export default class Home extends Component {
     render() {
         if(this.props.loggedIn)
-            if(this.props.isAdmin)
+            if(!this.props.isAdmin)
                 return <HomeAdmin />;
             else
                 return <HomeUser />;

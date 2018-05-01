@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Divider, Form, Message } from 'semantic-ui-react';
 import validator from 'validator';
@@ -118,7 +117,7 @@ export default class Signup extends Component {
         let messageView;
 
         if(this.props.loggedIn)
-            return <Redirect to="/" />;
+            window.location.replace("/setup");
 
         if(loading) {
             messageView = <Loading />;

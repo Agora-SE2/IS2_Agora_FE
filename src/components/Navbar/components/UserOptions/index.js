@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { Dropdown } from 'semantic-ui-react';
 
@@ -7,17 +6,13 @@ import { logout } from 'services/session/actions';
 
 @connect((store) => {
     return {
-        username: store.currentUser.userName
+        username: store.currentUser.userName,
+        userId: store.currentUser.id
     }
 })
 export default class UserOptions extends Component {
     constructor() {
         super();
-        
-        this.state = {
-            toProfile: false,
-            toSettings: false
-        }
 
         this.clickLogout = this.clickLogout.bind(this);
         this.goToProfile = this.goToProfile.bind(this);
@@ -26,28 +21,19 @@ export default class UserOptions extends Component {
 
     clickLogout() {
         this.props.dispatch(logout());
-        this.setState({toHome: true});
+        window.location.replace("/");        
     }
 
     goToProfile() {
-        this.setState({toProfile: true});
+        window.location.replace("/profile/" + this.props.userId);
     }
 
     goToSettings() {
-        console.log("settings");
-        this.setState({toSettings: true});
+        window.location.replace("/settings");
     }
 
     render() {
-        const {toProfile, toSettings} = this.state;
-        
-        if(toProfile)
-            return <Redirect to="/profile/1" />
-
-        else if(toSettings)
-            return <Redirect to="/settings" />
-        else
-            return (
+        return (
             <div className="right menu">
                 <div className="ui category search item">
                     <div className="ui icon input">
@@ -67,6 +53,6 @@ export default class UserOptions extends Component {
                     </Dropdown.Menu>
                 </Dropdown>
             </div>
-            );
+        );
     }
 }

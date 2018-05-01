@@ -27,12 +27,13 @@ export default class Profile extends Component {
 
     render() {
         console.log(this.state.profile);
+        const { birth_name, user_name } = this.state.profile;
         return (
             <div className="ui page container">
                 <ProfilePic src={Humberto} />
                 <Header textAlign="center" as="h1">
-                    {' '}Humberto de la Calle
-                    <Header.Subheader>@humberticolindo</Header.Subheader>
+                    {birth_name ? ' ' + birth_name : "cargando..."}
+                    <Header.Subheader>{'@' + user_name}</Header.Subheader>
                 </Header>
 
                 <div className="ui grid">
