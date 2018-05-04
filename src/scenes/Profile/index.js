@@ -21,18 +21,18 @@ export default class Profile extends Component {
         fetch(process.env.REACT_APP_BACK_URL + "users/" + id + ".json")
         .then(response => response.json())
         .then(data => {
-            this.setState({ profile: data });
+            console.log(data);
+            this.setState({ profile: data.user });
         })
     }
 
     render() {
-        console.log(this.state.profile);
         const { birth_name, user_name } = this.state.profile;
         return (
             <div className="ui page container">
                 <ProfilePic src={Humberto} />
                 <Header textAlign="center" as="h1">
-                    {birth_name ? ' ' + birth_name : "cargando..."}
+                    {birth_name ? ' ' + birth_name : '@' + user_name}
                     <Header.Subheader>{'@' + user_name}</Header.Subheader>
                 </Header>
 

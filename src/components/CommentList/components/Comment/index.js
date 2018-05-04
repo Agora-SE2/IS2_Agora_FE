@@ -36,7 +36,7 @@ class AgoraComment extends Component {
                 <Comment.Text>{content}</Comment.Text>
                 <Comment.Actions>
                     <a style={(() => this.state.liked ? {color: 'red'} : {})()} className="like" onClick={this.handleLike}>Me trama ({this.state.likes})</a>
-                    <Comment.Action>Responder</Comment.Action>
+                    <a className="report">Denunciar</a>
                 </Comment.Actions>
                 </Comment.Content>
             </Comment>

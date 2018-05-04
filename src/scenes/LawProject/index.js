@@ -7,7 +7,6 @@ import ImgProyectoLey from 'images/economia.jpeg'
 
 import ApprovalStat from './components/ApprovalStat';
 import CommentTextArea from './components/CommentTextArea';
-import CommentListContainer from './components/CommentListContainer';
 
 import CommentList from 'components/CommentList';
 import TagLabelList from 'components/TagLabelList';
@@ -112,14 +111,12 @@ export default class LawProject extends Component {
                         <div className="ui segment">
                             <h2 className="ui centered header">Argumentos a favor</h2>
                             <CommentList comments={yesComments} />
-                            {/* <CommentListContainer id={this.props.match.params.id} pro={true} /> */}
                         </div>                        
                     </div>
                     <div className="eight wide column">
                         <div className="ui segment">
                             <h2 className="ui centered header">Argumentos en contra</h2>
                             <CommentList comments={notComments} />
-                            {/* <CommentListContainer id={this.props.match.params.id} pro={false} /> */}
                         </div>                        
                     </div>
                 </div>

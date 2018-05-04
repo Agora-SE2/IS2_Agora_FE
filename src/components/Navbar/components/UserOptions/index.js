@@ -20,7 +20,7 @@ export default class UserOptions extends Component {
     }
 
     clickLogout() {
-        this.props.dispatch(logout());
+        this.props.dispatch(logout());  // TODO: wait for dispatch to finish before redirecting!
         window.location.replace("/");        
     }
 
