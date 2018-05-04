@@ -13,16 +13,48 @@ export default class HomeAdmin extends Component {
     render() {
         return (
             <div className="ui page container">
-                <div className="ui red inverted padded segment">
-                    <h1 className="ui centered header">Bienvenido, {this.props.username}</h1>
+                <div className="ui icon warning message">
+                    <i className="inbox icon"></i>
+                    <div className="content">
+                        <div className="header">
+                        Verifica la bandeja de mensajes!
+                        </div>
+                        <p>Hay comentarios en la página que necesitan revisión. Para acceder a ellos, 
+                            haz clic <a href="#">aquí.</a>
+                        </p>
+                    </div>
                 </div>
-                <div className="ui segment">
-                <C3Chart data={{
-                    columns: [
-                        ['data1', 30, 200, 100, 400, 150, 250],
-                        ['data2', 50, 20, 10, 40, 15, 25]
-                    ]
-                 }} />
+                <div className="ui grid">
+                    <div className="eight wide column">
+                        <div className="ui padded segment">
+                            <h2 className="ui centered header">Proyectos mejor votados</h2>
+                            <C3Chart axis={{rotated: true}} data={{
+                                columns: [
+                                    ['Votos a favor', 200, 300, 100, 250],
+                                    ['Votos en contra', 50, 20, 10, 25],
+                                ],
+                                type: 'bar'
+                            }} />
+                        </div>                        
+                    </div>
+                    <div className="eight wide column">
+                        <div className="ui padded segment">
+                            <h2 className="ui centered header">Proyectos peor votados</h2>
+                            <C3Chart axis={{
+                                x: {
+                                    type: 'category',
+                                    categories: ['cat1', 'cat2', 'cat3', 'cat4']
+                                }, rotated: true
+                                }} 
+                                data={{
+                                columns: [
+                                    ['Votos a favor', 50, 20, 10, 25],
+                                    ['Votos en contra', 200, 300, 100, 250],
+                                ],
+                                type: 'bar'
+                            }} />
+                        </div>                        
+                    </div>
                 </div>
             </div>
         );

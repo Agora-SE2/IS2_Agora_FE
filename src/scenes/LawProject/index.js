@@ -9,6 +9,7 @@ import ApprovalStat from './components/ApprovalStat';
 import CommentTextArea from './components/CommentTextArea';
 
 import CommentList from 'components/CommentList';
+import Image from 'components/Image';
 import TagLabelList from 'components/TagLabelList';
 import ApprovalBar from 'components/ApprovalBar';
 
@@ -41,7 +42,8 @@ export default class LawProject extends Component {
     }
 
     render() {
-        const {id, name, yes_votes, description, not_votes, tags, opinions} = this.state.project;
+        const {id, name, yes_votes, description, not_votes, tags, image, opinions} = this.state.project;
+        console.log(image);
         let yesComments = [];
         let notComments = [];
         if(name)
@@ -97,7 +99,11 @@ export default class LawProject extends Component {
 
                     </div>
                     <div className="eight wide column">
-                        <img src={ ImgProyectoLey } alt="Descripción estándar de la imagen" width="100%"/>                
+                        {(() => {
+                            if(image)
+                                return <Image src={image.image.url} alt="alalla" />;
+                            else return '';
+                        })()}
                     </div>
                 </div>
 
