@@ -22,15 +22,18 @@ class AgoraComment extends Component {
     }
 
     render() {
+        // TODO: include like field
+        const {content, date, like, user} = this.props.comment;
+
         return (
             <Comment>
                 <Comment.Avatar src={Humberto} />
                 <Comment.Content>
-                <Comment.Author as='a' href="/profile/1">Matt</Comment.Author>
+                <Comment.Author as='a' href={"/profile/" + user.id}>{user.birth_name ? user.birth_name : "@" + user.user_name}</Comment.Author>
                 <Comment.Metadata>
-                    <div>{this.props.comment.date}</div>
+                    <div>{date}</div>
                 </Comment.Metadata>
-                <Comment.Text>{this.props.comment.content}</Comment.Text>
+                <Comment.Text>{content}</Comment.Text>
                 <Comment.Actions>
                     <a style={(() => this.state.liked ? {color: 'red'} : {})()} className="like" onClick={this.handleLike}>Me trama ({this.state.likes})</a>
                     <Comment.Action>Responder</Comment.Action>

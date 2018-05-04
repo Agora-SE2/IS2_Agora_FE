@@ -9,6 +9,7 @@ import ApprovalStat from './components/ApprovalStat';
 import CommentTextArea from './components/CommentTextArea';
 import CommentListContainer from './components/CommentListContainer';
 
+import CommentList from 'components/CommentList';
 import TagLabelList from 'components/TagLabelList';
 import ApprovalBar from 'components/ApprovalBar';
 
@@ -25,7 +26,6 @@ export default class LawProject extends Component {
 
         this.state = {
             project: {},
-            tags: [],
         };
     }
 
@@ -34,32 +34,26 @@ export default class LawProject extends Component {
         
         fetch(process.env.REACT_APP_BACK_URL + "law_projects/" + id + ".json")
         .then(response => response.json())
-        .then(project => {
-            this.setState({project:project});
-            fetch(process.env.REACT_APP_BACK_URL + "project_tags.json?law_project=" + id)
-            .then(response => response.json())
-            .then(dataTags => this.setState({ tags: dataTags }));
+        .then(data => {
+            console.log(data);
+            this.setState({project:data.law_project});
         });
     }
 
     render() {
-        const {project, tags} = this.state;
-
-        let id = 0;
-        let title = "";
-        let desc = "";
-        let yes = 0
-        let no = 0;
-
-        if(project) {
-            id = project.id;
-            title = project.name;
-            desc = project.description;
-            yes = project.yes_votes;
-            no = project.not_votes;
-
-            if(title)
-                document.title = title + " | Ágora";
+        const {id, name, yes_votes, description, not_votes, tags, opinions} = this.state.project;
+        let yesComments = [];
+        let notComments = [];
+        if(name)
+            document.title = name + " | Ágora";
+        if(opinions) {
+            opinions.forEach((comment) => {
+                if(comment.pro)
+                    yesComments.push(comment);
+                else
+                    notComments.push(comment);
+                }
+            );
         }
 
         let commentView;
@@ -70,11 +64,10 @@ export default class LawProject extends Component {
                     ¿Estás a favor o en contra de este proyecto?
                     <div className="sub header">Déjanos aquí tu opinión.</div>
                 </h2>
-                <CommentTextArea projectId={id} yes={yes} no={no} />
+                <CommentTextArea projectId={id} yes={yes_votes} no={not_votes} />
             </div>);
         } else {
             commentView = (
-            
             <Message>
                 <Message.Header>¿Quieres votar y opinar?</Message.Header>
                 <p>Participa en la comunidad de Ágora <a href="/login">iniciando sesión</a> o, si aún 
@@ -89,10 +82,10 @@ export default class LawProject extends Component {
                 <div className="ui grid">
                     <div className="eight wide column">
                         <h1 className="ui header">
-                            {title}
+                            {name}
                             <div className="sub header">PROYECTO DE LEY</div>
                         </h1>
-                        <p>{desc}</p>                    
+                        <p>{description}</p>                    
                         <TagLabelList tags={tags}/>
 
                         <a href={"/proyectoley/" + id + "/pdf"}>
@@ -109,8 +102,8 @@ export default class LawProject extends Component {
                 </div>
 
                 <Divider />
-                <ApprovalBar yes={yes} no={no}/>
-                <ApprovalStat yes={yes} no={no}/>
+                <ApprovalBar yes={yes_votes} no={not_votes}/>
+                <ApprovalStat yes={yes_votes} no={not_votes}/>
 
                 {commentView}
 
@@ -118,13 +111,15 @@ export default class LawProject extends Component {
                     <div className="eight wide column">
                         <div className="ui segment">
                             <h2 className="ui centered header">Argumentos a favor</h2>
-                            <CommentListContainer id={this.props.match.params.id} pro={true} />
+                            <CommentList comments={yesComments} />
+                            {/* <CommentListContainer id={this.props.match.params.id} pro={true} /> */}
                         </div>                        
                     </div>
                     <div className="eight wide column">
                         <div className="ui segment">
                             <h2 className="ui centered header">Argumentos en contra</h2>
-                            <CommentListContainer id={this.props.match.params.id} pro={false} />
+                            <CommentList comments={notComments} />
+                            {/* <CommentListContainer id={this.props.match.params.id} pro={false} /> */}
                         </div>                        
                     </div>
                 </div>

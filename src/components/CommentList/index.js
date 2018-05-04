@@ -8,7 +8,6 @@ import './styles.css';
 
 const CommentList = props => {
     const {comments} = props;
-    console.log(comments);
     if(comments) 
         return (
             <Comment.Group>

@@ -13,7 +13,6 @@ class CommentListContainer extends Component {
 
     componentWillMount() {
         const {id, pro} = this.props;
-        console.log(this.props);
         fetch(process.env.REACT_APP_BACK_URL + "opinions.json?law_project=" + id)
         .then(response => response.json())
         .then(data => {
