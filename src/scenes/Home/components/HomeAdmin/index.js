@@ -16,13 +16,31 @@ export default class HomeAdmin extends Component {
                 <div className="ui red inverted padded segment">
                     <h1 className="ui centered header">Bienvenido, {this.props.username}</h1>
                 </div>
-                <div className="ui segment">
-                <C3Chart data={{
-                    columns: [
-                        ['data1', 30, 200, 100, 400, 150, 250],
-                        ['data2', 50, 20, 10, 40, 15, 25]
-                    ]
-                 }} />
+                <div className="ui grid">
+                    <div className="eight wide column">
+                        <div className="ui padded segment">
+                            <h2 className="ui centered header">Proyectos mejor votados</h2>
+                            <C3Chart axis={{rotated: true}} data={{
+                                columns: [
+                                    ['x', '2013-02-11', '2013-02-12', '2013-02-13', '2013-02-14'],
+                                    ['data1', 200, 300, 100, 250],
+                                ],
+                                type: 'bar'
+                            }} />
+                        </div>                        
+                    </div>
+                    <div className="eight wide column">
+                        <div className="ui padded segment">
+                            <h2 className="ui centered header">Proyectos peor votados</h2>
+                            <C3Chart axis={{rotated: true}} data={{
+                                columns: [
+                                    ['x', '2013-02-11', '2013-02-12', '2013-02-13', '2013-02-14'],
+                                    ['data1', 200, 300, 100, 250],
+                                ],
+                                type: 'bar'
+                            }} />
+                        </div>                        
+                    </div>
                 </div>
             </div>
         );
