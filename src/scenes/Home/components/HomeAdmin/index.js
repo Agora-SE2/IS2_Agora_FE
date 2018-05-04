@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 
 import MostUpvotedChart from './components/MostUpvotedChart';
 import MostDownvotedChart from './components/MostDownvotedChart';
+import MostCommentedChart from './components/MostCommentedChart';
+import TwitterContainer from 'components/TwitterContainer';
 
 @connect((store) => {
     console.log(store.currentUser);
@@ -14,6 +16,8 @@ export default class HomeAdmin extends Component {
     render() {
         return (
             <div className="ui page container">
+            <TwitterContainer />
+                
                 <div className="ui icon warning message">
                     <i className="inbox icon"></i>
                     <div className="content">
@@ -38,6 +42,10 @@ export default class HomeAdmin extends Component {
                             <MostDownvotedChart rotated={true}/>
                         </div>                        
                     </div>
+                </div>
+                <div className="ui padded segment">
+                    <h2 className="ui centered header">Proyectos más debatidos</h2>
+                    <MostCommentedChart rotated={false} />
                 </div>
             </div>
         );
