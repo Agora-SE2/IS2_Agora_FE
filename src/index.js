@@ -27,18 +27,17 @@ import PDFView from './scenes/PDFView';
 import 'semantic-ui-css/semantic.min.css';
 import './index.css';
 
-var express = require('express')
-var cors = require('cors')
-var app = express()
- 
-app.use(cors())
- 
-app.get('/products/:id', function (req, res, next) {
-  res.json({msg: 'This is CORS-enabled for all origins!'})
-})
-app.listen(80, function () {
-  console.log('CORS-enabled web server listening on port 80')
-})
+var express = require('express'),
+    port = process.env.PORT || 3001,
+    app = express();
+
+app.use(express.static(__dirname + '/public'));
+
+if(!module.parent){
+  app.listen(port, function(){
+    console.log('Express app listening on port ' + port + '.');
+  });
+}
 
 ReactDOM.render((
     <Provider store={store}>
