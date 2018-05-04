@@ -9,6 +9,7 @@ import ApprovalStat from './components/ApprovalStat';
 import CommentTextArea from './components/CommentTextArea';
 
 import CommentList from 'components/CommentList';
+import Image from 'components/Image';
 import TagLabelList from 'components/TagLabelList';
 import ApprovalBar from 'components/ApprovalBar';
 
@@ -98,7 +99,11 @@ export default class LawProject extends Component {
 
                     </div>
                     <div className="eight wide column">
-                        {/* <img src={ image.image.url ? image.image.url : ImgProyectoLey } alt="Descripción estándar de la imagen" width="100%"/>                 */}
+                        {(() => {
+                            if(image)
+                                return <Image src={image.image.url} alt="alalla" />;
+                            else return '';
+                        })()}
                     </div>
                 </div>
 
