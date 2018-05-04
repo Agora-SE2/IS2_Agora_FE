@@ -85,17 +85,15 @@ export default class CreateLawProject extends Component {
     handleSubmit(event) {
         event.preventDefault();
 
-        const {name, desc, publication_date, image} = this.state;
+        const {name, description, publication_date, image} = this.state;
 
         this.setState({
             submit: true
         });
 
-        console.log(publication_date, typeof publication_date)
-
         const data = {
             name: name,
-            description: desc,
+            description: description,
             publication_date: publication_date,   // TODO: este valor debe estar tambien en el form
             image: image,
             yes_votes: 0,
@@ -106,7 +104,9 @@ export default class CreateLawProject extends Component {
         for(var key in data) {
             lawProject.append(key, data[key]);
         }
-
+        for (var pair of lawProject.entries()) {
+            console.log(pair[0]+ ', ' + pair[1]); 
+        }
         fetch(process.env.REACT_APP_PDF_URL + "law_projects", {
             method: 'POST',
             headers: {

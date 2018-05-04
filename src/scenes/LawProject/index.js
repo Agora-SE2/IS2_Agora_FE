@@ -35,7 +35,8 @@ export default class LawProject extends Component {
         .then(response => response.json())
         .then(data => {
             console.log(data);
-            this.setState({project:data.law_project});
+            this.setState({project:data});  // TODO: sólo con el back de Andrey
+            // this.setState({project:data.law_project});
         });
     }
 

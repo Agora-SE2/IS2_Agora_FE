@@ -3,15 +3,23 @@ import Humberto from 'images/humberto.jpg';
 import { Comment } from 'semantic-ui-react';
 
 class AgoraComment extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
+
+        console.log(props);
 
         this.state = {
             liked: false,
-            likes: 5
+            likes: props.comment.like,
+            reporting: false
         }
 
         this.handleLike = this.handleLike.bind(this);
+        this.report = this.report.bind(this);
+    }
+
+    report() {
+        this.setState({reporting: true});
     }
 
     handleLike() {
@@ -22,8 +30,7 @@ class AgoraComment extends Component {
     }
 
     render() {
-        // TODO: include like field
-        const {content, date, like, user} = this.props.comment;
+        const {content, date, user} = this.props.comment;
 
         return (
             <Comment>
@@ -36,7 +43,7 @@ class AgoraComment extends Component {
                 <Comment.Text>{content}</Comment.Text>
                 <Comment.Actions>
                     <a style={(() => this.state.liked ? {color: 'red'} : {})()} className="like" onClick={this.handleLike}>Me trama ({this.state.likes})</a>
-                    <a className="report">Denunciar</a>
+                    <a className="report" onClick={this.report}>Denunciar</a>
                 </Comment.Actions>
                 </Comment.Content>
             </Comment>
