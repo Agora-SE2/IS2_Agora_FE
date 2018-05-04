@@ -6,7 +6,7 @@ import { GoogleLogin } from 'react-google-login';
 import './styles.css';
 
 const responseGoogle = (response) => {
-    fetch(" https://agora-kevinandrey96.c9users.io/token/index", {
+    fetch(" https://agora-kevinandrey96.c9users.io/token/index.json?token=hola", {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
