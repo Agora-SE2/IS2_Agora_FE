@@ -5,11 +5,14 @@ import { GoogleLogin } from 'react-google-login';
 
 import './styles.css';
 
-var userEmailGoogle;
-
 const responseGoogle = (response) => {
-    console.log(response.profileObj);
-    userEmailGoogle = response.profileObj.email;
+    fetch(" https://agora-kevinandrey96.c9users.io/token/index.json?token=hola", {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(response)
+    })
 }
 
 // TODO: for the love of God, move these methods away from here.
