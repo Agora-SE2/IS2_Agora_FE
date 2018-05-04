@@ -54,7 +54,8 @@ export default class CommentTextArea extends Component {
                 console.log("successful vote!");
                 
                 this.setState((prevState, props) => ({
-                    successVote: true
+                    successVote: true,
+                    loading: comment.length > 0
                 }));
             } else {
                 console.error(response.status, "error updating vote count");
@@ -67,6 +68,7 @@ export default class CommentTextArea extends Component {
 
         // post comment to server
         if(comment.length > 0) {
+            console.log(comment.length, comment)
             fetch(process.env.REACT_APP_BACK_URL + "opinions", {
                 method: 'POST',
                 headers: {

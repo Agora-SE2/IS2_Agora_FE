@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import HorizontalBarChart from 'components/HorizontalBarChart';
+import BarChart from 'components/BarChart';
 
 export default class MostUpvotedChart extends Component {
     constructor() {
@@ -29,6 +29,6 @@ export default class MostUpvotedChart extends Component {
 
     render() {
         const {categories, columns} = this.state;
-        return <HorizontalBarChart categories={categories} columns={columns} />;
+        return <BarChart rotated={this.props.rotated} categories={categories} columns={columns} />;
     }
 }

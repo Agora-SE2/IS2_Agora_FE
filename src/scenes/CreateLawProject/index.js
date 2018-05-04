@@ -125,7 +125,7 @@ export default class CreateLawProject extends Component {
         const {imagePreviewUrl, submit, name, tagList} = this.state;
         const {loggedIn, isAdmin} = this.props;
 
-        if(loggedIn && isAdmin)    // FIXME:
+        if(loggedIn && !isAdmin)    // FIXME:
             return <Redirect to="/" />
 
         let imagePreview;

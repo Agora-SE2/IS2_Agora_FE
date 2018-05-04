@@ -5,24 +5,24 @@ import { Comment } from 'semantic-ui-react';
 class AgoraComment extends Component {
     constructor(props) {
         super(props);
-
-        console.log(props);
-
+        
         this.state = {
             liked: false,
             likes: props.comment.like,
-            reporting: false
+            reported: false
         }
 
-        this.handleLike = this.handleLike.bind(this);
+        this.like = this.like.bind(this);
         this.report = this.report.bind(this);
     }
 
     report() {
-        this.setState({reporting: true});
+        this.setState(prevState => ({
+            reported: !prevState.reported
+        }));
     }
 
-    handleLike() {
+    like() {
         this.setState(prevState => ({
             liked: !prevState.liked,
             likes: (prevState.liked ? prevState.likes-1 : prevState.likes+1)
@@ -42,8 +42,8 @@ class AgoraComment extends Component {
                 </Comment.Metadata>
                 <Comment.Text>{content}</Comment.Text>
                 <Comment.Actions>
-                    <a style={(() => this.state.liked ? {color: 'red'} : {})()} className="like" onClick={this.handleLike}>Me trama ({this.state.likes})</a>
-                    <a className="report" onClick={this.report}>Denunciar</a>
+                    <a style={(() => this.state.liked ? {color: 'red'} : {})()} className="like" onClick={this.like}>Me trama ({this.state.likes})</a>
+                    <a style={(() => this.state.reported ? {color: 'black', fontWeight: 'bold'} : {})()} className="report" onClick={this.report}>{this.state.reported ? "Denunciado" : "Denunciar"}</a>
                 </Comment.Actions>
                 </Comment.Content>
             </Comment>

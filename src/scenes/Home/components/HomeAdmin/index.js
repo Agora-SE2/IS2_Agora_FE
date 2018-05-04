@@ -29,7 +29,7 @@ export default class HomeAdmin extends Component {
                     <div className="eight wide column">
                         <div className="ui padded segment">
                             <h2 className="ui centered header">Proyectos mejor votados</h2>
-                            <MostUpvotedChart />
+                            <MostUpvotedChart rotated={true}/>
                         </div>                        
                     </div>
                     <div className="eight wide column">
@@ -48,7 +48,7 @@ export default class HomeAdmin extends Component {
                                 ],
                                 type: 'bar'
                             }} /> */}
-                            <MostDownvotedChart />
+                            <MostDownvotedChart rotated={true}/>
                         </div>                        
                     </div>
                 </div>

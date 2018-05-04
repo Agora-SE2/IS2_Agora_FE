@@ -9,6 +9,7 @@ const HorizontalBarChart = props => {
                 type: 'category',
                 categories: props.categories,
             },
+            rotated: props.rotated
             }} 
             data={{
                 columns: props.columns,

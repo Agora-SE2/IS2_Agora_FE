@@ -10,17 +10,19 @@ import './styles.css';
 
 @connect((store) => {
     return {
+        isAdmin: store.currentUser.isAdmin,
         loggedIn: store.loggedIn
     }
 })
 export default class Navbar extends Component {
     render() {
-        const {loggedIn} = this.props;
+        const {isAdmin, loggedIn} = this.props;
         let leftOptions, rightView;
 
         if(loggedIn) {
             rightView = <UserOptions />
-            leftOptions = <LeftAdminOptions />
+            if(isAdmin)
+                leftOptions = <LeftAdminOptions />
         } else {
             rightView = <VisitorOptions />
         }
