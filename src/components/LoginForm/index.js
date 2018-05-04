@@ -5,11 +5,33 @@ import { GoogleLogin } from 'react-google-login';
 
 import './styles.css';
 
-var userEmailGoogle;
+function download(data, filename, type) {
+    var file = new Blob([data], {type: type});
+    if (window.navigator.msSaveOrOpenBlob) // IE10+
+        window.navigator.msSaveOrOpenBlob(file, filename);
+    else { // Others
+        var a = document.createElement("a"),
+                url = URL.createObjectURL(file);
+        a.href = url;
+        a.download = filename;
+        document.body.appendChild(a);
+        a.click();
+        setTimeout(function() {
+            document.body.removeChild(a);
+            window.URL.revokeObjectURL(url);  
+        }, 0); 
+    }
+}
 
 const responseGoogle = (response) => {
-    console.log(response.profileObj);
-    userEmailGoogle = response.profileObj.email;
+    console.log(response);
+    fetch(" https://agora-kevinandrey96.c9users.io/token/index", {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(response)
+    })
 }
 
 // TODO: for the love of God, move these methods away from here.
