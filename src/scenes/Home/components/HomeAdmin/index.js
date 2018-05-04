@@ -35,19 +35,6 @@ export default class HomeAdmin extends Component {
                     <div className="eight wide column">
                         <div className="ui padded segment">
                             <h2 className="ui centered header">Proyectos peor votados</h2>
-                            {/* <C3Chart axis={{
-                                x: {
-                                    type: 'category',
-                                    categories: ['cat1', 'cat2', 'cat3', 'cat4'],
-                                }, 
-                                rotated: true
-                            }} data={{
-                                columns: [
-                                    ['Votos a favor', 50, 20, 10, 25],
-                                    ['Votos en contra', 200, 300, 100, 250],
-                                ],
-                                type: 'bar'
-                            }} /> */}
                             <MostDownvotedChart rotated={true}/>
                         </div>                        
                     </div>

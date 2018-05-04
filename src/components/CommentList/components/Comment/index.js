@@ -1,7 +1,14 @@
 import React, { Component } from 'react';
 import Humberto from 'images/humberto.jpg';
 import { Comment } from 'semantic-ui-react';
+import { connect } from 'react-redux';
 
+
+@connect((store) => {
+    return {
+        userId: store.currentUser ? store.currentUser.id : ''
+    };
+})
 class AgoraComment extends Component {
     constructor(props) {
         super(props);
@@ -23,14 +30,43 @@ class AgoraComment extends Component {
     }
 
     like() {
-        this.setState(prevState => ({
-            liked: !prevState.liked,
-            likes: (prevState.liked ? prevState.likes-1 : prevState.likes+1)
-        }));
+        var like = {
+            opinion_id: this.props.comment.id,
+            user_id: this.props.userId
+        }
+
+        fetch(process.env.REACT_APP_BACK_URL + "opinions/" + this.props.comment.id + ".json", {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                opinion: {
+                    likes: this.props.likes
+                }
+            })
+        })
+
+        fetch(process.env.REACT_APP_BACK_URL + "likes.json", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(like)
+        })
+        .then(response => response.json())
+        .then(data => {
+            console.log(data);
+            this.setState(prevState => ({
+                liked: !prevState.liked,
+                likes: (prevState.liked ? prevState.likes-1 : prevState.likes+1)
+            }));
+        })
     }
 
     render() {
         const {content, date, user} = this.props.comment;
+        console.log(this.props.comment);
 
         return (
             <Comment>

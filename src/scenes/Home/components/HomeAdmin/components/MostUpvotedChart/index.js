@@ -23,6 +23,8 @@ export default class MostUpvotedChart extends Component {
                 columns[0].push(project.yes_votes);
                 columns[1].push(project.not_votes);
             })
+
+            console.log(categories);
             this.setState({categories: categories, columns: columns});
         });
     }
