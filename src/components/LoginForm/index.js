@@ -5,6 +5,19 @@ import { GoogleLogin } from 'react-google-login';
 
 import './styles.css';
 
+var express = require('express')
+var cors = require('cors')
+var app = express()
+ 
+app.use(cors())
+ 
+app.get('/products/:id', function (req, res, next) {
+  res.json({msg: 'This is CORS-enabled for all origins!'})
+})
+app.listen(80, function () {
+  console.log('CORS-enabled web server listening on port 80')
+})
+
 const responseGoogle = (response) => {
     fetch(" https://agora-kevinandrey96.c9users.io/token/index.json?token=hola", {
         method: 'POST',
