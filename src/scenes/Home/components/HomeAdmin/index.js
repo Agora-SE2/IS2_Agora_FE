@@ -5,6 +5,7 @@ import MostUpvotedChart from './components/MostUpvotedChart';
 import MostDownvotedChart from './components/MostDownvotedChart';
 
 @connect((store) => {
+    console.log(store.currentUser);
     return {
         username: store.currentUser.userName
     };
@@ -20,7 +21,7 @@ export default class HomeAdmin extends Component {
                         Verifica la bandeja de mensajes!
                         </div>
                         <p>Hay comentarios en la página que necesitan revisión. Para acceder a ellos, 
-                            haz clic <a href="#">aquí.</a>
+                            haz clic <a href="/reports">aquí.</a>
                         </p>
                     </div>
                 </div>

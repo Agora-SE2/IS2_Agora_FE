@@ -18,6 +18,7 @@ import LawProject from './scenes/LawProject';
 import Login from './scenes/Login';
 import NotFound from './scenes/NotFound';
 import Profile from './scenes/Profile';
+import Reports from './scenes/Reports';
 import Search from './scenes/Search';
 import Settings from './scenes/Settings';
 import Signup from './scenes/Signup';
@@ -44,6 +45,7 @@ ReactDOM.render((
                 <Route path='/login' component={Login}/>
                 <Route path='/search' component={Search}/>
                 <Route path='/profile/:id' component={Profile}/>
+                <Route path='/reports' component={Reports}/>
                 <Route path='/settings' component={Settings}/>
                 <Route path='/setup' component={SignupSetup}/>
                 <Route path='/signup' component={Signup}/>

@@ -9,8 +9,10 @@ import WarningFormLabel from 'components/WarningFormLabel';
 import './styles.css';
 
 @connect((store) => {
+    console.log(store);
     return {
-        token: store.token
+        isAdmin: store.currentUser.isAdmin,
+        loggedIn: store.loggedIn
     };
 })
 export default class CreateLawProject extends Component {
@@ -121,7 +123,10 @@ export default class CreateLawProject extends Component {
 
     render() {
         const {imagePreviewUrl, submit, name, tagList} = this.state;
-        const {token} = this.props;
+        const {loggedIn, isAdmin} = this.props;
+
+        if(loggedIn && isAdmin)    // FIXME:
+            return <Redirect to="/" />
 
         let imagePreview;
         if(imagePreviewUrl.length === 0)
@@ -129,8 +134,6 @@ export default class CreateLawProject extends Component {
         else
             imagePreview = <img id="imagePreview" src={imagePreviewUrl} alt="upload preview" />;
         
-        if(token === 0)
-            return <Redirect to="/" />
 
         return (
             <div className="ui page container">
