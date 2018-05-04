@@ -19,7 +19,7 @@ export default class MostCommentedChart extends Component {
             let categories = [];
             let columns = [['Comentarios']];
 
-            data.more_commented.forEach((project) => {
+            data.forEach((project) => {
                 categories.push(project.id);
                 columns[0].push(project.opinions_count);
             })

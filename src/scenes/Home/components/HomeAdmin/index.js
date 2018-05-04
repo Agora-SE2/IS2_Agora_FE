@@ -16,7 +16,7 @@ export default class HomeAdmin extends Component {
     render() {
         return (
             <div className="ui page container">
-            <TwitterContainer />
+            {/* <TwitterContainer /> */}
                 
                 <div className="ui icon warning message">
                     <i className="inbox icon"></i>
@@ -34,18 +34,36 @@ export default class HomeAdmin extends Component {
                         <div className="ui padded segment">
                             <h2 className="ui centered header">Proyectos mejor votados</h2>
                             <MostUpvotedChart rotated={true}/>
+                            <a href="/pdf/stats/more_upvoted">
+                                <button className="ui red compact labeled icon fluid button">
+                                    <i className="file pdf icon"></i>
+                                    Formato PDF
+                                </button>
+                            </a>
                         </div>                        
                     </div>
                     <div className="eight wide column">
                         <div className="ui padded segment">
                             <h2 className="ui centered header">Proyectos peor votados</h2>
                             <MostDownvotedChart rotated={true}/>
+                            <a href="/pdf/stats/more_downvoted">
+                                <button className="ui red compact labeled icon fluid button">
+                                    <i className="file pdf icon"></i>
+                                    Formato PDF
+                                </button>
+                            </a>
                         </div>                        
                     </div>
                 </div>
                 <div className="ui padded segment">
                     <h2 className="ui centered header">Proyectos más debatidos</h2>
                     <MostCommentedChart rotated={false} />
+                    <a href="/pdf/stats/more_commented">
+                        <button className="ui red compact labeled icon fluid button">
+                            <i className="file pdf icon"></i>
+                            Formato PDF
+                        </button>
+                    </a>
                 </div>
             </div>
         );

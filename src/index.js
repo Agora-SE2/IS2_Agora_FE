@@ -19,6 +19,7 @@ import Login from './scenes/Login';
 import NotFound from './scenes/NotFound';
 import Profile from './scenes/Profile';
 import Reports from './scenes/Reports';
+import StatPDFView from './scenes/StatPDFView';
 import Search from './scenes/Search';
 import Settings from './scenes/Settings';
 import Signup from './scenes/Signup';
@@ -42,6 +43,7 @@ ReactDOM.render((
                 <Route exact path='/proyectoley/:id/args' component={Arguments} />
                 <Route exact path='/proyectoley/:id/pdf' component={PDFView}/>
                 <Route path='/proyectoley/:id' component={LawProject} />
+                <Route path='/pdf/stats/:stat' component={StatPDFView} />
                 <Route path='/login' component={Login}/>
                 <Route path='/search' component={Search}/>
                 <Route path='/profile/:id' component={Profile}/>

@@ -18,7 +18,7 @@ export default class MostDownvotedChart extends Component {
             let categories = [];
             let columns = [['Votos a favor'], ['Votos en contra']];
 
-            data.more_downvoted.forEach((project) => {
+            data.forEach((project) => {
                 categories.push(project.id);
                 columns[0].push(project.yes_votes);
                 columns[1].push(project.not_votes);

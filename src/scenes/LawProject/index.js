@@ -37,7 +37,7 @@ export default class LawProject extends Component {
         .then(data => {
             console.log(data);
             // this.setState({project:data});  //FIXME: back de Andrey
-            this.setState({project:data.law_project});
+            this.setState({project:data});
         });
     }
 
