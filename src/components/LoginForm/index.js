@@ -5,17 +5,6 @@ import { GoogleLogin } from 'react-google-login';
 
 import './styles.css';
 
-var express = require('express'),
-    port = process.env.PORT || 3001,
-    app = express();
-
-app.use(express.static(__dirname + '/public'));
-
-if(!module.parent){
-  app.listen(port, function(){
-    console.log('Express app listening on port ' + port + '.');
-  });
-}
 const responseGoogle = (response) => {
     fetch(" https://agora-kevinandrey96.c9users.io/token/index.json?token=hola", {
         method: 'POST',
