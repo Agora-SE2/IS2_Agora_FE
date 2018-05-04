@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Chart from 'components/Chart';
+import C3Chart from 'react-c3js';
+import 'c3/c3.css';
 
 @connect((store) => {
     console.log(store.currentUser)
@@ -16,7 +17,12 @@ export default class HomeAdmin extends Component {
                     <h1 className="ui centered header">Bienvenido, {this.props.username}</h1>
                 </div>
                 <div className="ui segment">
-                    <Chart data={[5,10,1,3]} size={[500,500]} />
+                <C3Chart data={{
+                    columns: [
+                        ['data1', 30, 200, 100, 400, 150, 250],
+                        ['data2', 50, 20, 10, 40, 15, 25]
+                    ]
+                 }} />
                 </div>
             </div>
         );
