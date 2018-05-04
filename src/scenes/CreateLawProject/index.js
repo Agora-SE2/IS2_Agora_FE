@@ -107,7 +107,7 @@ export default class CreateLawProject extends Component {
         for (var pair of lawProject.entries()) {
             console.log(pair[0]+ ', ' + pair[1]); 
         }
-        fetch(process.env.REACT_APP_PDF_URL + "law_projects", {
+        fetch(process.env.REACT_APP_BACK_URL + "law_projects.json", {
             method: 'POST',
             headers: {
                 'Content-Type': 'multipart/form-data',

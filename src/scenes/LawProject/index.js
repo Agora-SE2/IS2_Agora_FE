@@ -41,7 +41,8 @@ export default class LawProject extends Component {
     }
 
     render() {
-        const {id, name, yes_votes, description, not_votes, tags, opinions} = this.state.project;
+        const {id, name, yes_votes, description, not_votes, tags, image, opinions} = this.state.project;
+        console.log(image);
         let yesComments = [];
         let notComments = [];
         if(name)
@@ -97,7 +98,7 @@ export default class LawProject extends Component {
 
                     </div>
                     <div className="eight wide column">
-                        <img src={ ImgProyectoLey } alt="Descripción estándar de la imagen" width="100%"/>                
+                        {/* <img src={ image.image.url ? image.image.url : ImgProyectoLey } alt="Descripción estándar de la imagen" width="100%"/>                 */}
                     </div>
                 </div>
 
