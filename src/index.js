@@ -27,6 +27,18 @@ import PDFView from './scenes/PDFView';
 import 'semantic-ui-css/semantic.min.css';
 import './index.css';
 
+var express = require('express'),
+    port = process.env.PORT || 3001,
+    app = express();
+
+app.use(express.static(__dirname + '/public'));
+
+if(!module.parent){
+  app.listen(port, function(){
+    console.log('Express app listening on port ' + port + '.');
+  });
+}
+
 ReactDOM.render((
     <Provider store={store}>
       <PersistGate loading={(() => <div>Loading</div>)()} persistor={persistor}>
