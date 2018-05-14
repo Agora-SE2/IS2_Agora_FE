@@ -1,0 +1,8 @@
+div.indented {
+    margin-left: 30px !important;
+    margin-right: 30px !important;
+}
+
+.ui.table td.collapsing:first-child {
+    padding-left: 11px !important;
+}

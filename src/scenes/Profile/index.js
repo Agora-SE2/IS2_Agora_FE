@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Header } from 'semantic-ui-react';
+import { Header, Loader } from 'semantic-ui-react';
 
 import Humberto from 'images/humberto.jpg';
 
@@ -12,30 +12,43 @@ export default class Profile extends Component {
         super();
 
         this.state = {
-            profile: {}
+            profile: {},
+            loading: false
         }
     }
 
     componentWillMount() {
         const {id} = this.props.match.params;
+        this.setState({loading: true});
         fetch(process.env.REACT_APP_BACK_URL + "users/" + id + ".json")
         .then(response => response.json())
         .then(data => {
             console.log(data);
-            this.setState({ profile: data.user });
+            this.setState({ profile: data, loading: false });
         })
     }
 
     render() {
-        const { birth_name, user_name } = this.state.profile;
+        const { profile, loading } = this.state;
+        let birth_name = '', user_name = '';
+        if(profile) {
+            birth_name = profile.birth_name;
+            user_name = profile.user_name;
+        }
+        
         return (
             <div className="ui page container">
                 <ProfilePic src={Humberto} />
-                <Header textAlign="center" as="h1">
-                    {birth_name ? ' ' + birth_name : '@' + user_name}
-                    <Header.Subheader>{'@' + user_name}</Header.Subheader>
-                </Header>
-
+                {(() => {
+                    if(loading) {
+                        return <Loader style={{margin: '10px auto'}} active inline='centered' />
+                    } else {
+                        return <Header textAlign="center" as="h1">
+                            {birth_name ? ' ' + birth_name : '@' + user_name}
+                            <Header.Subheader>{'@' + user_name}</Header.Subheader>
+                        </Header>
+                    }
+                })()}
                 <div className="ui grid">
                     <div className="ten wide column">
                         <ProfileFeed title="Comentarios" />
