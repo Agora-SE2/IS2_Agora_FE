@@ -17,6 +17,7 @@ import './styles.css';
 
 @connect((store) => {
     return {
+        isAdmin: store.currentUser.isAdmin,
         loggedIn: store.loggedIn
     };
 })
@@ -41,7 +42,7 @@ export default class LawProject extends Component {
     }
 
     render() {
-        const {id, name, yes_votes, description, not_votes, tags, image, opinions} = this.state.project;
+        const {id, name, yes_votes, description, not_votes, tags, image, publication_date, opinions} = this.state.project;
         let yesComments = [];
         let notComments = [];
         if(name)
@@ -66,15 +67,25 @@ export default class LawProject extends Component {
                             <div className="sub header">PROYECTO DE LEY</div>
                         </h1>
                         <TagLabelList tags={tags}/>
+                        <p>creado el <b>{publication_date}</b></p>
                         <br/>
                         <p>{description}</p>                    
 
                         <a href={"/proyectoley/" + id + "/pdf"}>
-                        <button className="ui red basic compact labeled icon button">
-                            <i className="file pdf icon"></i>
-                            Formato PDF
-                        </button>
+                            <button className="ui red basic compact labeled icon button">
+                                <i className="file pdf icon"></i>
+                                Formato PDF
+                            </button>
                         </a>
+                        {(() => {
+                            if(!this.props.isAdmin)
+                                return (<a href={"/proyectoley/" + id + "/edit"}><button className="ui blue basic compact labeled icon button">
+                                        <i className="edit icon"></i>
+                                        Editar proyecto de ley
+                                    </button>
+                                    </a>);
+                            else return '';
+                        })()}
 
                     </div>
                     <div className="eight wide column">

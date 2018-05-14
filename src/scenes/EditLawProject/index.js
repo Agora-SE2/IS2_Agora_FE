@@ -15,7 +15,7 @@ import './styles.css';
         loggedIn: store.loggedIn
     };
 })
-export default class CreateLawProject extends Component {
+export default class EditLawProject extends Component {
     constructor() {
         super();
 
@@ -30,15 +30,34 @@ export default class CreateLawProject extends Component {
             validTagList: false,
             submit: false,
             done: false,
-            tagList: []
+            tagList: [],
+            project: {},
+            goBack: false,
         }
 
         this.addTag = this.addTag.bind(this);
+        this.cancelEdit = this.cancelEdit.bind(this);
         this.handleImageChange = this.handleImageChange.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleTagChange = this.handleTagChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.simulateInputClick = this.simulateInputClick.bind(this);
+    }
+
+    componentWillMount() {
+        const {id} = this.props.match.params;
+        
+        fetch(process.env.REACT_APP_BACK_URL + "law_projects/" + id + ".json")
+        .then(response => response.json())
+        .then(project => {
+            // console.log(data);
+            this.setState({
+                name: project.name,
+                description: project.description,
+                publication_date: project.publication_date
+                // TODO: tags, date, image                
+            });
+        });
     }
 
     addTag() {
@@ -88,37 +107,38 @@ export default class CreateLawProject extends Component {
         event.preventDefault();
 
         const {name, description, publication_date, image} = this.state;
+        const {id} = this.props.match.params;
 
         this.setState({
             submit: true
         });
 
         const data = {
-            name: name,
-            description: description,
-            publication_date: publication_date,   // TODO: este valor debe estar tambien en el form
-            image: image,
-            yes_votes: 0,
-            not_votes: 0,   // TODO: delete yes_Votes and no_votes
+            name,
+            description,
+            publication_date,
         };
 
-        var lawProject  = new FormData();
-        for(var key in data) {
-            lawProject.append(key, data[key]);
-        }
-        for (var pair of lawProject.entries()) {
-            console.log(pair[0]+ ', ' + pair[1]); 
-        }
-        fetch(process.env.REACT_APP_BACK_URL + "law_projects.json", {
-            method: 'POST',
-            body: lawProject
+        console.log(JSON.stringify(data));
+
+        fetch(process.env.REACT_APP_BACK_URL + "law_projects/" + id + ".json", {
+            method: 'PUT',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(data)
         }).then(response => {
             console.log(response);
+            if(response.status !== 200) {
+                return { error: true, status: response.status }
+            }
             return response.json();
         }).then(data => {
-            console.log(data);
-            if(data.status === 200)
+            console.log("data", data);
+            if(!data.error)
                 window.location.replace('/proyectoley/' + data.id);
+            else 
+                console.error(data.status);
         });
     }
 
@@ -126,12 +146,17 @@ export default class CreateLawProject extends Component {
         this.inputFile.click();
     }
 
+    cancelEdit = () => this.setState({goBack: true});
+
     render() {
-        const {imagePreviewUrl, submit, name, tagList} = this.state;
+        const {imagePreviewUrl, submit, name, description, tagList, publication_date, goBack} = this.state;
         const {loggedIn, isAdmin} = this.props;
 
         if(loggedIn && isAdmin)    // FIXME:
             return <Redirect to="/" />
+
+        if(goBack)
+            return <Redirect to={"/proyectoley/" + this.props.match.params.id} />
 
         let imagePreview;
         if(imagePreviewUrl.length === 0)
@@ -139,11 +164,11 @@ export default class CreateLawProject extends Component {
         else
             imagePreview = <img id="imagePreview" src={imagePreviewUrl} alt="upload preview" />;
         
-        document.title = "Crear proyecto de ley | Ágora";
+        document.title = "Editar proyecto de ley | Ágora";
 
         return (
             <div className="ui page container">
-                <h1 className="ui centered header">Agregar un proyecto de ley</h1>
+                <h1 className="ui centered header">Editar un proyecto de ley</h1>
                 
                 <div className="ui padded segment">
                     <form ref={el => (this.form = el)} className="ui form">
@@ -151,7 +176,7 @@ export default class CreateLawProject extends Component {
                         <div className="eleven wide column">
                             <h5 className="ui header">Nombre del proyecto</h5>
                             <Form.Field>
-                                <input name="name" placeholder="Nombre del proyecto de ley" type="text" onChange={this.handleInputChange} />
+                                <input name="name" placeholder="Nombre del proyecto de ley" type="text" value={name} onChange={this.handleInputChange} />
                                 <WarningFormLabel 
                                     allowed={submit && name.length === 0} 
                                     message={"Por favor ingrese un nombre."} />
@@ -159,7 +184,7 @@ export default class CreateLawProject extends Component {
                             
                             <h5 className="ui header">Descripción general</h5>
                             <Form.Field>
-                                <textarea name="description" placeholder="Describa en términos generales en qué consiste el proyecto" type="text" onChange={this.handleInputChange} />
+                                <textarea name="description" placeholder="Describa en términos generales en qué consiste el proyecto" type="text" value={description} onChange={this.handleInputChange} />
                                 <WarningFormLabel 
                                     allowed={false} 
                                     message={"Nombre de usuario inválido. Sólo caracteres alfanuméricos (a-z, 0-9)"} />
@@ -167,7 +192,7 @@ export default class CreateLawProject extends Component {
 
                             <h5 className="ui header">¿En qué fecha se propuso este proyecto de ley en el Congreso?</h5>
                             <Form.Field>
-                                <input name="publication_date" placeholder="¿Cuándo fue publicado este proyecto de ley?" type="date" onChange={this.handleInputChange} />
+                                <input value={publication_date} name="publication_date" placeholder="¿Cuándo fue publicado este proyecto de ley?" type="date" onChange={this.handleInputChange} />
                                 <WarningFormLabel 
                                     allowed={submit && name.length === 0} 
                                     message={"Por favor ingrese un nombre."} />
@@ -185,14 +210,15 @@ export default class CreateLawProject extends Component {
                             </Form.Field>
                             <TagLabelList tags={tagList} />
 
-                            <Form.Button onClick={this.handleSubmit} fluid color="black">Agregar proyecto</Form.Button>
+                            <Form.Button onClick={this.handleSubmit} color="red">Guardar cambios</Form.Button>
+                            <Form.Button onClick={this.cancelEdit}>Cancelar</Form.Button>
                         </div>
 
                         <div className="five wide column">
                             {imagePreview}
                             <div 
                                 style={{marginTop: '30px'}} 
-                                className="ui fluid labeled icon red button"
+                                className="ui fluid labeled icon black button"
                                 onClick={this.simulateInputClick}>
                                 <i className="image icon"></i>
                                 Añade una imagen

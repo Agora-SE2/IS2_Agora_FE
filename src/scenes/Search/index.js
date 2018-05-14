@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import Loading from 'components/Loading';
-import ProjectCard from './components/ProjectCard/index.js';
+import ProjectCard from './components/ProjectCard';
 
 export default class Search extends Component {
     constructor() {

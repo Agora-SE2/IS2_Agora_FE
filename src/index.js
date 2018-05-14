@@ -13,6 +13,7 @@ import Footer from './components/Footer';
 import About from './scenes/About';
 import Arguments from './scenes/Arguments';
 import CreateLawProject from './scenes/CreateLawProject';
+import EditLawProject from './scenes/EditLawProject';
 import Home from './scenes/Home';
 import LawProject from './scenes/LawProject';
 import Login from './scenes/Login';
@@ -41,6 +42,7 @@ ReactDOM.render((
                 <Route exact path='/about' component={About}/>
                 <Route exact path='/proyectoley/crear' component={CreateLawProject} />
                 <Route exact path='/proyectoley/:id/args' component={Arguments} />
+                <Route exact path='/proyectoley/:id/edit' component={EditLawProject}/>
                 <Route exact path='/proyectoley/:id/pdf' component={PDFView}/>
                 <Route path='/proyectoley/:id' component={LawProject} />
                 <Route path='/pdf/stats/:stat' component={StatPDFView} />

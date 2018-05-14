@@ -4,7 +4,7 @@ import { Header, Loader } from 'semantic-ui-react';
 import Humberto from 'images/humberto.jpg';
 
 import FeaturedComment from 'components/FeaturedComment/index.js';
-import ProfilePic from './components/ProfilePic/index.js';
+import ProfilePic from 'components/ProfilePic/index.js';
 import ProfileFeed from './components/ProfileFeed/index.js';
 
 export default class Profile extends Component {
