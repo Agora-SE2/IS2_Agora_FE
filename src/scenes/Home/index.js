@@ -13,6 +13,7 @@ import HomeVisitor from './components/HomeVisitor';
 })
 export default class Home extends Component {
     render() {
+        document.title = "Ágora - La plataforma de participación política de los colombianos";
         if(this.props.loggedIn)
             if(this.props.isAdmin)
                 return <HomeAdmin />;

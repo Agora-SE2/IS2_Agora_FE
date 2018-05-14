@@ -1,21 +1,23 @@
 import React, { Component} from 'react';
-import Humberto from 'images/humberto.jpg';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-
-import ProfilePic from 'components/ProfilePic';
 import './styles.css';
 
 @connect((store) => {
+    console.log(store.currentUser);
     return {
-        token: store.token
+        currentUser: store.currentUser,
+        loggedIn: store.loggedIn
     };
 })
 export default class Settings extends Component {
     render() {
-        if(this.props.token === 0)
+        const {loggedIn, currentUser} = this.props;
+        if(!loggedIn)
             return <Redirect to="/" />
-            
+        
+        document.title = "Configuración | Ágora";
+
         return (
             <div className="ui page container">
                 <h3 className="ui header">Datos generales</h3>
@@ -26,7 +28,7 @@ export default class Settings extends Component {
                             <td className="collapsing">
                                 <b>Nombre de pila</b>
                             </td>
-                            <td>José David Nieto Vitola</td>
+                            <td>{currentUser.birthName ? currentUser.birthName : <i>No tienes un nombre de pila registrado.</i>}</td>
                             <td className="collapsing">
                                 <a><i className="edit icon"></i>Editar</a>
                             </td>
@@ -36,7 +38,7 @@ export default class Settings extends Component {
                             <td className="collapsing">
                                 <b>Nombre de usuario</b>
                             </td>
-                            <td>@jdnietov</td>
+                            <td>{'@' + currentUser.userName}</td>
                             <td className="collapsing">
                                 <a><i className="edit icon"></i>Editar</a>
                             </td>
@@ -46,7 +48,7 @@ export default class Settings extends Component {
                             <td className="collapsing">
                                 <b>Correo electrónico</b>
                             </td>
-                            <td>jdnv.123@gmail.com</td>
+                            <td>{currentUser.email}</td>
                             <td className="collapsing">
                                 <a><i className="edit icon"></i>Editar</a>
                             </td>

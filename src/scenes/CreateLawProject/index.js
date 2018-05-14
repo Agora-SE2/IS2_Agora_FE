@@ -114,6 +114,11 @@ export default class CreateLawProject extends Component {
             body: lawProject
         }).then(response => {
             console.log(response);
+            return response.json();
+        }).then(data => {
+            console.log(data);
+            if(data.status == 200)
+                window.location.replace('/proyectoley/' + data.id);
         });
     }
 
@@ -125,7 +130,7 @@ export default class CreateLawProject extends Component {
         const {imagePreviewUrl, submit, name, tagList} = this.state;
         const {loggedIn, isAdmin} = this.props;
 
-        if(loggedIn && !isAdmin)    // FIXME:
+        if(loggedIn && isAdmin)    // FIXME:
             return <Redirect to="/" />
 
         let imagePreview;
@@ -134,6 +139,7 @@ export default class CreateLawProject extends Component {
         else
             imagePreview = <img id="imagePreview" src={imagePreviewUrl} alt="upload preview" />;
         
+        document.title = "Crear proyecto de ley | Ágora";
 
         return (
             <div className="ui page container">

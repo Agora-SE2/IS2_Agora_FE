@@ -38,6 +38,8 @@ export default class Search extends Component {
             </div>
         }
 
+        document.title = "Búsqueda en Ágora";
+
         return (
             <div className="ui page container">
                 <div className="ui grid">

@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Dropdown } from 'semantic-ui-react';
 
+import Searchbar from 'components/Searchbar';
 import { logout } from 'services/session/actions';
 
 @connect((store) => {
@@ -35,13 +36,7 @@ export default class UserOptions extends Component {
     render() {
         return (
             <div className="right menu">
-                <div className="ui category search item">
-                    <div className="ui icon input">
-                        <input className="prompt" placeholder="Busca proyectos de ley..." type="text"/>
-                        <i className="search link icon"></i>
-                    </div>
-                    <div className="results"></div>
-                </div>
+                <Searchbar className="ui item" />
                 <Dropdown item text={"Bienvenido, @" + this.props.username}>
                     <Dropdown.Menu style={{zIndex: 100}}>
                         <Dropdown.Header>

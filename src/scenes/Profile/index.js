@@ -30,11 +30,14 @@ export default class Profile extends Component {
 
     render() {
         const { profile, loading } = this.state;
-        let birth_name = '', user_name = '';
+        let birth_name = '';
+        let user_name = '';
         if(profile) {
             birth_name = profile.birth_name;
             user_name = profile.user_name;
+            document.title = "@" + (user_name ? user_name : '') + " | Ágora";
         }
+        
         
         return (
             <div className="ui page container">

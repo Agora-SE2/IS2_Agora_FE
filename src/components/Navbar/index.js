@@ -21,7 +21,7 @@ export default class Navbar extends Component {
 
         if(loggedIn) {
             rightView = <UserOptions />
-            if(isAdmin)
+            if(!isAdmin)
                 leftOptions = <LeftAdminOptions />
         } else {
             rightView = <VisitorOptions />
