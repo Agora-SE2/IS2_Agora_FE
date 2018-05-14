@@ -35,8 +35,7 @@ export default class LawProject extends Component {
         fetch(process.env.REACT_APP_BACK_URL + "law_projects/" + id + ".json")
         .then(response => response.json())
         .then(data => {
-            console.log(data);
-            // this.setState({project:data});  //FIXME: back de Andrey
+            // console.log(data);
             this.setState({project:data});
         });
     }
@@ -62,12 +61,13 @@ export default class LawProject extends Component {
                 <div className="blankSpace"></div>
                 <div className="ui grid">
                     <div className="eight wide column">
-                        <h1 className="ui header">
+                        <h1 className="ui dividing header">
                             {name}
                             <div className="sub header">PROYECTO DE LEY</div>
                         </h1>
-                        <p>{description}</p>                    
                         <TagLabelList tags={tags}/>
+                        <br/>
+                        <p>{description}</p>                    
 
                         <a href={"/proyectoley/" + id + "/pdf"}>
                         <button className="ui red basic compact labeled icon button">

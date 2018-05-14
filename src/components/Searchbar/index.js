@@ -18,9 +18,20 @@ export default class Searchbar extends Component {
 
         this.handleResultSelect = this.handleResultSelect.bind(this); 
         this.handleSearchChange = this.handleSearchChange.bind(this); 
+        this.handleKeyPress = this.handleKeyPress.bind(this); 
     }
 
-    handleResultSelect = (e, { result }) => this.setState({ value: result.title })    
+    handleKeyPress(event) {
+        if (event.key === 'Enter') {
+            window.location.replace(encodeURI('/search?' + event.target.value))
+        }
+    }
+
+    handleResultSelect = (e, { result }) => {
+        this.setState({ value: result.title })
+        console.log(result);
+        window.location.replace(encodeURI('/proyectoley/' + result.key))
+    }
 
     handleSearchChange = (e, { value }) => {
         this.setState({ isLoading: true, value })
@@ -34,7 +45,7 @@ export default class Searchbar extends Component {
                 const results = _.times((data.length > this.max_results ? this.max_results : data.length), (index) => ({
                     title: data[index].name,
                     description: data[index].description,
-                    key: index
+                    key: data[index].id
                 }));
 
                 this.setState({
@@ -64,6 +75,7 @@ export default class Searchbar extends Component {
                             No encontramos resultados para esta búsqueda.
                         </div>
                     </h3>}
+                input={{ onKeyPress: this.handleKeyPress }}
                 {...this.props}
             />
         );

@@ -66,8 +66,6 @@ class AgoraComment extends Component {
 
     render() {
         const {content, date, user} = this.props.comment;
-        console.log(this.props.comment);
-
         return (
             <Comment>
                 <Comment.Avatar src={Humberto} />

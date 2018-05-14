@@ -3,7 +3,7 @@ import { Label } from 'semantic-ui-react';
 import './styles.css'
 
 const TagLabel = props => (
-    <Label className="agora-tag" as="a" href={"/search?tag=" + props.tag.id}  horizontal>{props.tag.name}</Label>
+    <Label className="agora-tag" as="a" href={"/search?tag=" + props.tag.name}  horizontal>{props.tag.name}</Label>
 );
 
 export default TagLabel;

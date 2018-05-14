@@ -8,12 +8,12 @@ export default class TagLabelList extends Component {
 
         let tagViews = [];
         if(tags && tags.length > 0)
-            tagViews = tags.map(tag => {console.log(tag); return (
-                <TagLabel key={tag.id.toString()} tag={tag} className="myTag"/>
+            tagViews = tags.map((tag, index) => {console.log(tag); return (
+                <TagLabel key={index} tag={tag} className="myTag"/>
             )});
 
         return (
-            <div className="tag list">
+            <div style={{marginBottom: '10px'}} className="tag list">
                 {tagViews}
             </div>
         );
