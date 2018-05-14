@@ -23,7 +23,7 @@ export default class Searchbar extends Component {
 
     handleKeyPress(event) {
         if (event.key === 'Enter') {
-            window.location.replace(encodeURI('/search?' + event.target.value))
+            window.location.replace(encodeURI('/search?name=' + event.target.value))
         }
     }
 
@@ -75,7 +75,7 @@ export default class Searchbar extends Component {
                             No encontramos resultados para esta búsqueda.
                         </div>
                     </h3>}
-                input={{ onKeyPress: this.handleKeyPress }}
+                input={{ onKeyPress: this.handleKeyPress, placeholder: 'Busca proyectos de ley' }}
                 {...this.props}
             />
         );

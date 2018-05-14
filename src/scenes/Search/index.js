@@ -14,7 +14,8 @@ export default class Search extends Component {
     }
 
     componentWillMount() {
-        fetch(process.env.REACT_APP_BACK_URL + "law_projects.json?page=1")
+        console.log(process.env.REACT_APP_BACK_URL + "law_projects.json" + this.props.location.search + "&page=1")
+        fetch(process.env.REACT_APP_BACK_URL + "law_projects.json" + this.props.location.search + "&page=1")
         .then(response => response.json())
         .then(projectData => this.setState({
             ready: true,
@@ -28,8 +29,13 @@ export default class Search extends Component {
 
         if(!ready) {
             projectsView = <Loading />
-        } else {
+        } else if(projects.length > 0) {
             projectsView = projects.map((project, i) => <ProjectCard key={i} project={project}/>);
+        } else {
+            projectsView = <div className="ui message">
+                <h2>¡Oops!</h2>
+                <p>No encontramos nada que coincidiera con tu búsqueda. Intenta con algo más.</p>
+            </div>
         }
 
         return (
