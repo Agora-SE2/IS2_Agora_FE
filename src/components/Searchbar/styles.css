@@ -1,3 +1,7 @@
-.ui.huge.search input {
+.ui.search {
+    width: 25em;
+}
+
+.ui.search div.results {
     width: 25em;
 }

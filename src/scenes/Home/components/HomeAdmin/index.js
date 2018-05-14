@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import MostUpvotedChart from './components/MostUpvotedChart';
 import MostDownvotedChart from './components/MostDownvotedChart';
 import MostCommentedChart from './components/MostCommentedChart';
-import TwitterContainer from 'components/TwitterContainer';
 
 @connect((store) => {
     console.log(store.currentUser);
@@ -15,9 +14,7 @@ import TwitterContainer from 'components/TwitterContainer';
 export default class HomeAdmin extends Component {
     render() {
         return (
-            <div className="ui page container">
-            {/* <TwitterContainer /> */}
-                
+            <div className="ui page container">                
                 <div className="ui icon warning message">
                     <i className="inbox icon"></i>
                     <div className="content">

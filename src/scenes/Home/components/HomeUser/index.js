@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 
 import NewsMosaic from 'components/NewsMosaic';
 import TagCarousel from 'components/TagCarousel'; 
-import TwitterContainer from 'components/TwitterContainer';
 
 import './styles.css';
 
@@ -25,8 +24,6 @@ export default class Home extends Component {
                 </div>
 
                 <br />
-                
-                <TwitterContainer />
 
                 <div className="ui container">
                     <TagCarousel />    
