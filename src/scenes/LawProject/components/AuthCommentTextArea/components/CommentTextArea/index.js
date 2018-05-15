@@ -69,7 +69,7 @@ export default class CommentTextArea extends Component {
         // post comment to server
         if(comment.length > 0) {
             console.log(comment.length, comment)
-            fetch(process.env.REACT_APP_BACK_URL + "opinions", {
+            fetch(process.env.REACT_APP_BACK_URL + "opinions.json", {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
