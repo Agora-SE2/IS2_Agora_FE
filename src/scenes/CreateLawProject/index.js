@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form } from 'semantic-ui-react';
+import { Dropdown, Form } from 'semantic-ui-react';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
@@ -9,7 +9,6 @@ import WarningFormLabel from 'components/WarningFormLabel';
 import './styles.css';
 
 @connect((store) => {
-    console.log(store);
     return {
         isAdmin: store.currentUser.isAdmin,
         loggedIn: store.loggedIn
@@ -21,19 +20,20 @@ export default class CreateLawProject extends Component {
 
         this.state = {
             name: '',
-            validName: false,
             description: '',
             publication_date: {},
             image: {},
             imagePreviewUrl: '',
-            tag: {},
-            validTagList: false,
             submit: false,
             done: false,
-            tagList: []
+            tags: {},
+            tagOptions: [],
+
+            validName: false,
+            validTagList: false,
         }
 
-        this.addTag = this.addTag.bind(this);
+        this.changeTags = this.changeTags.bind(this);
         this.handleImageChange = this.handleImageChange.bind(this);
         this.handleInputChange = this.handleInputChange.bind(this);
         this.handleTagChange = this.handleTagChange.bind(this);
@@ -41,12 +41,19 @@ export default class CreateLawProject extends Component {
         this.simulateInputClick = this.simulateInputClick.bind(this);
     }
 
-    addTag() {
-        this.setState(prevState => ({
-            tagList: prevState.tagList.concat([prevState.tag])
-        }));
-        console.log(this.state.tagList);
+    componentWillMount() {
+        fetch(process.env.REACT_APP_BACK_URL + "tags.json?page=1")
+        .then(response => response.json())
+        .then(data => {
+            let tagOptions = [];
+            data.forEach((tag, index) => {
+                tagOptions.push({key: index, value: tag.name, text: tag.name});
+            })
+            this.setState({ tagOptions });
+        });
     }
+
+    changeTags = (event, { value }) => this.setState({ tagList: value });
 
     handleImageChange(event) {
         event.preventDefault();
@@ -127,10 +134,10 @@ export default class CreateLawProject extends Component {
     }
 
     render() {
-        const {imagePreviewUrl, submit, name, tagList} = this.state;
+        const {imagePreviewUrl, submit, name, tagOptions} = this.state;
         const {loggedIn, isAdmin} = this.props;
 
-        if(loggedIn && isAdmin)    // FIXME:
+        if(loggedIn && !isAdmin)    // FIXME:
             return <Redirect to="/" />
 
         let imagePreview;
@@ -174,17 +181,8 @@ export default class CreateLawProject extends Component {
                             </Form.Field>
 
                             <h5 className="ui header">¿A qué categorías pertenece el proyecto?</h5>
-                            <Form.Field>
-                                <div className="ui action input">
-                                    <input name="tag" type="text" placeholder="Categorías (ej. economía, congreso...)" onChange={this.handleTagChange} />
-                                    <div onClick={this.addTag} className="ui red button">Agregar</div>
-                                    <WarningFormLabel 
-                                        allowed={false} 
-                                        message={"Nombre de usuario inválido. Sólo caracteres alfanuméricos (a-z, 0-9)"} />
-                                </div>
-                            </Form.Field>
-                            <TagLabelList tags={tagList} />
-
+                            <Dropdown placeholder='Selecciona categorías para este proyecto' fluid multiple search selection onChange={this.changeTags} options={tagOptions} />
+                            <br/>
                             <Form.Button onClick={this.handleSubmit} fluid color="black">Agregar proyecto</Form.Button>
                         </div>
 

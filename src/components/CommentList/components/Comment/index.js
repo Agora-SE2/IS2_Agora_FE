@@ -30,38 +30,43 @@ class AgoraComment extends Component {
     }
 
     like() {
-        var like = {
-            opinion_id: this.props.comment.id,
-            user_id: this.props.userId
-        }
+        this.setState(prevState => ({
+            liked: !prevState.liked,
+            likes: (prevState.liked ? prevState.likes-1 : prevState.likes+1)
+        }));
 
-        fetch(process.env.REACT_APP_BACK_URL + "opinions/" + this.props.comment.id + ".json", {
-            method: 'PUT',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                opinion: {
-                    likes: this.props.likes
-                }
-            })
-        })
+        // var like = {
+        //     opinion_id: this.props.comment.id,
+        //     user_id: this.props.userId
+        // }
 
-        fetch(process.env.REACT_APP_BACK_URL + "likes.json", {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(like)
-        })
-        .then(response => response.json())
-        .then(data => {
-            console.log(data);
-            this.setState(prevState => ({
-                liked: !prevState.liked,
-                likes: (prevState.liked ? prevState.likes-1 : prevState.likes+1)
-            }));
-        })
+        // fetch(process.env.REACT_APP_BACK_URL + "opinions/" + this.props.comment.id + ".json", {
+        //     method: 'PUT',
+        //     headers: {
+        //         'Content-Type': 'application/json'
+        //     },
+        //     body: JSON.stringify({
+        //         opinion: {
+        //             likes: this.props.likes
+        //         }
+        //     })
+        // })
+
+        // fetch(process.env.REACT_APP_BACK_URL + "likes.json", {
+        //     method: 'POST',
+        //     headers: {
+        //         'Content-Type': 'application/json'
+        //     },
+        //     body: JSON.stringify(like)
+        // })
+        // .then(response => response.json())
+        // .then(data => {
+        //     console.log(data);
+        //     this.setState(prevState => ({
+        //         liked: !prevState.liked,
+        //         likes: (prevState.liked ? prevState.likes-1 : prevState.likes+1)
+        //     }));
+        // })
     }
 
     render() {

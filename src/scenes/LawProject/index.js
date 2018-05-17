@@ -16,6 +16,7 @@ import ApprovalBar from 'components/ApprovalBar';
 import './styles.css';
 
 @connect((store) => {
+    console.log(store.currentUser);
     return {
         isAdmin: store.currentUser.isAdmin,
         loggedIn: store.loggedIn
@@ -78,7 +79,7 @@ export default class LawProject extends Component {
                             </button>
                         </a>
                         {(() => {
-                            if(!this.props.isAdmin)
+                            if(this.props.isAdmin)
                                 return (<a href={"/proyectoley/" + id + "/edit"}><button className="ui blue basic compact labeled icon button">
                                         <i className="edit icon"></i>
                                         Editar proyecto de ley
