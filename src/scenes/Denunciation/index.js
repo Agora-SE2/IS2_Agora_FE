@@ -64,7 +64,7 @@ export default class Denunciation extends Component {
                         <Form.Field>
                             <div className="ui checkbox">
                                 <input type="checkbox" name=""/>
-                                <label>Es un comentario xenofobo</label>
+                                <label>Es un comentario discriminatorio</label>
                             </div>
                         </Form.Field>
 

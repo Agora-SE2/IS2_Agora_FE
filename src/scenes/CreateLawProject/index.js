@@ -3,7 +3,6 @@ import { Dropdown, Form } from 'semantic-ui-react';
 import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-import TagLabelList from 'components/TagLabelList';
 import WarningFormLabel from 'components/WarningFormLabel';
 
 import './styles.css';

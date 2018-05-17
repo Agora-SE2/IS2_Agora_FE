@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Loading from 'components/Loading';
-import { Divider } from 'semantic-ui-react';
+import { Button, Icon, Divider } from 'semantic-ui-react';
 
 import ApprovalStat from './components/ApprovalStat';
 import AuthCommentTextArea from './components/AuthCommentTextArea';
@@ -60,48 +60,46 @@ export default class LawProject extends Component {
             <div className="ui page container"> 
                 <div className="blankSpace"></div>
                 <div className="ui grid">
-                    <div className="eight wide column">
-                        <h1 className="ui dividing header">
-                            {name}
-                            <div className="sub header">PROYECTO DE LEY - {publication_date}</div>
-                        </h1>
-                        <TagLabelList tags={tags}/> 
-
+                    <div className="nine wide column">
+                        <div className="ui grid">
+                            <div className="thirteen wide column">
+                                <h1 className="ui header">
+                                    {name}
+                                    <div className="sub header">PROYECTO DE LEY - {publication_date}</div>
+                                </h1>
+                            </div>
+                            <div className="three wide column">                         
+                            <a href={"/proyectoley/" + id + "/pdf"}><Icon id="pdfIcon" size="big" color="red" name="file pdf" /></a>
+                            </div>
+                        </div>
                         {(() => {
                             if(this.props.isAdmin)
-                                return (<a href={"/proyectoley/" + id + "/edit"}><button className="ui blue labeled icon fluid button">
+                                return (<a href={"/proyectoley/" + id + "/edit"}><button style={{marginTop: '20px'}}className="ui basic labeled icon fluid button">
                                         <i className="edit icon"></i>
                                         Editar proyecto de ley
                                     </button>
                                     </a>);
                             else return '';
                         })()}
+                        <div className="ui divider"></div>
+                        <TagLabelList tags={tags}/> 
 
                         <h3 className="ui header">Descripción general</h3>
                         <div className="indented">{description}</div>
 
-                        <br/>
-
-                        <a href={"/proyectoley/" + id + "/pdf"}>
-                            <button className="ui red basic compact labeled icon fluid button">
-                                <i className="file pdf icon"></i>
-                                Formato PDF
-                            </button>
-                        </a>
+                        <h3 className="ui header">Ponentes</h3>
+                        <div className="indented">{description}</div>
                     </div>
-                    <div className="eight wide column">
-                        {(() => {
-                            if(image)
-                                return <Image src={image.image.url} alt="" />;
-                            else return <Loading />;
-                        })()}
+
+                    <div className="seven wide column">
+                        <ApprovalBar yes={yes_votes} no={not_votes}/>
+                        <ApprovalStat yes={yes_votes} no={not_votes}/>
+
                     </div>
                 </div>
 
                 <Divider />
-                <ApprovalBar yes={yes_votes} no={not_votes}/>
                 
-                <ApprovalStat yes={yes_votes} no={not_votes}/>
                 <AuthCommentTextArea loggedIn={this.props.loggedIn} id={id} yes_votes={yes_votes} not_votes={not_votes} />
 
                 <div className="ui grid" id="commentary-grid">

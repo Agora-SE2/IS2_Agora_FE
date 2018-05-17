@@ -73,9 +73,13 @@ export default class PDFView extends Component {
                         <div className="ui raised section">
                             <h2>PDF de {name}</h2>
                             <p>Página {pageNumber} de {numPages}</p>
-                            <button onClick={this.prevPage.bind(this)} className="ui left attached button" id="prevPageButton">Pág. anterior</button>
-                            <button onClick={this.nextPage.bind(this)} className="right attached ui button" id="nextPageButton">Pág. siguiente</button>
-                            <button className="ui inverted green button" id="downloadButton">Descargar</button>
+                            <br/>
+                            <br/>
+                            <button onClick={this.prevPage.bind(this)} className="ui left  attached inverted icon button" id="prevPageButton"><i className="chevron left icon"></i></button>
+                            <button onClick={this.nextPage.bind(this)} className="ui right attached inverted icon button" id="nextPageButton"><i className="chevron right icon"></i></button>
+                            <br/>
+                            <br/>
+                            <button className="ui green button" id="downloadButton">Descargar</button>
                         </div>
                     </div>
                 </div>

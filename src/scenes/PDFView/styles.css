@@ -1,5 +1,7 @@
 #content {
-  background-color: #1b1c1d !important; }
+  background-color: #1b1c1d !important; 
+  min-height: 94vh;
+}
 
 #controlPanel {
   color: white;
