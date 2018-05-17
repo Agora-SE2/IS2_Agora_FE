@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import { Button, Form, TextArea } from 'semantic-ui-react';
 
 import { toAgoraDate } from 'services/api/agora-helpers.js';
@@ -7,6 +8,12 @@ import './styles.css';
 
 // TODO: yes, no, projectId props are required - use prop-types!
 
+@connect((store) => {
+    console.log(store.currentUser);
+    return {
+        userId: store.currentUser.id
+    };
+})
 export default class CommentTextArea extends Component {
     constructor() {
         super();
@@ -23,23 +30,10 @@ export default class CommentTextArea extends Component {
         this.textareaChange = this.textareaChange.bind(this);
     }
 
-    handleClick(event, positiveComment) {
-        const comment = this.state.comment;
-        console.log((new Date()).toISOString().split('T')[0]);
-
-        // update vote amount
-        let updateWrapper = {
-            law_project: {}
-        };
-
-        if(positiveComment) {
-            updateWrapper.law_project = { yes_votes: this.props.yes + 1};
-        } else {
-            updateWrapper.law_project = { not_votes: this.props.no + 1};
-        }
-
-        console.log(JSON.stringify(updateWrapper));
-
+    handleClick(event, positive) {
+        const { comment } = this.state;
+        const vote = positive ? { yes_votes: this.props.yes + 1 } : { not_votes: this.props.no + 1 };
+        
         this.setState({loading: true});
 
         fetch(process.env.REACT_APP_BACK_URL + "law_projects/" + this.props.projectId + ".json", {
@@ -47,10 +41,14 @@ export default class CommentTextArea extends Component {
             headers: {
                 'Content-Type': 'application/json'
             },
-            body: JSON.stringify(updateWrapper)
+            body: JSON.stringify({
+                law_project: {
+                    vote: vote
+                }
+            })
         })
         .then(response => {
-            if (response.status === 200) {
+            if (response.status === 200 || response.status === 201) {
                 console.log("successful vote!");
                 
                 this.setState((prevState, props) => ({
@@ -64,30 +62,41 @@ export default class CommentTextArea extends Component {
                     error: true
                 }));
             }
-        });
+            return response.json()
+        })
+        .then(data => console.log(data));
 
         // post comment to server
         if(comment.length > 0) {
             console.log({
-                content: comment,
-                date: toAgoraDate(new Date()),
-                like: 0,
-                pro: positiveComment
+                opinion: {
+                    content: comment,
+                    date: toAgoraDate(new Date()),
+                    like: 0,
+                    pro: positive,
+                    user_id: this.props.userId,
+                    law_project_id: this.props.projectId
+                }
             })
+
             fetch(process.env.REACT_APP_BACK_URL + "opinions.json", {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
                 body: JSON.stringify({
-                    content: comment,
-                    date: toAgoraDate(new Date()),
-                    like: 0,
-                    pro: positiveComment
+                    opinion: {
+                        content: comment,
+                        date: toAgoraDate(new Date()),
+                        like: 0,
+                        pro: positive,
+                        user_id: this.props.userId,
+                        law_project_id: this.props.projectId
+                    }
                 })
             }).then(response => {
                 console.log(response);
-                if(response.status === 200) {
+                if(response.status === 200 || response.status === 201) {
                     this.setState(prevState => ({
                         loading: false,
                         successComment: true
@@ -99,7 +108,8 @@ export default class CommentTextArea extends Component {
                         error: true
                     }));
                 }
-            });
+                return response.json()
+            }).then(data => console.log(data));
         }
     }
 

@@ -70,7 +70,9 @@ class AgoraComment extends Component {
     }
 
     render() {
+        console.log(this.props.comment);
         const {content, date, user, pro} = this.props.comment;
+        if(user)
         return (
             <Comment>
                 <Comment.Avatar src={Humberto} />
@@ -88,6 +90,7 @@ class AgoraComment extends Component {
                 </Comment.Content>
             </Comment>
         );
+        else return '';
     }
 }
 
