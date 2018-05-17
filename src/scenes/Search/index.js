@@ -59,20 +59,26 @@ export default class Search extends Component {
                                 </div>
                             </div>
                             <div className="item">
-                                <div className="header">Proyectos de ley</div>
+                                <div className="ui radio checkbox">
+                                    <input type="radio" name=""/>
+                                    <label><b>Proyectos de ley</b></label>
+                                </div>
                                 <div className="menu">
-                                    <a className="active item">Principales</a>
-                                    <a className="item">Más recientes</a>
-                                    <a className="item">Mejor recibidos</a>
-                                    <a className="item">Peor recibidos</a>
-                                    <a className="item">Más debatidos</a>
+                                    <a href="/search?tag=Ciencia" className="item">Ciencia</a>
+                                    <a href="/search?tag=Cultura" className="item">Cultura</a>
+                                    <a href="/search?tag=Crimen" className="item">Crimen</a>
+                                    <a href="/search?tag=Derecho" className="item">Derechos</a>
+                                    <a href="/search?tag=Economía" className="item">Economía</a>
+                                    <a href="/search?tag=Educación" className="item">Educación</a>
+                                    <a href="/search?tag=JEP" className="item">JEP</a>
+                                    <a href="/search?tag=Medio%20Ambiente" className="item">Medio Ambiente</a>
+                                    <a href="/search?tag=Salud" className="item">Salud</a>
                                 </div>
                             </div>
                             <div className="item">
-                                <div className="header">Usuarios</div>
-                                <div className="menu">
-                                    <a className="item">Más populares</a>
-                                    <a className="item">Más participativos</a>
+                                <div className="ui radio checkbox">
+                                    <input type="radio" name=""/>
+                                    <label><b>Usuarios</b></label>
                                 </div>
                             </div>
                         </div>
