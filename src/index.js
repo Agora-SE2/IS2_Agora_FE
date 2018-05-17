@@ -26,6 +26,7 @@ import Settings from './scenes/Settings';
 import Signup from './scenes/Signup';
 import SignupSetup from './scenes/SignupSetup';
 import PDFView from './scenes/PDFView';
+import Denunciation from './scenes/Denunciation';
 
 import 'semantic-ui-css/semantic.min.css';
 import './index.css';
@@ -53,6 +54,7 @@ ReactDOM.render((
                 <Route path='/settings' component={Settings}/>
                 <Route path='/setup' component={SignupSetup}/>
                 <Route path='/signup' component={Signup}/>
+                <Route path='/denunciation' component={Denunciation} />
                 <Route path='/404' component={NotFound} />
                 <Redirect to='/404' />
               </Switch>

@@ -83,7 +83,7 @@ class AgoraComment extends Component {
                 <Comment.Text>{content}</Comment.Text>
                 <Comment.Actions>
                     <a style={(() => this.state.liked ? {color: 'red'} : {})()} className="like" onClick={this.like}>Me trama ({this.state.likes})</a>
-                    <a style={(() => this.state.reported ? {color: 'black', fontWeight: 'bold'} : {})()} className="report" onClick={this.report}>{this.state.reported ? "Denunciado" : "Denunciar"}</a>
+                    <a href="/denunciation" style={(() => this.state.reported ? {color: 'black', fontWeight: 'bold'} : {})()} className="report" onClick={this.report}>{this.state.reported ? "Denunciado" : "Denunciar"}</a>
                 </Comment.Actions>
                 </Comment.Content>
             </Comment>
