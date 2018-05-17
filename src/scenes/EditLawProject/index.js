@@ -9,7 +9,6 @@ import WarningFormLabel from 'components/WarningFormLabel';
 import './styles.css';
 
 @connect((store) => {
-    console.log(store);
     return {
         isAdmin: store.currentUser.isAdmin,
         loggedIn: store.loggedIn
@@ -64,7 +63,6 @@ export default class EditLawProject extends Component {
         this.setState(prevState => ({
             tagList: prevState.tagList.concat([prevState.tag])
         }));
-        console.log(this.state.tagList);
     }
 
     handleImageChange(event) {

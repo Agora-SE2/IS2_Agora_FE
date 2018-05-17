@@ -70,7 +70,6 @@ class AgoraComment extends Component {
     }
 
     render() {
-        console.log(this.props.comment);
         const {content, date, user, pro} = this.props.comment;
         if(user)
         return (

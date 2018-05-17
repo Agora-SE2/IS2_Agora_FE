@@ -29,7 +29,6 @@ export default class Searchbar extends Component {
 
     handleResultSelect = (e, { result }) => {
         this.setState({ value: result.title })
-        console.log(result);
         window.location.replace(encodeURI('/proyectoley/' + result.key))
     }
 

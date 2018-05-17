@@ -15,7 +15,6 @@ export default class MostUpvotedChart extends Component {
         fetch(process.env.REACT_APP_BACK_URL + "stats/more_upvoted.json")
         .then(response => response.json())
         .then(data => {
-            console.log(data);
             let categories = [];
             let columns = [['Votos a favor'], ['Votos en contra']];
 
