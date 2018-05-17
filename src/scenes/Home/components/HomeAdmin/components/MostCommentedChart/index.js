@@ -15,7 +15,6 @@ export default class MostCommentedChart extends Component {
         fetch(process.env.REACT_APP_BACK_URL + "stats/more_commented.json")
         .then(response => response.json())
         .then(data => {
-            console.log(data);
             let categories = [];
             let columns = [['Comentarios']];
 

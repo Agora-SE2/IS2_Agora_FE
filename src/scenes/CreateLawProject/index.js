@@ -24,6 +24,7 @@ export default class CreateLawProject extends Component {
             publication_date: {},
             image: {},
             imagePreviewUrl: '',
+            speaker: '',
             submit: false,
             done: false,
             tags: {},
@@ -94,37 +95,42 @@ export default class CreateLawProject extends Component {
     handleSubmit(event) {
         event.preventDefault();
 
-        const {name, description, publication_date, image} = this.state;
+        const {name, description, publication_date, image, speaker} = this.state;
 
         this.setState({
             submit: true
         });
 
-        const data = {
-            name: name,
-            description: description,
-            publication_date: publication_date,   // TODO: este valor debe estar tambien en el form
-            image: image,
+        const lawProject = {
+            name,
+            description,
+            publication_date,   // TODO: este valor debe estar tambien en el form
+            // image: image,
             yes_votes: 0,
             not_votes: 0,   // TODO: delete yes_Votes and no_votes
+            state: 1,
+            speaker
         };
 
-        var lawProject  = new FormData();
-        for(var key in data) {
-            lawProject.append(key, data[key]);
-        }
-        for (var pair of lawProject.entries()) {
-            console.log(pair[0]+ ', ' + pair[1]); 
-        }
+        // var lawProject  = new FormData();
+        // for(var key in data) {
+        //     lawProject.append(key, data[key]);
+        // }
+        // for (var pair of lawProject.entries()) {
+        //     console.log(pair[0]+ ', ' + pair[1]); 
+        // }
         fetch(process.env.REACT_APP_BACK_URL + "law_projects.json", {
             method: 'POST',
-            body: lawProject
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(lawProject)
         }).then(response => {
             console.log(response);
             return response.json();
         }).then(data => {
             console.log(data);
-            if(data.status === 200)
+            if(data.status >= 200 && data.status <= 208)
                 window.location.replace('/proyectoley/' + data.id);
         });
     }
@@ -163,6 +169,14 @@ export default class CreateLawProject extends Component {
                                     allowed={submit && name.length === 0} 
                                     message={"Por favor ingrese un nombre."} />
                             </Form.Field>
+
+                            <h5 className="ui header">Nombre de los/las ponentes</h5>
+                            <Form.Field>
+                                <input name="speaker" placeholder="Ponentes del proyecto de ley" type="text" onChange={this.handleInputChange} />
+                                <WarningFormLabel 
+                                    allowed={submit && name.length === 0} 
+                                    message={"Por favor ingrese un ponente."} />
+                            </Form.Field>
                             
                             <h5 className="ui header">Descripción general</h5>
                             <Form.Field>
@@ -187,7 +201,7 @@ export default class CreateLawProject extends Component {
                         </div>
 
                         <div className="five wide column">
-                            {imagePreview}
+                            {/* {imagePreview}
                             <div 
                                 style={{marginTop: '30px'}} 
                                 className="ui fluid labeled icon red button"
@@ -195,7 +209,7 @@ export default class CreateLawProject extends Component {
                                 <i className="image icon"></i>
                                 Añade una imagen
                             </div>
-                            <input ref={(node) => this.inputFile = node}type='file' id="imgInp" onChange={this.handleImageChange}/>
+                            <input ref={(node) => this.inputFile = node}type='file' id="imgInp" onChange={this.handleImageChange}/> */}
                         </div>
                     </div>
                     </form>
