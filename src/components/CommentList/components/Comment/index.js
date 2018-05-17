@@ -70,13 +70,14 @@ class AgoraComment extends Component {
     }
 
     render() {
-        const {content, date, user} = this.props.comment;
+        const {content, date, user, pro} = this.props.comment;
         return (
             <Comment>
                 <Comment.Avatar src={Humberto} />
                 <Comment.Content>
                 <Comment.Author as='a' href={"/profile/" + user.id}>{user.birth_name ? user.birth_name : "@" + user.user_name}</Comment.Author>
                 <Comment.Metadata>
+                    <div style={(() => pro ? { color: 'green' } : { color: 'red' })()}><b>{(() => pro ? "A favor" : "En contra")()}</b></div>
                     <div>{date}</div>
                 </Comment.Metadata>
                 <Comment.Text>{content}</Comment.Text>

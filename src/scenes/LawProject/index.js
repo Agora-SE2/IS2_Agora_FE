@@ -3,8 +3,6 @@ import { connect } from 'react-redux';
 
 import { Divider } from 'semantic-ui-react';
 
-import ImgProyectoLey from 'images/economia.jpeg'
-
 import ApprovalStat from './components/ApprovalStat';
 import AuthCommentTextArea from './components/AuthCommentTextArea';
 
@@ -100,21 +98,30 @@ export default class LawProject extends Component {
 
                 <Divider />
                 <ApprovalBar yes={yes_votes} no={not_votes}/>
+                
                 <ApprovalStat yes={yes_votes} no={not_votes}/>
                 <AuthCommentTextArea loggedIn={this.props.loggedIn} id={id} yes_votes={yes_votes} not_votes={not_votes} />
 
                 <div className="ui grid" id="commentary-grid">
                     <div className="eight wide column">
-                        <div className="ui segment">
+                        <div className="ui attached padded segment">
                             <h2 className="ui centered header">Argumentos a favor</h2>
+                            <div className="ui divider"></div>
                             <CommentList comments={yesComments} />
-                        </div>                        
+                        </div>
+                        <div className="ui bottom attached green segment">
+                            <center><a style={{ color: '#44AF69' }} href={id + "/args"}>Ver más argumentos a favor</a></center>
+                        </div>          
                     </div>
                     <div className="eight wide column">
-                        <div className="ui segment">
+                        <div className="ui attached padded segment">
                             <h2 className="ui centered header">Argumentos en contra</h2>
+                            <div className="ui divider"></div>
                             <CommentList comments={notComments} />
-                        </div>                        
+                        </div>
+                        <div className="ui bottom attached red segment">
+                            <center><a style={{ color: '#d73a31' }} href={id + "/args"}>Ver más argumentos en contra</a></center>
+                        </div>             
                     </div>
                 </div>
 
