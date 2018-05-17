@@ -45,7 +45,7 @@ export default class Search extends Component {
                 <div className="ui grid">
                     <div className="four wide column"></div>
                     <div className="twelve wide column">
-                        <h1 className="ui header">Resultados para: </h1>
+                        <h1 className="ui header">Resultados:</h1>
                     </div>
                 </div>
 

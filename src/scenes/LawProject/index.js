@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-
+import Loading from 'components/Loading';
 import { Divider } from 'semantic-ui-react';
 
 import ApprovalStat from './components/ApprovalStat';
@@ -90,8 +90,8 @@ export default class LawProject extends Component {
                     <div className="eight wide column">
                         {(() => {
                             if(image)
-                                return <Image src={image.image.url} alt="alalla" />;
-                            else return '';
+                                return <Image src={image.image.url} alt="" />;
+                            else return <Loading />;
                         })()}
                     </div>
                 </div>
