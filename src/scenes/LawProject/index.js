@@ -63,22 +63,13 @@ export default class LawProject extends Component {
                     <div className="eight wide column">
                         <h1 className="ui dividing header">
                             {name}
-                            <div className="sub header">PROYECTO DE LEY</div>
+                            <div className="sub header">PROYECTO DE LEY - {publication_date}</div>
                         </h1>
-                        <TagLabelList tags={tags}/>
-                        <p>creado el <b>{publication_date}</b></p>
-                        <br/>
-                        <p>{description}</p>                    
+                        <TagLabelList tags={tags}/> 
 
-                        <a href={"/proyectoley/" + id + "/pdf"}>
-                            <button className="ui red basic compact labeled icon button">
-                                <i className="file pdf icon"></i>
-                                Formato PDF
-                            </button>
-                        </a>
                         {(() => {
                             if(this.props.isAdmin)
-                                return (<a href={"/proyectoley/" + id + "/edit"}><button className="ui blue basic compact labeled icon button">
+                                return (<a href={"/proyectoley/" + id + "/edit"}><button className="ui blue labeled icon fluid button">
                                         <i className="edit icon"></i>
                                         Editar proyecto de ley
                                     </button>
@@ -86,6 +77,17 @@ export default class LawProject extends Component {
                             else return '';
                         })()}
 
+                        <h3 className="ui header">Descripción general</h3>
+                        <div className="indented">{description}</div>
+
+                        <br/>
+
+                        <a href={"/proyectoley/" + id + "/pdf"}>
+                            <button className="ui red basic compact labeled icon fluid button">
+                                <i className="file pdf icon"></i>
+                                Formato PDF
+                            </button>
+                        </a>
                     </div>
                     <div className="eight wide column">
                         {(() => {

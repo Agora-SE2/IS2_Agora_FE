@@ -1,13 +1,7 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { Divider, Form, Message } from 'semantic-ui-react';
-import validator from 'validator';
-
-import { login } from 'services/session/actions';
-
-import Loading from 'components/Loading';
-import WarningFormLabel from 'components/WarningFormLabel';
-
+import { Divider, Form } from 'semantic-ui-react';
 import './styles.css';
 
 @connect((store) => {
@@ -15,21 +9,47 @@ import './styles.css';
         loggedIn: store.loggedIn
     };
 })
-export default class Denunciation extends Component {
-    
+export default class Denunciation extends Component {  
+    constructor() {
+        super();
+
+        this.state = {
+            opinion: {},
+            reason: '',
+        }
+
+        this.changeTextarea = this.changeTextarea.bind(this);
+    }
+
+    changeTextarea = (e, data) => this.setState({ reason: e.target.value });
+
+    componentWillMount() {
+        const { id } = this.props.match.params;
+        fetch(process.env.REACT_APP_BACK_URL + "opinions/" + id + ".json")
+        .then(response => response.json())
+        .then(opinion => this.setState({ opinion}))
+    }
+
     render() {
+        document.title = "Reportar un comentario | Ágora";
+        const { loggedIn } = this.props;
+        const { content, user } = this.state.opinion;
+
+        if(!loggedIn) 
+            return <Redirect to='/' />;
 
         return (
             <div className="ui page container">
-                <div className="ui signup centered compact raised segment">
+                <div className="ui signup centered compact raised padded segment">
                     <h2 className="ui centered header">
                         Denunciar un comentario
                     </h2>
 
                     <Divider />
-
-                        <p><i>"Aquí va el comentario"</i></p>
-
+                    <center>
+                        <i>"{content}"</i><br/>
+                        por <a href={user ? "/user/" + user.id : ''}>{ user ? user.birth_name : '...' }</a>
+                    </center>
                     <Divider />
 
                     <Form onSubmit={this.handleSubmit}>
@@ -37,7 +57,7 @@ export default class Denunciation extends Component {
                         <Form.Field>
                             <div className="ui checkbox">
                                 <input type="checkbox" name=""/>
-                                <label>Utiliza lenguaje obseno</label>
+                                <label>Utiliza lenguaje obsceno</label>
                             </div>
                         </Form.Field>
 
@@ -56,7 +76,7 @@ export default class Denunciation extends Component {
                         </Form.Field>
 
                         <Form.Field>
-                            <input name="" placeholder="Información adicional" type="text" />
+                            <textarea onChange={this.changeTextarea} name="reason" placeholder="Información adicional" type="text" />
                         </Form.Field>
 
                         <Form.Button fluid color="red">Denunciar</Form.Button>

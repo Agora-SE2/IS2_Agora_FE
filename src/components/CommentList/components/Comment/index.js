@@ -70,7 +70,7 @@ class AgoraComment extends Component {
     }
 
     render() {
-        const {content, date, user, pro} = this.props.comment;
+        const {id, content, date, user, pro} = this.props.comment;
         if(user)
         return (
             <Comment>
@@ -84,7 +84,7 @@ class AgoraComment extends Component {
                 <Comment.Text>{content}</Comment.Text>
                 <Comment.Actions>
                     <a style={(() => this.state.liked ? {color: 'red'} : {})()} className="like" onClick={this.like}>Me trama ({this.state.likes})</a>
-                    <a href="/denunciation" style={(() => this.state.reported ? {color: 'black', fontWeight: 'bold'} : {})()} className="report" onClick={this.report}>{this.state.reported ? "Denunciado" : "Denunciar"}</a>
+                    <a href={"/report/" + id} style={(() => this.state.reported ? {color: 'black', fontWeight: 'bold'} : {})()} className="report" onClick={this.report}>{this.state.reported ? "Denunciado" : "Denunciar"}</a>
                 </Comment.Actions>
                 </Comment.Content>
             </Comment>

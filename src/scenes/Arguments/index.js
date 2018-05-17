@@ -54,7 +54,7 @@ export default class Arguments extends Component {
     }
 
     render() {
-        const { opinions, favor, contra } = this.state;
+        const { opinions } = this.state;
         const { name } = this.state.project;
 
         document.title = name ? "Discusión sobre " + name + " | Ágora " : "Ágora";

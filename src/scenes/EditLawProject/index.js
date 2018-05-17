@@ -150,7 +150,7 @@ export default class EditLawProject extends Component {
         const {imagePreviewUrl, submit, name, description, tagList, publication_date, goBack} = this.state;
         const {loggedIn, isAdmin} = this.props;
 
-        if(loggedIn && isAdmin)    // FIXME:
+        if(loggedIn && !isAdmin)    // FIXME:
             return <Redirect to="/" />
 
         if(goBack)

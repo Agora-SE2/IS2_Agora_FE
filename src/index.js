@@ -45,6 +45,7 @@ ReactDOM.render((
                 <Route exact path='/proyectoley/:id/args' component={Arguments} />
                 <Route exact path='/proyectoley/:id/edit' component={EditLawProject}/>
                 <Route exact path='/proyectoley/:id/pdf' component={PDFView}/>
+                <Route exact path='/report/:id' component={Denunciation} />
                 <Route path='/proyectoley/:id' component={LawProject} />
                 <Route path='/pdf/stats/:stat' component={StatPDFView} />
                 <Route path='/login' component={Login}/>
@@ -54,7 +55,6 @@ ReactDOM.render((
                 <Route path='/settings' component={Settings}/>
                 <Route path='/setup' component={SignupSetup}/>
                 <Route path='/signup' component={Signup}/>
-                <Route path='/denunciation' component={Denunciation} />
                 <Route path='/404' component={NotFound} />
                 <Redirect to='/404' />
               </Switch>
