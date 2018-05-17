@@ -2,15 +2,15 @@
   margin-top: 20px; }
 
 #aFavor {
-  background-color: #44AF69;
+  background-color: #336688;
   color: white; }
 
 #aFavor:hover {
-  background-color: #3A965A; }
+  background-color: #08708A; }
 
 #enContra {
-  background-color: #d73a31;
+  background-color: #FF9900;
   color: white; }
 
 #enContra:hover {
-  background-color: #BC322B; }
+  background-color: #ed9b40; }

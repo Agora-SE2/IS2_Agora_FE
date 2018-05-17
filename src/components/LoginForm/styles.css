@@ -14,12 +14,12 @@
   margin: auto; }
 
 #loginButton {
-  border: 3px solid #44AF69;
+  border: 3px solid #336688;
   background: none;
-  color: #44AF69; }
+  color: #336688; }
 
 #loginButton:hover {
-  background-color: #44AF69;
+  background-color: #336688;
   color: white; }
 
 #LoginForm button {
