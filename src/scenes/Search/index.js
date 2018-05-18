@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 
 import Loading from 'components/Loading';
-import ProjectCard from './components/ProjectCard';
+import ResultCard from './components/ResultCard';
 
 export default class Search extends Component {
     constructor() {
@@ -9,19 +9,43 @@ export default class Search extends Component {
 
         this.state = {
             ready: false,
+            query: '',
+            page: 1,
             projects: []
         }
+
+        this.changePage = this.changePage.bind(this);
+        this.handleFetch = this.handleFetch.bind(this);
+        this.handleSearchKeyPress = this.handleSearchKeyPress.bind(this);
     }
 
+    changePage = e => this.setState({ page: e.target.text });
+
     componentWillMount() {
-        console.log(process.env.REACT_APP_BACK_URL + "law_projects.json" + this.props.location.search + "&page=1")
-        fetch(process.env.REACT_APP_BACK_URL + "law_projects.json" + this.props.location.search + "&page=1")
+        this.handleFetch();
+    }
+
+    componentDidUpdate(prevProps, prevState) {
+        if(prevState.page !== this.state.page)
+            this.handleFetch();
+    }
+
+    handleFetch() {
+        this.setState({ ready: false});
+        const { search } = this.props.location;
+        const { page } = this.state;
+
+        fetch(process.env.REACT_APP_BACK_URL 
+            + "law_projects.json" + (search ? search + '&' : '?')
+            + "page=" + page)
         .then(response => response.json())
         .then(projectData => this.setState({
             ready: true,
             projects: projectData
         }));
     }
+
+    handleSearchKeyPress = (e) => e.key === 'Enter' ? window.location.replace('/search?name=' + this.state.query) : this.setState({ query: e.target.value })
 
     render() {
         const {ready, projects} = this.state;
@@ -30,7 +54,7 @@ export default class Search extends Component {
         if(!ready) {
             projectsView = <Loading />
         } else if(projects.length > 0) {
-            projectsView = projects.map((project, i) => <ProjectCard key={i} project={project}/>);
+            projectsView = projects.map((project, i) => <ResultCard key={i} project={project}/>);
         } else {
             projectsView = <div className="ui message">
                 <h2>¡Oops!</h2>
@@ -54,15 +78,12 @@ export default class Search extends Component {
                         <div className="ui vertical large fluid menu">
                             <div className="item">
                                 <div className="ui transparent icon input">
-                                    <input type="text" placeholder="Buscar..."/>
+                                    <input onKeyPress={this.handleSearchKeyPress} type="text" placeholder="Buscar..."/>
                                     <i className="search icon"></i>
                                 </div>
                             </div>
                             <div className="item">
-                                <div className="ui radio checkbox">
-                                    <input type="radio" name=""/>
-                                    <label><b>Proyectos de ley</b></label>
-                                </div>
+                                <h3 className="ui header">Proyectos de ley</h3>
                                 <div className="menu">
                                     <a href="/search?tag=Ciencia" className="item">Ciencia</a>
                                     <a href="/search?tag=Cultura" className="item">Cultura</a>
@@ -75,19 +96,16 @@ export default class Search extends Component {
                                     <a href="/search?tag=Salud" className="item">Salud</a>
                                 </div>
                             </div>
-                            <div className="item">
-                                <div className="ui radio checkbox">
-                                    <input type="radio" name=""/>
-                                    <label><b>Usuarios</b></label>
-                                </div>
-                            </div>
                         </div>
                     </div>
                     <div className="twelve wide column">
                         {projectsView}
                         <div className="ui pagination menu">
-                            <a className="active item">
+                            <a onClick={this.changePage} className="active item">
                                 1
+                            </a>
+                            <a onClick={this.changePage} className="active item">
+                                2
                             </a>
                             <div className="disabled item">
                                 ...

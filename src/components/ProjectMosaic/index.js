@@ -1,11 +1,11 @@
 import React, { Component } from 'react';
 
 import Loading from '../Loading';
-import NewsCard from '../NewsCard/index.js';
+import ProjectCard from '../ProjectCard/index.js';
 
 import './styles.css';
 
-export default class NewsMosaic extends Component {
+export default class ProjectMosaic extends Component {
     constructor() {
         super();
 
@@ -23,7 +23,7 @@ export default class NewsMosaic extends Component {
                 console.error("didn't get any featured projects.");
                 return;
             }
-
+            console.log(featured);
             let projects = [];
 
             for(const [i, f] of featured.slice(0,4).entries()) {
@@ -55,16 +55,13 @@ export default class NewsMosaic extends Component {
                                 <h1>{this.props.title}</h1>
                                 <div className="ui divider"></div>
                                 <div className="ui container">
-                                    <NewsCard news={projects[0]}/>
-                                    <div className="ui three column grid">
+                                    <ProjectCard news={projects[0]}/>
+                                    <div className="ui two column grid">
                                         <div className="column">
-                                            <NewsCard news={projects[1]}/>
+                                            <ProjectCard news={projects[1]}/>
                                         </div>
                                         <div className="column">
-                                            <NewsCard news={projects[2]}/>
-                                        </div>
-                                        <div className="column">
-                                            <NewsCard news={projects[3]}/>
+                                            <ProjectCard news={projects[2]}/>
                                         </div>
                                     </div>
                                 </div>

@@ -1,13 +1,11 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import Loading from 'components/Loading';
-import { Button, Icon, Divider } from 'semantic-ui-react';
+import { Icon, Divider } from 'semantic-ui-react';
 
 import ApprovalStat from './components/ApprovalStat';
 import AuthCommentTextArea from './components/AuthCommentTextArea';
 
 import CommentList from 'components/CommentList';
-import Image from 'components/Image';
 import TagLabelList from 'components/TagLabelList';
 import ApprovalBar from 'components/ApprovalBar';
 
@@ -41,7 +39,7 @@ export default class LawProject extends Component {
     }
 
     render() {
-        const {id, name, yes_votes, description, not_votes, tags, image, publication_date, opinions} = this.state.project;
+        const {id, name, yes_votes, description, not_votes, tags, publication_date, opinions} = this.state.project;
         let yesComments = [];
         let notComments = [];
         if(name)

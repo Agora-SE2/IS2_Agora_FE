@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 
-import NewsMosaic from 'components/NewsMosaic';
+import ProjectMosaic from 'components/ProjectMosaic';
 import TagCarousel from 'components/TagCarousel'; 
 
 import Banner from './components/Banner';
@@ -19,10 +19,10 @@ export default class Home extends Component {
                 <Banner />
                 <div className="ui container grid">
                     <div className="eight wide column">
-                        <NewsMosaic title="Lo más debatido" />
+                        <ProjectMosaic title="Lo más debatido" />
                     </div>
                     <div className="eight wide column">
-                        <NewsMosaic title="Lo último" />                        
+                        <ProjectMosaic title="Lo último" />                        
                     </div>
                 </div>
 

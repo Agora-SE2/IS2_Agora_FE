@@ -20,7 +20,7 @@ export default class PDFView extends Component {
         // FIXME: consuming two different backends - data is not coherent!
         const {id} = this.props.match.params;
         this.setState({
-            url: process.env.REACT_APP_PDF_URL + "law_projects/" + id + ".pdf"
+            url: process.env.REACT_APP_BACK_URL + "law_projects/" + id + ".pdf"
         });
 
         fetch(process.env.REACT_APP_BACK_URL + "law_projects/" + id + ".json")

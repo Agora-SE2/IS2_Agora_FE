@@ -2,9 +2,6 @@ import React, { Component } from 'react';
 
 import ImgBanner from './images/senate.jpg';
 
-import LoginForm from 'components/LoginForm';
-import Searchbar from 'components/Searchbar';
-
 import './styles.css';
 
 export default class Banner extends Component {
