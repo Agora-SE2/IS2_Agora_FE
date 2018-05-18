@@ -23,7 +23,6 @@ export default class ProjectMosaic extends Component {
                 console.error("didn't get any featured projects.");
                 return;
             }
-            console.log(featured);
             let projects = [];
 
             for(const [i, f] of featured.slice(0,4).entries()) {
@@ -47,13 +46,12 @@ export default class ProjectMosaic extends Component {
         const {ready, projects} = this.state;
         
         return (
-            <div style={{ marginTop: 50 + 'px', minHeight: '150px' }} className="ui news mosaic raised segment">
+            <div style={{ marginTop: 50 + 'px', minHeight: '150px' }} className="ui news mosaic basic segment">
                 {(() => {
                     if(ready) {
                         return (
                             <div>
-                                <h1>{this.props.title}</h1>
-                                <div className="ui divider"></div>
+                                <h1 className="ui centered header">{this.props.title}</h1>
                                 <div className="ui container">
                                     <ProjectCard news={projects[0]}/>
                                     <div className="ui two column grid">

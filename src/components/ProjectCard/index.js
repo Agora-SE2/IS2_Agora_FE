@@ -16,7 +16,6 @@ export default class ProjectCard extends Component {
 
     render() {
         const {news} = this.props;
-        console.log(news);
 
         if(news) {
             return (

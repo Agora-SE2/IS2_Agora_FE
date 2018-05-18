@@ -84,7 +84,7 @@ class AgoraComment extends Component {
                 <Comment.Content>
                 <Comment.Author as='a' href={"/profile/" + user.id}>{user.birth_name ? user.birth_name : "@" + user.user_name}</Comment.Author>
                 <Comment.Metadata>
-                    <div style={(() => pro ? { color: 'green' } : { color: 'red' })()}><b>{(() => pro ? "A favor" : "En contra")()}</b></div>
+                    <div style={(() => pro ? { color: '#336688' } : { color: '#FF9900' })()}><b>{(() => pro ? "A favor" : "En contra")()}</b></div>
                     <div>{date}</div>
                 </Comment.Metadata>
                 <Comment.Text>{content}</Comment.Text>

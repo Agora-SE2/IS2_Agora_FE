@@ -14,3 +14,39 @@
 #pdfIcon:hover {
     color: #FF9900 !important;
 }
+
+#bookmarkIcon {
+    cursor: pointer !important;
+}
+
+.ui.form .ui.button {
+    color: white;
+}
+
+#negativeCommentBtn {
+    background-color: #FF9900;
+    margin-top: 20px;
+}
+
+#positiveCommentBtn {
+    background-color: #336688;
+    margin-top: 20px;
+}
+
+.ui.bottom.attached.segment {
+    cursor: pointer;
+}
+#aFavor {
+    background-color: #336688;
+    color: white; }
+  
+  #aFavor:hover {
+    background-color: #08708A; }
+  
+  #enContra {
+    background-color: #FF9900;
+    color: white; }
+  
+  #enContra:hover {
+    background-color: #ed9b40; }
+  

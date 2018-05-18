@@ -17,12 +17,14 @@ export default class Home extends Component {
         return (
             <div id="home">
                 <Banner />
-                <div className="ui container grid">
-                    <div className="eight wide column">
-                        <ProjectMosaic title="Lo más debatido" />
-                    </div>
-                    <div className="eight wide column">
-                        <ProjectMosaic title="Lo último" />                        
+                <div className="ui container two column grid">
+                    <div className="row">
+                        <div className="column">
+                            <ProjectMosaic title="Lo más debatido" />
+                        </div>
+                        <div className="column">
+                            <ProjectMosaic title="Lo último" />                        
+                        </div>
                     </div>
                 </div>
 
