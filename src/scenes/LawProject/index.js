@@ -92,7 +92,7 @@ export default class LawProject extends Component {
                     </div>
 
                     <div className="seven wide column">
-                        <ApprovalBar yes={yes_votes} no={not_votes}/>
+                            <ApprovalBar yes={yes_votes} no={not_votes}/>
                         <ApprovalStat yes={yes_votes} no={not_votes}/>
 
                     </div>

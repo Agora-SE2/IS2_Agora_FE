@@ -1,16 +1,32 @@
 /*@left-back-color: rgb(27, 28, 29);
 @banner-height: 75vh;*/
 .home.banner {
-  margin-top: 0em;
   background-size: cover;
-  padding-left: 5%;
-  height: 90vh; }
+  background-position: 50% 40%;
+  height: 65vh; 
+  margin-bottom: 30px;
+}
 
-.home.banner h1 {
+.home.banner .ui.container {
   margin-top: 200px;
-  font-size: 6em;
   color: white; }
 
-.home.banner .left.column {
-  background-color: rgba(27, 28, 29, 0.93);
-  height: 90vh; }
+.home.banner .ui.container h1 {
+  font-size: 6em;
+}
+
+.home.banner .opaque.column {
+  background-color: rgba(27, 28, 29, 0.95);
+  height: 65vh; }
+
+hr {
+  width: 600px;
+}
+
+#description {
+  font-size: 1.25em;
+}
+
+.ui.inverted.button {
+  width: 150px;
+}

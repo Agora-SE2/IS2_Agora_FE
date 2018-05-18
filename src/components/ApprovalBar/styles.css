@@ -1,5 +1,5 @@
 .bar {
-  height: 50px; }
+  height: 40px; }
 
 #positive {
   border-top-left-radius: 10px;
@@ -9,7 +9,7 @@
   height: 100%;
   margin-left: -2px;
   text-align: right;
-  padding-top: 15px;
+  padding-top: 10px;
   padding-right: 20px; }
 
 #approval-bar {

@@ -1,6 +1,17 @@
 @import url("https://fonts.googleapis.com/css?family=Titillium+Web");
+
+@font-face {
+  font-family: 'BonaNova';
+  src: local('BonaNova-Regular'), url(./fonts/BonaNova-Regular.otf) format('opentype');
+}
+
 html * {
-  font-family: 'Titillium Web', sans-serif !important; }
+  font-family: 'Titillium Web', sans-serif; 
+}
+
+html * {
+  font-family: 'BonaNova', serif !important;
+}
 
 html, body {
   margin: 0;
@@ -16,3 +27,4 @@ main {
 
 i.icon {
   font-family: 'Icons', 'brand-icons' !important; }
+
