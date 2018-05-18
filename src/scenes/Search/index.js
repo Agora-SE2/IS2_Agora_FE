@@ -2,6 +2,9 @@ import React, { Component } from 'react';
 
 import Loading from 'components/Loading';
 import ResultCard from './components/ResultCard';
+import PaginateMenu from './components/PaginateMenu';
+
+import { getTagIcon, parseQueryString } from 'services/api/agora-helpers.js';
 
 export default class Search extends Component {
     constructor() {
@@ -15,11 +18,17 @@ export default class Search extends Component {
         }
 
         this.changePage = this.changePage.bind(this);
+        this.isItemActive = this.isItemActive.bind(this);
         this.handleFetch = this.handleFetch.bind(this);
         this.handleSearchKeyPress = this.handleSearchKeyPress.bind(this);
     }
 
     changePage = e => this.setState({ page: e.target.text });
+
+    isItemActive(name) {
+        const { search } = this.props.location;
+        return parseQueryString(search).tag === name ? "active" : "";
+    }
 
     componentWillMount() {
         this.handleFetch();
@@ -85,41 +94,49 @@ export default class Search extends Component {
                             <div className="item">
                                 <h3 className="ui header">Proyectos de ley</h3>
                                 <div className="menu">
-                                    <a href="/search?tag=Ciencia" className="item">Ciencia</a>
-                                    <a href="/search?tag=Cultura" className="item">Cultura</a>
-                                    <a href="/search?tag=Crimen" className="item">Crimen</a>
-                                    <a href="/search?tag=Derecho" className="item">Derechos</a>
-                                    <a href="/search?tag=Economía" className="item">Economía</a>
-                                    <a href="/search?tag=Educación" className="item">Educación</a>
-                                    <a href="/search?tag=JEP" className="item">JEP</a>
-                                    <a href="/search?tag=Medio%20Ambiente" className="item">Medio Ambiente</a>
-                                    <a href="/search?tag=Salud" className="item">Salud</a>
+                                    <a href="/search?tag=Ciencia" className={this.isItemActive("Ciencia") + " item"}>
+                                        <i className={getTagIcon("Ciencia") + "icon"}></i> 
+                                        Ciencia
+                                    </a>
+                                    <a href="/search?tag=Cultura" className={this.isItemActive("Cultura") + " item"}>
+                                        <i className={getTagIcon("Cultura") + "icon"}></i> 
+                                        Cultura
+                                    </a>
+                                    <a href="/search?tag=Crimen" className={this.isItemActive("Crimen") + " item"}>
+                                        <i className={getTagIcon("Crimen") + "icon"}></i> 
+                                        Crimen
+                                    </a>
+                                    <a href="/search?tag=Derecho" className={this.isItemActive("Derecho") + " item"}>
+                                        <i className={getTagIcon("Derecho") + "icon"}></i> 
+                                        Derecho
+                                    </a>
+                                    <a href="/search?tag=Economía" className={this.isItemActive("Economía") + " item"}>
+                                        <i className={getTagIcon("Economía") + "icon"}></i> 
+                                        Economía
+                                    </a>
+                                    <a href="/search?tag=Educación" className={this.isItemActive("Educación") + " item"}>
+                                        <i className={getTagIcon("Educación") + "icon"}></i> 
+                                        Educación
+                                    </a>
+                                    <a href="/search?tag=JEP" className={this.isItemActive("JEP") + " item"}>
+                                        <i className={getTagIcon("JEP") + "icon"}></i> 
+                                        JEP
+                                    </a>
+                                    <a href="/search?tag=Medio%20Ambiente" className={this.isItemActive("Medio Ambiente") + " item"}>
+                                        <i className={getTagIcon("Medio Ambiente") + "icon"}></i> 
+                                        Medio Ambiente
+                                    </a>
+                                    <a href="/search?tag=Salud" className={this.isItemActive("Salud") + " item"}>
+                                        <i className={getTagIcon("Salud") + "icon"}></i> 
+                                        Salud
+                                    </a>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div className="twelve wide column">
                         {projectsView}
-                        <div className="ui pagination menu">
-                            <a onClick={this.changePage} className="active item">
-                                1
-                            </a>
-                            <a onClick={this.changePage} className="active item">
-                                2
-                            </a>
-                            <div className="disabled item">
-                                ...
-                            </div>
-                            <a className="item">
-                                10
-                            </a>
-                            <a className="item">
-                                11
-                            </a>
-                            <a className="item">
-                                12
-                            </a>
-                        </div>
+                        <PaginateMenu active={this.state.page} total={12} callback={this.changePage} />
                     </div>
                 </div>
             </div>

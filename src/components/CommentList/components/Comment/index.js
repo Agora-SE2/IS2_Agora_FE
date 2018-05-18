@@ -6,7 +6,8 @@ import { connect } from 'react-redux';
 
 @connect((store) => {
     return {
-        userId: store.currentUser ? store.currentUser.id : ''
+        userId: store.currentUser ? store.currentUser.id : '',
+        loggedIn: store.loggedIn
     };
 })
 class AgoraComment extends Component {
@@ -16,7 +17,6 @@ class AgoraComment extends Component {
         this.state = {
             liked: false,
             likes: props.comment.like,
-            reported: false
         }
 
         this.like = this.like.bind(this);
@@ -24,12 +24,18 @@ class AgoraComment extends Component {
     }
 
     report() {
-        this.setState(prevState => ({
-            reported: !prevState.reported
-        }));
+        if(this.props.loggedIn)
+            window.location.replace('/report/' + this.props.comment.id)
+        else
+            window.location.replace('login');
     }
 
     like() {
+        if(!this.props.loggedIn) {
+            window.location.replace('/login');
+            return;
+        }
+
         this.setState(prevState => ({
             liked: !prevState.liked,
             likes: (prevState.liked ? prevState.likes-1 : prevState.likes+1)
@@ -84,7 +90,7 @@ class AgoraComment extends Component {
                 <Comment.Text>{content}</Comment.Text>
                 <Comment.Actions>
                     <a style={(() => this.state.liked ? {color: 'red'} : {})()} className="like" onClick={this.like}>Me trama ({this.state.likes})</a>
-                    <a href={"/report/" + id} style={(() => this.state.reported ? {color: 'black', fontWeight: 'bold'} : {})()} className="report" onClick={this.report}>{this.state.reported ? "Denunciado" : "Denunciar"}</a>
+                    <a href={"/report/" + id} className="report" onClick={this.report}>{this.state.reported ? "Denunciado" : "Denunciar"}</a>
                 </Comment.Actions>
                 </Comment.Content>
             </Comment>

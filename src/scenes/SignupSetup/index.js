@@ -95,9 +95,9 @@ export default class SignupSetup extends Component {
                             </Form.Field>
                             <Form.Field>
                                 <label>¿Qué temas te interesan?</label>
-                                {(() => {
-                                    {/* return this.state.tags.map((tag) => <Form.Checkbox key={tag.id} label={tag.name} /> ) */}
-                                })()}                             
+                                {/* {(() => {
+                                    {/* return this.state.tags.map((tag) => <Form.Checkbox key={tag.id} label={tag.name} /> )
+                                })()}                              */}
                             </Form.Field>
                             <center> {/* TODO: */}
                                 <input ref={(node) => this.inputFile = node}type='file' id="imgInp" onChange={this.handleImageChange}/>

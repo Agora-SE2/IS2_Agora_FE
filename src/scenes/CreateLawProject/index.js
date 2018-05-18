@@ -21,8 +21,8 @@ export default class CreateLawProject extends Component {
             name: '',
             description: '',
             publication_date: {},
-            image: {},
-            imagePreviewUrl: '',
+            // image: {},
+            // imagePreviewUrl: '',
             speaker: '',
             submit: false,
             done: false,
@@ -94,7 +94,7 @@ export default class CreateLawProject extends Component {
     handleSubmit(event) {
         event.preventDefault();
 
-        const {name, description, publication_date, image, speaker} = this.state;
+        const {name, description, publication_date, speaker} = this.state;
 
         this.setState({
             submit: true
@@ -128,8 +128,7 @@ export default class CreateLawProject extends Component {
             console.log(response);
             return response.json();
         }).then(data => {
-            console.log(data);
-            if(data.status >= 200 && data.status <= 208)
+            if(data.id)
                 window.location.replace('/proyectoley/' + data.id);
         });
     }
@@ -139,17 +138,17 @@ export default class CreateLawProject extends Component {
     }
 
     render() {
-        const {imagePreviewUrl, submit, name, tagOptions} = this.state;
+        const { submit, name, tagOptions} = this.state;
         const {loggedIn, isAdmin} = this.props;
 
         if(loggedIn && !isAdmin)    // FIXME:
             return <Redirect to="/" />
 
-        let imagePreview;
-        if(imagePreviewUrl.length === 0)
-            imagePreview = '';
-        else
-            imagePreview = <img id="imagePreview" src={imagePreviewUrl} alt="upload preview" />;
+        // let imagePreview;
+        // if(imagePreviewUrl.length === 0)
+        //     imagePreview = '';
+        // else
+        //     imagePreview = <img id="imagePreview" src={imagePreviewUrl} alt="upload preview" />;
         
         document.title = "Crear proyecto de ley | Ágora";
 
@@ -157,60 +156,54 @@ export default class CreateLawProject extends Component {
             <div className="ui page container">
                 <h1 className="ui centered header">Agregar un proyecto de ley</h1>
                 
-                <div className="ui padded segment">
+                <div id="createProjectForm" className="ui padded basic segment">
                     <form ref={el => (this.form = el)} className="ui form">
-                    <div className="ui grid">
-                        <div className="eleven wide column">
-                            <h5 className="ui header">Nombre del proyecto</h5>
-                            <Form.Field>
-                                <input name="name" placeholder="Nombre del proyecto de ley" type="text" onChange={this.handleInputChange} />
-                                <WarningFormLabel 
-                                    allowed={submit && name.length === 0} 
-                                    message={"Por favor ingrese un nombre."} />
-                            </Form.Field>
+                    <h5 className="ui header">Nombre del proyecto</h5>
+                    <Form.Field>
+                        <input name="name" placeholder="Nombre del proyecto de ley" type="text" onChange={this.handleInputChange} />
+                        <WarningFormLabel 
+                            allowed={submit && name.length === 0} 
+                            message={"Por favor ingrese un nombre."} />
+                    </Form.Field>
 
-                            <h5 className="ui header">Nombre de los/las ponentes</h5>
-                            <Form.Field>
-                                <input name="speaker" placeholder="Ponentes del proyecto de ley" type="text" onChange={this.handleInputChange} />
-                                <WarningFormLabel 
-                                    allowed={submit && name.length === 0} 
-                                    message={"Por favor ingrese un ponente."} />
-                            </Form.Field>
-                            
-                            <h5 className="ui header">Descripción general</h5>
-                            <Form.Field>
-                                <textarea name="description" placeholder="Describa en términos generales en qué consiste el proyecto" type="text" onChange={this.handleInputChange} />
-                                <WarningFormLabel 
-                                    allowed={false} 
-                                    message={"Nombre de usuario inválido. Sólo caracteres alfanuméricos (a-z, 0-9)"} />
-                            </Form.Field>
+                    <h5 className="ui header">Nombre de los/las ponentes</h5>
+                    <Form.Field>
+                        <input name="speaker" placeholder="Ponentes del proyecto de ley" type="text" onChange={this.handleInputChange} />
+                        <WarningFormLabel 
+                            allowed={submit && name.length === 0} 
+                            message={"Por favor ingrese un ponente."} />
+                    </Form.Field>
+                    
+                    <h5 className="ui header">Descripción general</h5>
+                    <Form.Field>
+                        <textarea name="description" placeholder="Describa en términos generales en qué consiste el proyecto" type="text" onChange={this.handleInputChange} />
+                        <WarningFormLabel 
+                            allowed={false} 
+                            message={"Nombre de usuario inválido. Sólo caracteres alfanuméricos (a-z, 0-9)"} />
+                    </Form.Field>
 
-                            <h5 className="ui header">¿En qué fecha se propuso este proyecto de ley en el Congreso?</h5>
-                            <Form.Field>
-                                <input name="publication_date" placeholder="¿Cuándo fue publicado este proyecto de ley?" type="date" onChange={this.handleInputChange} />
-                                <WarningFormLabel 
-                                    allowed={submit && name.length === 0} 
-                                    message={"Por favor ingrese un nombre."} />
-                            </Form.Field>
+                    <h5 className="ui header">¿En qué fecha se propuso este proyecto de ley en el Congreso?</h5>
+                    <Form.Field>
+                        <input name="publication_date" placeholder="¿Cuándo fue publicado este proyecto de ley?" type="date" onChange={this.handleInputChange} />
+                        <WarningFormLabel 
+                            allowed={submit && name.length === 0} 
+                            message={"Por favor ingrese un nombre."} />
+                    </Form.Field>
 
-                            <h5 className="ui header">¿A qué categorías pertenece el proyecto?</h5>
-                            <Dropdown placeholder='Selecciona categorías para este proyecto' fluid multiple search selection onChange={this.changeTags} options={tagOptions} />
-                            <br/>
-                            <Form.Button onClick={this.handleSubmit} fluid color="black">Agregar proyecto</Form.Button>
-                        </div>
+                    <h5 className="ui header">¿A qué categorías pertenece el proyecto?</h5>
+                    <Dropdown placeholder='Selecciona categorías para este proyecto' fluid multiple search selection onChange={this.changeTags} options={tagOptions} />
+                    <br/>
+                    <Form.Button onClick={this.handleSubmit} fluid color="black">Agregar proyecto</Form.Button>
 
-                        <div className="five wide column">
-                            {/* {imagePreview}
-                            <div 
-                                style={{marginTop: '30px'}} 
-                                className="ui fluid labeled icon red button"
-                                onClick={this.simulateInputClick}>
-                                <i className="image icon"></i>
-                                Añade una imagen
-                            </div>
-                            <input ref={(node) => this.inputFile = node}type='file' id="imgInp" onChange={this.handleImageChange}/> */}
-                        </div>
+                    {/* {imagePreview}
+                    <div 
+                        style={{marginTop: '30px'}} 
+                        className="ui fluid labeled icon red button"
+                        onClick={this.simulateInputClick}>
+                        <i className="image icon"></i>
+                        Añade una imagen
                     </div>
+                    <input ref={(node) => this.inputFile = node}type='file' id="imgInp" onChange={this.handleImageChange}/> */}
                     </form>
                 </div>
             </div>
