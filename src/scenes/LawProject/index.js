@@ -128,7 +128,7 @@ export default class LawProject extends Component {
     }
 
     render() {
-        const {id, name, yes_votes, description, not_votes, tags, publication_date, opinions} = this.state.project;
+        const {id, name, yes_votes, description, not_votes, tags, publication_date, opinions, speaker} = this.state.project;
 
         let yesComments = [];
         let notComments = [];
@@ -189,7 +189,7 @@ export default class LawProject extends Component {
                         <div className="indented">{description}</div>
 
                         <h3 className="ui header">Ponentes</h3>
-                        <div className="indented">{description}</div>
+                        <div className="indented">{speaker}</div>
                     </div>
 
                     <div className="six wide column">
