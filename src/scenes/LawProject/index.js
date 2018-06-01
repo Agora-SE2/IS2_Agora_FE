@@ -9,6 +9,7 @@ import ApprovalStat from './components/ApprovalStat';
 import CommentList from 'components/CommentList';
 import TagLabelList from 'components/TagLabelList';
 import ApprovalBar from 'components/ApprovalBar';
+import WarningFormLabel from 'components/WarningFormLabel';
 
 import './styles.css';
 
@@ -27,7 +28,11 @@ export default class LawProject extends Component {
         this.state = {
             project: {},
             opinionPro: '',
-            opinionCon: ''
+            opinionCon: '',
+            warnCommentPro: false,
+            warnCommentCon: false,
+            proComments: [],
+            conComments: []
         };
 
         this.comment = this.comment.bind(this);
@@ -44,12 +49,18 @@ export default class LawProject extends Component {
         .then(data => {
             // console.log(data);
             this.setState({project:data});
+            this.setState({ proComments: data.opinions.filter(opinion => opinion.pro) });
+            this.setState({ conComments: data.opinions.filter(opinion => !opinion.pro) });
         });
     }
 
     comment(e, pro) {
         const content = pro ? this.state.opinionPro : this.state.opinionCon;
         const { id } = this.state.project;
+
+        if(!this.props.userId) {
+            window.location.replace("/login");
+        }
 
         if(content.length > 0) {
             const opinion = {
@@ -73,8 +84,10 @@ export default class LawProject extends Component {
                 body: JSON.stringify(opinion)
             }).then(response => {
                 console.log(response);
-                if(response.status >= 200 || response.status <= 208) {
+                if(response.status >= 200 && response.status <= 208) {
                     console.log("success");
+                } else if(response.status == 422) {
+                    pro ? this.setState({ warnCommentPro: true }) : this.setState({ warnCommentCon: true });
                 } else {
                     console.error(response.status, "error commenting");
                 }
@@ -84,8 +97,22 @@ export default class LawProject extends Component {
                     project: {
                         ...prevState.project,
                         opinions: [...prevState.project.opinions, newOpinion]
-                    }
+                    },
                 }))
+                
+                if(pro) {
+                    console.log("comentario a favor")
+                    var comments = this.state.proComments;
+                    comments.unshift(newOpinion);
+                    console.log(comments)
+                    this.setState({ proComments: comments })
+                } else {
+                    console.log("comentario en contra")
+                    var comments = this.state.conComments;
+                    comments.unshift(newOpinion);
+                    console.log(comments)
+                    this.setState({ conComments: comments })
+                }
             });
         }
     }
@@ -128,18 +155,12 @@ export default class LawProject extends Component {
     }
 
     render() {
-        const {id, name, yes_votes, description, not_votes, tags, publication_date, opinions, speaker} = this.state.project;
-
-        let yesComments = [];
-        let notComments = [];
+        const {id, name, description, yes_votes, not_votes, tags, 
+            publication_date, speaker} = this.state.project;
+        const { warnCommentPro,  proComments, conComments, warnCommentCon } = this.state;
 
         if(name)
             document.title = name + " | Ágora";
-
-        if(opinions) {
-            yesComments = opinions.filter(opinion => opinion.pro);
-            notComments = opinions.filter(opinion => !opinion.pro);
-        }
 
         return (
             <div className="ui page container"> 
@@ -155,7 +176,7 @@ export default class LawProject extends Component {
                             </div>
                             <div className="three wide column">                         
                             <a><Icon id="bookmarkIcon" size="big" color="yellow" name="bookmark outline" /></a>
-                            <a href={"/proyectoley/" + id + "/pdf"}><Icon id="pdfIcon" size="big" color="red" name="file pdf" /></a>
+                            <a href={"/proyectoley/" + id + "/pdf"}><Icon id="pdfIcon" size="big" color="red" name="file pdf outline" /></a>
                             </div>
                         </div>
                         {(() => {
@@ -208,10 +229,13 @@ export default class LawProject extends Component {
                             <h2 className="ui centered header">Argumentos a favor</h2>
                             <div className="ui divider"></div>
 
-                            <CommentList comments={yesComments} />
+                            <CommentList comments={proComments} />
 
                             <div className="ui form">
                                 <TextArea onChange={this.handleOpinionProChange} placeholder='¿Qué opinas sobre este proyecto de ley?' />
+                                <WarningFormLabel 
+                                    allowed={(this.state.warnCommentPro)} 
+                                    message={"Lávate esos dedos y revisa el lenguaje que utilizas en este comentario. Atrevido."} />
                                 <Button onClick={(e) => this.comment(e, true)} id="positiveCommentBtn" fluid>Comentar a favor</Button>
                             </div>
                         </div>
@@ -223,10 +247,13 @@ export default class LawProject extends Component {
                         <div className="ui attached padded segment">
                             <h2 className="ui centered header">Argumentos en contra</h2>
                             <div className="ui divider"></div>
-                            <CommentList comments={notComments} />
+                            <CommentList comments={conComments} />
 
                             <div className="ui form">
                                 <TextArea onChange={this.handleOpinionConChange} placeholder='¿Qué opinas sobre este proyecto de ley?' />
+                                <WarningFormLabel 
+                                    allowed={(this.state.warnCommentCon)} 
+                                    message={"Lávate esos dedos y revisa el lenguaje que utilizas en este comentario. Atrevido. "} />
                                 <Button onClick={(e) => this.comment(e, false)} id="negativeCommentBtn" fluid>Comentar en contra</Button>
                             </div>
                         </div>
