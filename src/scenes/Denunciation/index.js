@@ -4,11 +4,7 @@ import { connect } from 'react-redux';
 import { Divider, Form } from 'semantic-ui-react';
 import './styles.css';
 
-@connect((store) => {
-    return {
-        loggedIn: store.loggedIn
-    };
-})
+
 export default class Denunciation extends Component {  
     constructor() {
         super();
@@ -21,6 +17,9 @@ export default class Denunciation extends Component {
         this.changeTextarea = this.changeTextarea.bind(this);
     }
 
+    
+    
+
     changeTextarea = (e, data) => this.setState({ reason: e.target.value });
 
     componentWillMount() {
@@ -30,13 +29,41 @@ export default class Denunciation extends Component {
         .then(opinion => this.setState({ opinion}))
     }
 
+    handleSubmit(opinionId, reason, userId){
+        const denunciation = {
+            denunciation: {
+                opinion_id: opinionId,
+                reason: reason,
+                user_id: userId,
+        
+            }
+        };
+        
+        console.log(denunciation);
+        
+        fetch(process.env.REACT_APP_BACK_URL + "opinion_reports", {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(denunciation)
+        }).then(response => {
+            console.log(response);
+            if(response.status >= 200 && response.status <= 208) {
+                alert("Denuncia enviada");
+            }
+        });
+    }
+
     render() {
         document.title = "Reportar un comentario | Ágora";
         const { loggedIn } = this.props;
         const { content, user } = this.state.opinion;
 
         if(!loggedIn) 
-            return <Redirect to='/' />;
+            return <Redirect to='/login' />;
+
+        
 
         return (
             <div className="ui page container">
@@ -52,7 +79,7 @@ export default class Denunciation extends Component {
                     </center>
                     <Divider />
 
-                    <Form onSubmit={this.handleSubmit}>
+                    <Form onSubmit={this.handleSubmit(1, 1, 1)}>
 
                         <Form.Field>
                             <div className="ui checkbox">
